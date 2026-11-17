@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="lv" data-theme="dark" data-palette="indigo">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Internetradio — Material 3</title>
+  <meta name="theme-color" content="#121318" id="themeColorMeta" />
+  <meta name="description" content="Moderns Google Material 3 internetradio atskaņotājs ar Latvijas un pasaules radiostacijām." />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Internetradio" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       GOOGLE MATERIAL DESIGN 3 (MATERIAL YOU) TOKEN SYSTEM
+       ========================================================================== */
+    :root {
+      --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --ease-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+      --ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+    }
+
+    /* DARK THEME - INDIGO / LAVENDER */
+    [data-theme="dark"][data-palette="indigo"] {
+      --md-sys-color-primary: #BAC3FF;
+      --md-sys-color-on-primary: #1D296B;
+      --md-sys-color-primary-container: #354183;
+      --md-sys-color-on-primary-container: #DEE1FF;
+      --md-sys-color-secondary: #C3C5DD;
+      --md-sys-color-on-secondary: #2D2F42;
+      --md-sys-color-secondary-container: #434559;
+      --md-sys-color-on-secondary-container: #E0E1F9;
+      --md-sys-color-tertiary: #E6B9D7;
+      --md-sys-color-on-tertiary: #45263D;
+      --md-sys-color-tertiary-container: #5D3C54;
+      --md-sys-color-on-tertiary-container: #FFD7F0;
+      --md-sys-color-surface: #121318;
+      --md-sys-color-surface-container-lowest: #0D0E13;
+      --md-sys-color-surface-container-low: #1A1B21;
+      --md-sys-color-surface-container: #1E1F25;
+      --md-sys-color-surface-container-high: #292A2F;
+      --md-sys-color-surface-container-highest: #34343A;
+      --md-sys-color-on-surface: #E3E1E9;
+      --md-sys-color-on-surface-variant: #C6C5D0;
+      --md-sys-color-outline: #90909A;
+      --md-sys-color-outline-variant: #45464F;
+      --md-sys-color-inverse-surface: #E3E1E9;
+      --md-sys-color-inverse-on-surface: #2F3036;
+      --md-sys-color-inverse-primary: #4D599C;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
+    }
+
+    /* DARK THEME - EMERALD */
+    [data-theme="dark"][data-palette="emerald"] {
+      --md-sys-color-primary: #82D5C8;
+      --md-sys-color-on-primary: #003731;
+      --md-sys-color-primary-container: #005048;
+      --md-sys-color-on-primary-container: #9EF2E4;
+      --md-sys-color-secondary: #B1CCC6;
+      --md-sys-color-on-secondary: #1C3531;
+      --md-sys-color-secondary-container: #334B47;
+      --md-sys-color-on-secondary-container: #CCE8E2;
+      --md-sys-color-tertiary: #AECCE5;
+      --md-sys-color-on-tertiary: #163448;
+      --md-sys-color-tertiary-container: #2E4B60;
+      --md-sys-color-on-tertiary-container: #CDE5FF;
+      --md-sys-color-surface: #0E1513;
+      --md-sys-color-surface-container-lowest: #090F0E;
+      --md-sys-color-surface-container-low: #161D1B;
+      --md-sys-color-surface-container: #1A211F;
+      --md-sys-color-surface-container-high: #252B2A;
+      --md-sys-color-surface-container-highest: #303634;
+      --md-sys-color-on-surface: #DEE4E1;
+      --md-sys-color-on-surface-variant: #BEC9C5;
+      --md-sys-color-outline: #899390;
+      --md-sys-color-outline-variant: #3F4946;
+      --md-sys-color-inverse-surface: #DEE4E1;
+      --md-sys-color-inverse-on-surface: #2B3230;
+      --md-sys-color-inverse-primary: #006A60;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
+    }
+
+    /* DARK THEME - CORAL / METAL CRIMSON */
+    [data-theme="dark"][data-palette="coral"] {
+      --md-sys-color-primary: #FFB4AB;
+      --md-sys-color-on-primary: #690005;
+      --md-sys-color-primary-container: #93000A;
+      --md-sys-color-on-primary-container: #FFDAD6;
+      --md-sys-color-secondary: #E7BDB8;
+      --md-sys-color-on-secondary: #442926;
+      --md-sys-color-secondary-container: #5D3F3C;
+      --md-sys-color-on-secondary-container: #FFDAD6;
+      --md-sys-color-tertiary: #E0C38C;
+      --md-sys-color-on-tertiary: #3F2E04;
+      --md-sys-color-tertiary-container: #584419;
+      --md-sys-color-on-tertiary-container: #FDDF9E;
+      --md-sys-color-surface: #1A1110;
+      --md-sys-color-surface-container-lowest: #140C0B;
+      --md-sys-color-surface-container-low: #231918;
+      --md-sys-color-surface-container: #271D1C;
+      --md-sys-color-surface-container-high: #322826;
+      --md-sys-color-surface-container-highest: #3D3231;
+      --md-sys-color-on-surface: #F1DFDD;
+      --md-sys-color-on-surface-variant: #D8C2BF;
+      --md-sys-color-outline: #A08C8A;
+      --md-sys-color-outline-variant: #534341;
+      --md-sys-color-inverse-surface: #F1DFDD;
+      --md-sys-color-inverse-on-surface: #392E2D;
+      --md-sys-color-inverse-primary: #BA1A1A;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
+    }
+
+    /* DARK THEME - AMBER / GOLD */
+    [data-theme="dark"][data-palette="amber"] {
+      --md-sys-color-primary: #F5BF48;
+      --md-sys-color-on-primary: #402D00;
+      --md-sys-color-primary-container: #5C4300;
+      --md-sys-color-on-primary-container: #FFDF9E;
+      --md-sys-color-secondary: #DAC39C;
+      --md-sys-color-on-secondary: #3C2E12;
+      --md-sys-color-secondary-container: #544426;
+      --md-sys-color-on-secondary-container: #F7DFB6;
+      --md-sys-color-tertiary: #B3CEA6;
+      --md-sys-color-on-tertiary: #203619;
+      --md-sys-color-tertiary-container: #354D2E;
+      --md-sys-color-on-tertiary-container: #CFEBC1;
+      --md-sys-color-surface: #17130B;
+      --md-sys-color-surface-container-lowest: #120E07;
+      --md-sys-color-surface-container-low: #201B13;
+      --md-sys-color-surface-container: #241F17;
+      --md-sys-color-surface-container-high: #2F2921;
+      --md-sys-color-surface-container-highest: #3A342B;
+      --md-sys-color-on-surface: #ECE1D4;
+      --md-sys-color-on-surface-variant: #D1C5B4;
+      --md-sys-color-outline: #9A8F80;
+      --md-sys-color-outline-variant: #4E4639;
+      --md-sys-color-inverse-surface: #ECE1D4;
+      --md-sys-color-inverse-on-surface: #353027;
+      --md-sys-color-inverse-primary: #795900;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
+    }
+
+    /* LIGHT THEME - INDIGO */
+    [data-theme="light"][data-palette="indigo"] {
+      --md-sys-color-primary: #4D599C;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #DEE1FF;
+      --md-sys-color-on-primary-container: #031356;
+      --md-sys-color-secondary: #5B5D72;
+      --md-sys-color-on-secondary: #FFFFFF;
+      --md-sys-color-secondary-container: #E0E1F9;
+      --md-sys-color-on-secondary-container: #181A2C;
+      --md-sys-color-tertiary: #77536D;
+      --md-sys-color-on-tertiary: #FFFFFF;
+      --md-sys-color-tertiary-container: #FFD7F0;
+      --md-sys-color-on-tertiary-container: #2D1227;
+      --md-sys-color-surface: #FBF8FF;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
+      --md-sys-color-surface-container-low: #F5F2FA;
+      --md-sys-color-surface-container: #EFEDF4;
+      --md-sys-color-surface-container-high: #E9E7EF;
+      --md-sys-color-surface-container-highest: #E3E1E9;
+      --md-sys-color-on-surface: #1B1B21;
+      --md-sys-color-on-surface-variant: #45464F;
+      --md-sys-color-outline: #767680;
+      --md-sys-color-outline-variant: #C6C5D0;
+      --md-sys-color-inverse-surface: #303036;
+      --md-sys-color-inverse-on-surface: #F2EFF7;
+      --md-sys-color-inverse-primary: #BAC3FF;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
+    }
+
+    /* LIGHT THEME - EMERALD */
+    [data-theme="light"][data-palette="emerald"] {
+      --md-sys-color-primary: #006A60;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #9EF2E4;
+      --md-sys-color-on-primary-container: #00201C;
+      --md-sys-color-secondary: #4A635E;
+      --md-sys-color-on-secondary: #FFFFFF;
+      --md-sys-color-secondary-container: #CCE8E2;
+      --md-sys-color-on-secondary-container: #05201C;
+      --md-sys-color-tertiary: #46617A;
+      --md-sys-color-on-tertiary: #FFFFFF;
+      --md-sys-color-tertiary-container: #CDE5FF;
+      --md-sys-color-on-tertiary-container: #001D32;
+      --md-sys-color-surface: #F4FBF8;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
+      --md-sys-color-surface-container-low: #EFF5F2;
+      --md-sys-color-surface-container: #E9EFED;
+      --md-sys-color-surface-container-high: #E3EAE7;
+      --md-sys-color-surface-container-highest: #DEE4E1;
+      --md-sys-color-on-surface: #161D1B;
+      --md-sys-color-on-surface-variant: #3F4946;
+      --md-sys-color-outline: #6F7976;
+      --md-sys-color-outline-variant: #BEC9C5;
+      --md-sys-color-inverse-surface: #2B3230;
+      --md-sys-color-inverse-on-surface: #ECF2EF;
+      --md-sys-color-inverse-primary: #82D5C8;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
+    }
+
+    /* LIGHT THEME - CORAL */
+    [data-theme="light"][data-palette="coral"] {
+      --md-sys-color-primary: #BA1A1A;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #FFDAD6;
+      --md-sys-color-on-primary-container: #410002;
+      --md-sys-color-secondary: #775652;
+      --md-sys-color-on-secondary: #FFFFFF;
+      --md-sys-color-secondary-container: #FFDAD6;
+      --md-sys-color-on-secondary-container: #2C1513;
+      --md-sys-color-tertiary: #715B2E;
+      --md-sys-color-on-tertiary: #FFFFFF;
+      --md-sys-color-tertiary-container: #FDDF9E;
+      --md-sys-color-on-tertiary-container: #261900;
+      --md-sys-color-surface: #FFF8F7;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
+      --md-sys-color-surface-container-low: #FFF0EE;
+      --md-sys-color-surface-container: #FCEAE8;
+      --md-sys-color-surface-container-high: #F7E4E2;
+      --md-sys-color-surface-container-highest: #F1DFDD;
+      --md-sys-color-on-surface: #231918;
+      --md-sys-color-on-surface-variant: #534341;
+      --md-sys-color-outline: #857371;
+      --md-sys-color-outline-variant: #D8C2BF;
+      --md-sys-color-inverse-surface: #392E2D;
+      --md-sys-color-inverse-on-surface: #FFEDEA;
+      --md-sys-color-inverse-primary: #FFB4AB;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
+    }
+
+    /* LIGHT THEME - AMBER */
+    [data-theme="light"][data-palette="amber"] {
+      --md-sys-color-primary: #795900;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #FFDF9E;
+      --md-sys-color-on-primary-container: #261A00;
+      --md-sys-color-secondary: #6C5C3F;
+      --md-sys-color-on-secondary: #FFFFFF;
+      --md-sys-color-secondary-container: #F7DFB6;
+      --md-sys-color-on-secondary-container: #251A04;
+      --md-sys-color-tertiary: #4C6544;
+      --md-sys-color-on-tertiary: #FFFFFF;
+      --md-sys-color-tertiary-container: #CFEBC1;
+      --md-sys-color-on-tertiary-container: #0A2006;
+      --md-sys-color-surface: #FFF8F2;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
+      --md-sys-color-surface-container-low: #FCF2E5;
+      --md-sys-color-surface-container: #F6ECDF;
+      --md-sys-color-surface-container-high: #F1E6D9;
+      --md-sys-color-surface-container-highest: #ECE1D4;
+      --md-sys-color-on-surface: #201B13;
+      --md-sys-color-on-surface-variant: #4E4639;
+      --md-sys-color-outline: #807667;
+      --md-sys-color-outline-variant: #D1C5B4;
+      --md-sys-color-inverse-surface: #353027;
+      --md-sys-color-inverse-on-surface: #F9EFE2;
+      --md-sys-color-inverse-primary: #F5BF48;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.25s var(--ease-standard), color 0.25s var(--ease-standard);
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 600px;
+      min-height: 100vh;
+      background-color: var(--md-sys-color-surface);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      /* Generous bottom clearance so the last item can scroll cleanly above FAB & Mini-Player */
+      padding-bottom: 184px;
+    }
+
+    /* ==========================================================================
+       M3 TOP APP BAR
+       ========================================================================== */
+    .top-app-bar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background-color: var(--md-sys-color-surface);
+      padding: 8px 12px 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      transition: background-color 0.2s var(--ease-standard);
+    }
+
+    .top-app-bar.scrolled {
+      background-color: var(--md-sys-color-surface-container);
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-title {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--md-sys-color-on-surface);
+      line-height: 28px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* M3 48x48dp Touch Target Icon Button */
+    .m3-icon-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.15s var(--ease-standard), color 0.15s var(--ease-standard);
+    }
+
+    .m3-icon-btn:hover {
+      background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+    }
+
+    .m3-icon-btn:active {
+      background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+    }
+
+    .m3-icon-btn.active-tonal {
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    .timer-badge {
+      position: absolute;
+      bottom: 6px;
+      right: 4px;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 8px;
+      line-height: 1.2;
+      display: none;
+    }
+
+    .timer-badge.visible {
+      display: block;
+    }
+
+    /* Dynamic Color Swatch Strip */
+    .palette-bar {
+      display: none;
+      padding: 8px 16px 12px;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--md-sys-color-surface-container-low);
+      margin: 0 16px 8px;
+      border-radius: 16px;
+    }
+
+    .palette-bar.open {
+      display: flex;
+    }
+
+    .palette-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .swatches {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .swatch-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s var(--ease-standard);
+    }
+
+    .swatch-btn.selected {
+      border-color: var(--md-sys-color-on-surface);
+      transform: scale(1.1);
+    }
+
+    /* ==========================================================================
+       M3 SEARCH BAR (28px PILL)
+       ========================================================================== */
+    .search-section {
+      padding: 4px 16px 12px;
+    }
+
+    .m3-search-bar {
+      height: 52px;
+      border-radius: 26px;
+      background-color: var(--md-sys-color-surface-container-high);
+      display: flex;
+      align-items: center;
+      padding: 0 8px 0 16px;
+      gap: 12px;
+      transition: background-color 0.2s var(--ease-standard);
+    }
+
+    .m3-search-bar:focus-within {
+      background-color: var(--md-sys-color-surface-container-highest);
+    }
+
+    .m3-search-bar svg {
+      color: var(--md-sys-color-on-surface-variant);
+      flex-shrink: 0;
+    }
+
+    .m3-search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface);
+      font-family: var(--font-family);
+      font-size: 16px;
+      outline: none;
+      min-width: 0;
+    }
+
+    .m3-search-input::placeholder {
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .search-clear-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .search-clear-btn.visible {
+      display: flex;
+    }
+
+    /* ==========================================================================
+       M3 FILTER CHIPS (8px RADIUS + CHECKMARK ON SELECTED)
+       ========================================================================== */
+    .chips-scroll {
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .chips-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .m3-filter-chip {
+      height: 32px;
+      padding: 0 14px;
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      background-color: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s var(--ease-standard), border-color 0.15s var(--ease-standard), color 0.15s var(--ease-standard);
+    }
+
+    .m3-filter-chip:hover {
+      background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+    }
+
+    .m3-filter-chip.selected {
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      border-color: transparent;
+      padding-left: 10px;
+    }
+
+    .chip-check {
+      display: none;
+      width: 18px;
+      height: 18px;
+    }
+
+    .m3-filter-chip.selected .chip-check {
+      display: inline-flex;
+    }
+
+    /* ==========================================================================
+       RECENTLY PLAYED HORIZONTAL SHELF (QUICK ACCESS)
+       ========================================================================== */
+    .recent-section {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 0 12px;
+    }
+
+    .recent-section.visible {
+      display: flex;
+    }
+
+    .section-overline {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--md-sys-color-on-surface-variant);
+      padding: 0 16px;
+    }
+
+    .recent-scroll {
+      display: flex;
+      gap: 10px;
+      padding: 0 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .recent-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .recent-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px 6px 6px;
+      border-radius: 14px;
+      background-color: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-on-surface);
+      border: none;
+      font-family: var(--font-family);
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s var(--ease-standard);
+    }
+
+    .recent-pill.active {
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    .recent-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       M3 STATION CARDS (CONSISTENT PLAY/PAUSE INTERACTION)
+       ========================================================================== */
+    .stations-list {
+      padding: 4px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .m3-station-card {
+      background-color: var(--md-sys-color-surface-container-low);
+      border-radius: 16px;
+      padding: 10px 8px 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease-standard);
+      position: relative;
+      user-select: none;
+    }
+
+    .m3-station-card:hover {
+      background-color: var(--md-sys-color-surface-container);
+    }
+
+    .m3-station-card.active {
+      background-color: var(--md-sys-color-secondary-container);
+    }
+
+    .station-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .station-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .station-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .station-name {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22px;
+      color: var(--md-sys-color-on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .m3-station-card.active .station-name {
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    .live-pill {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      flex-shrink: 0;
+    }
+
+    .station-subtitle {
+      font-size: 13px;
+      line-height: 18px;
+      color: var(--md-sys-color-on-surface-variant);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .m3-station-card.active .station-subtitle {
+      color: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 82%, transparent);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .fav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .fav-btn.is-fav {
+      color: var(--md-sys-color-primary);
+    }
+
+    .m3-station-card.active .fav-btn {
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    /* ==========================================================================
+       M3 EXTENDED FAB WITH SCROLL COLLAPSE (SHRINK TO 56x56dp)
+       ========================================================================== */
+    .fab-container {
+      position: fixed;
+      bottom: 96px;
+      right: max(16px, calc(50vw - 284px));
+      z-index: 35;
+    }
+
+    .m3-extended-fab {
+      height: 56px;
+      padding: 0 20px 0 16px;
+      border-radius: 16px;
+      border: none;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+      transition: padding 0.25s var(--ease-emphasized), width 0.25s var(--ease-emphasized), transform 0.15s var(--ease-standard);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .m3-extended-fab.collapsed {
+      padding: 0;
+      width: 56px;
+      gap: 0;
+    }
+
+    .m3-extended-fab.collapsed .fab-label {
+      display: none;
+    }
+
+    .m3-extended-fab:active {
+      transform: scale(0.96);
+    }
+
+    /* ==========================================================================
+       M3 SNACKBAR
+       ========================================================================== */
+    .m3-snackbar {
+      position: fixed;
+      bottom: 162px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      width: calc(100% - 32px);
+      max-width: 568px;
+      min-height: 48px;
+      padding: 6px 8px 6px 16px;
+      border-radius: 12px;
+      background-color: var(--md-sys-color-inverse-surface);
+      color: var(--md-sys-color-inverse-on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 45;
+      transition: opacity 0.2s var(--ease-standard), transform 0.25s var(--ease-emphasized);
+    }
+
+    .m3-snackbar.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .snackbar-action {
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-inverse-primary);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       FLOATING M3 MINI-PLAYER (SUPPORTS HORIZONTAL SWIPE TO SKIP STATIONS)
+       ========================================================================== */
+    .mini-player-wrap {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 576px;
+      z-index: 40;
+      touch-action: pan-y;
+    }
+
+    .m3-mini-player {
+      height: 72px;
+      border-radius: 20px;
+      background-color: var(--md-sys-color-surface-container-highest);
+      padding: 8px 10px 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-standard), background-color 0.2s var(--ease-standard);
+      user-select: none;
+    }
+
+    .mini-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mini-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mini-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mini-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-status {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-outline);
+    }
+
+    .status-dot.playing {
+      background-color: var(--md-sys-color-primary);
+    }
+
+    .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+
+    .eq-bars span {
+      width: 3px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--md-sys-color-primary);
+      transition: height 0.2s;
+    }
+
+    .eq-bars.animating span:nth-child(1) { animation: eq 0.7s infinite alternate; }
+    .eq-bars.animating span:nth-child(2) { animation: eq 0.5s 0.2s infinite alternate; }
+    .eq-bars.animating span:nth-child(3) { animation: eq 0.8s 0.1s infinite alternate; }
+    .eq-bars.animating span:nth-child(4) { animation: eq 0.6s 0.3s infinite alternate; }
+
+    @keyframes eq {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
+
+    .m3-play-morph-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: none;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-radius 0.3s var(--ease-emphasized), transform 0.15s var(--ease-standard);
+    }
+
+    .m3-play-morph-btn.is-playing {
+      border-radius: 26px;
+    }
+
+    .m3-play-morph-btn:active {
+      transform: scale(0.94);
+    }
+
+    /* ==========================================================================
+       M3 MODAL BOTTOM SHEET
+       ========================================================================== */
+    .sheet-scrim {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease-standard);
+    }
+
+    .sheet-scrim.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .m3-bottom-sheet {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%) translateY(100%);
+      width: 100%;
+      max-width: 600px;
+      max-height: 92vh;
+      background-color: var(--md-sys-color-surface-container-low);
+      border-radius: 28px 28px 0 0;
+      z-index: 70;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.32s var(--ease-emphasized);
+    }
+
+    .m3-bottom-sheet.open {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .sheet-drag-handle-area {
+      padding: 12px 0 8px;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .sheet-drag-handle {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--md-sys-color-outline-variant);
+    }
+
+    .sheet-body {
+      padding: 4px 24px 28px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Now Playing Ergonomic Transport Controls (Prev / Play-Pause / Next) */
+    .np-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .np-artwork {
+      width: 172px;
+      height: 172px;
+      border-radius: 28px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .np-details {
+      text-align: center;
+    }
+
+    .np-title {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 4px;
+    }
+
+    .np-desc {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .np-transport {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .m3-skip-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      border: none;
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s var(--ease-standard);
+    }
+
+    .m3-skip-btn:active {
+      transform: scale(0.93);
+    }
+
+    .m3-play-large {
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      border: none;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-radius 0.3s var(--ease-emphasized), transform 0.15s;
+    }
+
+    .m3-play-large.is-playing {
+      border-radius: 38px;
+    }
+
+    .m3-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--md-sys-color-surface-container);
+      padding: 12px 16px;
+      border-radius: 16px;
+    }
+
+    .m3-slider {
+      flex: 1;
+      accent-color: var(--md-sys-color-primary);
+      height: 6px;
+      cursor: pointer;
+    }
+
+    .m3-segmented-row {
+      display: flex;
+      border: 1px solid var(--md-sys-color-outline);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .m3-seg-btn {
+      flex: 1;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .m3-seg-btn.active {
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    .m3-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .m3-field label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .m3-input, .m3-select {
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline);
+      background-color: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-on-surface);
+      padding: 0 14px;
+      font-family: var(--font-family);
+      font-size: 15px;
+      outline: none;
+    }
+
+    .m3-input:focus, .m3-select:focus {
+      border-color: var(--md-sys-color-primary);
+      border-width: 2px;
+    }
+
+    .m3-filled-btn {
+      height: 48px;
+      border-radius: 24px;
+      border: none;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0 24px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .m3-tonal-btn {
+      height: 40px;
+      border-radius: 20px;
+      border: none;
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      font-family: var(--font-family);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0 16px;
+      cursor: pointer;
+    }
+
+    .m3-tonal-btn:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .online-result-item {
+      background-color: var(--md-sys-color-surface-container);
+      padding: 10px 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* Artwork Gradients */
+    .grad-red { background: linear-gradient(135deg, #D32F2F, #8E0000); }
+    .grad-amber { background: linear-gradient(135deg, #F57C00, #E65100); }
+    .grad-emerald { background: linear-gradient(135deg, #00897B, #004D40); }
+    .grad-indigo { background: linear-gradient(135deg, #3949AB, #1A237E); }
+    .grad-purple { background: linear-gradient(135deg, #7B1FA2, #4A148C); }
+    .grad-metal { background: linear-gradient(135deg, #37474F, #102027); }
+    .grad-crimson { background: linear-gradient(135deg, #B71C1C, #212121); }
+    .grad-teal { background: linear-gradient(135deg, #0277BD, #01579B); }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- M3 TOP APP BAR -->
+    <header class="top-app-bar" id="topAppBar">
+      <div class="app-brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2"></circle>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+          </svg>
+        </div>
+        <h1 class="app-title">Internetradio</h1>
+      </div>
+
+      <div class="top-actions">
+        <button class="m3-icon-btn" id="installAppBtn" title="Instalēt aplikāciju" aria-label="Instalēt aplikāciju" style="display:none;color:var(--md-sys-color-primary);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+
+        <button class="m3-icon-btn" id="refreshLvBtn" title="Atjaunot Latvijas tiešraides" aria-label="Atjaunot Latvijas tiešraides">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+            <path d="M16 16h5v5"></path>
+          </svg>
+        </button>
+
+        <button class="m3-icon-btn" id="timerOpenBtn" title="Miega taimeris" aria-label="Miega taimeris">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <span class="timer-badge" id="timerBadge"></span>
+        </button>
+
+        <button class="m3-icon-btn" id="paletteToggleBtn" title="Material You krāsas un tēma" aria-label="Material You krāsas">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- DYNAMIC COLOR PALETTE & THEME STRIP -->
+    <div class="palette-bar" id="paletteBar">
+      <span class="palette-label">Material You</span>
+      <div class="swatches">
+        <button class="swatch-btn selected" data-pal="indigo" style="background:#7986CB;" title="Indigo"></button>
+        <button class="swatch-btn" data-pal="emerald" style="background:#4DB6AC;" title="Smaragds"></button>
+        <button class="swatch-btn" data-pal="coral" style="background:#E57373;" title="Metāls / Koraļļi"></button>
+        <button class="swatch-btn" data-pal="amber" style="background:#FFB74D;" title="Dzintars"></button>
+        <button class="m3-tonal-btn" id="themeModeBtn" style="height:32px;padding:0 12px;">Gaišais</button>
+      </div>
+    </div>
+
+    <!-- M3 SEARCH BAR -->
+    <div class="search-section">
+      <div class="m3-search-bar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input type="search" id="searchInput" class="m3-search-input" placeholder="Meklēt staciju vai žanru..." autocomplete="off" />
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Notīrīt meklēšanu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- M3 FILTER CHIPS -->
+    <nav class="chips-scroll" id="categoryChips" aria-label="Kategorijas"></nav>
+
+    <!-- RECENTLY PLAYED QUICK SHELF -->
+    <section class="recent-section" id="recentSection" aria-label="Nesen klausītās">
+      <span class="section-overline">Nesen klausītās</span>
+      <div class="recent-scroll" id="recentScroll"></div>
+    </section>
+
+    <!-- STATIONS LIST -->
+    <main class="stations-list" id="stationsList"></main>
+
+    <!-- M3 EXTENDED FAB (SHRINKS ON SCROLL) -->
+    <div class="fab-container">
+      <button class="m3-extended-fab" id="addStationFab" aria-label="Pievienot staciju">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14"></path>
+        </svg>
+        <span class="fab-label">Pievienot staciju</span>
+      </button>
+    </div>
+
+    <!-- M3 SNACKBAR -->
+    <div class="m3-snackbar" id="m3Snackbar" role="status" aria-live="polite">
+      <span id="snackbarText">Neizdevās savienoties ar straumi</span>
+      <button class="snackbar-action" id="snackbarRetryBtn">Mēģināt vēlreiz</button>
+    </div>
+
+    <!-- FLOATING M3 MINI-PLAYER (SWIPE LEFT/RIGHT FOR NEXT/PREV STATION) -->
+    <div class="mini-player-wrap" id="miniPlayerWrap">
+      <div class="m3-mini-player" id="miniPlayer">
+        <div class="mini-art grad-indigo" id="miniArt">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </div>
+        <div class="mini-meta">
+          <div class="mini-title-row">
+            <span class="mini-title" id="miniTitle">Izvēlieties radiostaciju</span>
+            <div class="eq-bars" id="miniEq">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="mini-status">
+            <span class="status-dot" id="miniStatusDot"></span>
+            <span id="miniStatusText">Pieskarieties vai velciet staciju maiņai</span>
+          </div>
+        </div>
+        <button class="m3-play-morph-btn" id="miniPlayBtn" aria-label="Atskaņot vai pauzēt">
+          <svg id="miniPlayIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 4 20 12 6 20 6 4"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SCRIM & SHEETS -->
+  <div class="sheet-scrim" id="sheetScrim"></div>
+
+  <!-- NOW PLAYING BOTTOM SHEET (WITH PREV / PLAY / NEXT ERGONOMIC CONTROLS) -->
+  <section class="m3-bottom-sheet" id="nowPlayingSheet" aria-label="Tagad skan">
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
+    </div>
+    <div class="sheet-body">
+      <div class="np-header-bar">
+        <button class="m3-icon-btn" id="npFavBtn" title="Favorīts" aria-label="Favorīts">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          </svg>
+        </button>
+        <span style="font-size:12px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--md-sys-color-on-surface-variant);">Tagad skan</span>
+        <button class="m3-icon-btn" id="npTimerShortcut" title="Miega taimeris" aria-label="Miega taimeris">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="np-artwork grad-indigo" id="npArtwork">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="2"></circle>
+          <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+        </svg>
+      </div>
+
+      <div class="np-details">
+        <div class="np-title" id="npTitle">Izvēlieties radiostaciju</div>
+        <div class="np-desc" id="npDesc">Pieskarieties jebkurai stacijai sarakstā</div>
+      </div>
+
+      <div class="np-transport">
+        <button class="m3-skip-btn" id="npPrevBtn" title="Iepriekšējā stacija" aria-label="Iepriekšējā stacija">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="19 20 9 12 19 4 19 20"></polygon>
+            <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+          </svg>
+        </button>
+
+        <button class="m3-play-large" id="npPlayBtn" aria-label="Atskaņot vai pauzēt">
+          <svg id="npPlayIcon" width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 4 20 12 6 20 6 4"></polygon>
+          </svg>
+        </button>
+
+        <button class="m3-skip-btn" id="npNextBtn" title="Nākamā stacija" aria-label="Nākamā stacija">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="m3-slider-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <input type="range" id="volumeSlider" class="m3-slider" min="0" max="1" step="0.02" value="0.85" aria-label="Skaļums" />
+        <span id="volumePct" style="font-size:13px;font-weight:500;min-width:36px;text-align:right;">85%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLEEP TIMER BOTTOM SHEET -->
+  <section class="m3-bottom-sheet" id="timerSheet" aria-label="Miega taimeris">
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
+    </div>
+    <div class="sheet-body">
+      <h2 style="font-size:20px;font-weight:500;">Miega taimeris</h2>
+      <p id="timerStatusDesc" style="font-size:14px;color:var(--md-sys-color-on-surface-variant);">
+        Izvēlieties laiku, pēc kura radio automātiski izslēgsies.
+      </p>
+      <div class="timer-grid">
+        <button class="m3-tonal-btn" data-mins="15">15 min</button>
+        <button class="m3-tonal-btn" data-mins="30">30 min</button>
+        <button class="m3-tonal-btn" data-mins="45">45 min</button>
+        <button class="m3-tonal-btn" data-mins="60">60 min</button>
+        <button class="m3-tonal-btn" data-mins="90">90 min</button>
+        <button class="m3-tonal-btn" data-mins="0" style="background:var(--md-sys-color-surface-container-highest);">Izslēgt</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD STATION BOTTOM SHEET -->
+  <section class="m3-bottom-sheet" id="addStationSheet" aria-label="Pievienot staciju">
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
+    </div>
+    <div class="sheet-body">
+      <h2 style="font-size:20px;font-weight:500;">Pievienot radiostaciju</h2>
+      <div class="m3-segmented-row">
+        <button class="m3-seg-btn active" id="tabOnlineBtn">Meklēt tiešsaistē</button>
+        <button class="m3-seg-btn" id="tabManualBtn">Pievienot manuāli</button>
+      </div>
+
+      <!-- ONLINE SEARCH TAB -->
+      <div id="onlinePane" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="m3-tonal-btn quick-rb-btn" data-q="Latvia" data-country="LV">Latvijas stacijas</button>
+          <button class="m3-tonal-btn quick-rb-btn" data-q="death metal">Death Metal</button>
+          <button class="m3-tonal-btn quick-rb-btn" data-q="speed metal">Speed Metal</button>
+        </div>
+        <form id="rbSearchForm" style="display:flex;gap:8px;">
+          <input type="search" id="rbSearchInput" class="m3-input" style="flex:1;" placeholder="Ievadiet staciju vai žanru..." enterkeyhint="search" />
+          <button type="submit" class="m3-filled-btn" id="rbSearchGoBtn">Meklēt</button>
+        </form>
+        <div id="rbResultsList" style="display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;"></div>
+      </div>
+
+      <!-- MANUAL ADD TAB -->
+      <form id="manualPane" style="display:none;flex-direction:column;gap:12px;">
+        <div class="m3-field">
+          <label for="manName">Stacijas nosaukums *</label>
+          <input type="text" id="manName" class="m3-input" placeholder="piem., Latvijas Radio 1" required />
+        </div>
+        <div class="m3-field">
+          <label for="manUrl">Straumes adrese (HTTPS MP3 / AAC / M3U8) *</label>
+          <input type="url" id="manUrl" class="m3-input" placeholder="https://..." required />
+        </div>
+        <div class="m3-field">
+          <label for="manGenre">Kategorija</label>
+          <select id="manGenre" class="m3-select">
+            <option value="Latvijas">Latvijas</option>
+            <option value="Metāls">Metāls</option>
+            <option value="Populārā">Populārā</option>
+            <option value="Klasiskā">Klasiskā</option>
+            <option value="Džezs & Chill">Džezs & Chill</option>
+          </select>
+        </div>
+        <div class="m3-field">
+          <label for="manDesc">Īss apraksts</label>
+          <input type="text" id="manDesc" class="m3-input" placeholder="Ziņas, mūzika vai žanrs" />
+        </div>
+        <button type="submit" class="m3-filled-btn">Saglabāt staciju</button>
+      </form>
+    </div>
+  </section>
+
+  <audio id="audioPlayer" preload="none"></audio>
+
+  <script>
+    /* ==========================================================================
+       SAFE STORAGE & DATA MODEL
+       ========================================================================== */
+    const safeStorage = {
+      get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
+      set(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+    };
+
+    const CATEGORIES = ['Visas', 'Favorīti', 'Latvijas', 'Metāls', 'Populārā', 'Klasiskā', 'Džezs & Chill'];
+
+    const DEFAULT_STATIONS = [
+      // LATVIJAS RADIOSTACIJAS
+      {
+        id: 'lr1',
+        name: 'Latvijas Radio 1',
+        matchKeys: ['latvijas radio 1', 'lr1', 'lr 1'],
+        rbQuery: 'Latvijas Radio',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Ziņas, analītika, diskusijas un kultūra',
+        url: 'https://lr1mp1.latvijasradio.lv:8012/;',
+        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/lr1/mp4:lr1/playlist.m3u8',
+        grad: 'grad-red'
+      },
+      {
+        id: 'lr2',
+        name: 'Latvijas Radio 2',
+        matchKeys: ['latvijas radio 2', 'lr2', 'lr 2'],
+        rbQuery: 'Latvijas Radio',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Dziesmas dzimtajā valodā',
+        url: 'https://lr2mp1.latvijasradio.lv:8002/;',
+        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/lr2/mp4:lr2/playlist.m3u8',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'lr3',
+        name: 'Latvijas Radio 3 - Klasika',
+        matchKeys: ['latvijas radio 3', 'klasika', 'lr3', 'lr 3'],
+        rbQuery: 'Klasika',
+        countryCode: 'LV',
+        genre: 'Klasiskā',
+        description: 'Klasiskā, džeza un laikmetīgā mūzika',
+        url: 'https://lr3mp0.latvijasradio.lv:8004/;',
+        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/lr3/mp4:lr3/playlist.m3u8',
+        grad: 'grad-emerald'
+      },
+      {
+        id: 'lr5',
+        name: 'Latvijas Radio 5 - Pieci.lv',
+        matchKeys: ['pieci', 'latvijas radio 5', 'lr5', 'lr 5'],
+        rbQuery: 'Pieci',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Jauniešu mūzika un aktuālie hiti',
+        url: 'https://lr5mp1.latvijasradio.lv:8014/;',
+        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/pieci/mp4:pieci/playlist.m3u8',
+        grad: 'grad-indigo'
+      },
+      {
+        id: 'swh',
+        name: 'Radio SWH',
+        matchKeys: ['radio swh', 'swh'],
+        rbQuery: 'Radio SWH',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Populārākā mūzika un labas ziņas Latvijā',
+        url: 'https://live.radioswh.lv:8443/swhmp3',
+        fallbackUrl: 'https://live.radioswh.lv:8443/swh',
+        grad: 'grad-teal'
+      },
+      {
+        id: 'ehr',
+        name: 'European Hit Radio',
+        matchKeys: ['european hit radio', 'ehr'],
+        rbQuery: 'European Hit Radio',
+        countryCode: 'LV',
+        genre: 'Populārā',
+        description: 'Eiropas aktuālāko hitu tops',
+        url: 'https://stream.ehrhiti.lv:8000/ehr.aac',
+        fallbackUrl: 'https://stream.ehrhiti.lv:8000/Stream_21.aac',
+        grad: 'grad-purple'
+      },
+      {
+        id: 'starfm',
+        name: 'Star FM Latvija',
+        matchKeys: ['star fm', 'starfm'],
+        rbQuery: 'Star FM',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Labākā mūzika un rīta šovs Zoopasta',
+        url: 'https://starfm.live.advailo.com/audio/mp3/icecast.audio',
+        fallbackUrl: 'https://starfm.live.advailo.com/audio/aac/icecast.audio',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'skonto',
+        name: 'Radio Skonto',
+        matchKeys: ['skonto'],
+        rbQuery: 'Skonto',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Labākās dziesmas no 80. gadiem līdz šodienai',
+        url: 'https://stream.radioskonto.lv:8443/stereo',
+        fallbackUrl: 'https://stream.radioskonto.lv:8443/mp3',
+        grad: 'grad-red'
+      },
+
+      // PASAULES DEATH METAL & SPEED METAL STACIJAS
+      {
+        id: 'somafm-metal',
+        name: 'SomaFM: Metal Detector',
+        matchKeys: ['metal detector'],
+        rbQuery: 'Metal Detector',
+        genre: 'Metāls',
+        description: 'Death, Black, Doom, Thrash & Speed Metal',
+        url: 'https://ice2.somafm.com/metal-128-mp3',
+        fallbackUrl: 'https://ice4.somafm.com/metal-128-aac',
+        grad: 'grad-metal'
+      },
+      {
+        id: 'death-fm',
+        name: 'Death.FM',
+        matchKeys: ['death.fm', 'death fm'],
+        rbQuery: 'Death.FM',
+        genre: 'Metāls',
+        description: 'Death Metal, Brutal Death & Grindcore 24/7',
+        url: 'https://hi5.death.fm/',
+        fallbackUrl: 'https://lo5.death.fm/',
+        grad: 'grad-crimson'
+      },
+      {
+        id: 'chronix-aggression',
+        name: 'ChroniX Aggression',
+        matchKeys: ['chronix'],
+        rbQuery: 'ChroniX',
+        genre: 'Metāls',
+        description: 'Death Metal, Thrash & Extreme Heavy Metal',
+        url: 'https://stream.laut.fm/chronix',
+        fallbackUrl: 'https://usa17.fastcast4u.com/proxy/chronixaggression?mp=/1',
+        grad: 'grad-metal'
+      },
+      {
+        id: 'speed-thrash',
+        name: 'Speed & Thrash Metal Radio',
+        matchKeys: ['thrash'],
+        rbQuery: 'thrash metal',
+        genre: 'Metāls',
+        description: 'Ātrais Speed Metal un klasiskais Thrash Metal',
+        url: 'https://stream.laut.fm/thrash',
+        fallbackUrl: 'https://stream.laut.fm/metal',
+        grad: 'grad-crimson'
+      },
+      {
+        id: 'brutal-death',
+        name: 'Brutal Death Metal Radio',
+        matchKeys: ['deathmetal', 'death metal'],
+        rbQuery: 'death metal',
+        genre: 'Metāls',
+        description: 'Ekstrēmais Death Metal un Technical Death 24/7',
+        url: 'https://stream.laut.fm/deathmetal',
+        fallbackUrl: 'https://stream.laut.fm/extreme-metal',
+        grad: 'grad-metal'
+      },
+      {
+        id: 'heavy-speed-metal',
+        name: 'Metal Hammer / Heavy & Speed',
+        matchKeys: ['heavymetal', 'speed metal'],
+        rbQuery: 'speed metal',
+        genre: 'Metāls',
+        description: 'Klasiskais Speed, Power un Heavy Metal',
+        url: 'https://stream.laut.fm/heavymetal',
+        fallbackUrl: 'https://stream.laut.fm/powermetal',
+        grad: 'grad-crimson'
+      },
+
+      // STARPTAUTISKĀS & AMBIENT STACIJAS
+      {
+        id: 'radio-paradise',
+        name: 'Radio Paradise (Main Mix)',
+        genre: 'Populārā',
+        description: 'Kvalitatīva eklektiskā mūzika bez reklāmām',
+        url: 'https://stream.radioparadise.com/aac-128',
+        fallbackUrl: 'https://stream.radioparadise.com/mp3-128',
+        grad: 'grad-indigo'
+      },
+      {
+        id: 'swiss-classic',
+        name: 'Radio Swiss Classic',
+        genre: 'Klasiskā',
+        description: 'Šveices klasiskās mūzikas izlase 24/7',
+        url: 'https://stream.srg-ssr.ch/m/rsc_de/mp3_128',
+        fallbackUrl: 'https://stream.srg-ssr.ch/m/rsc_de/aacp_96',
+        grad: 'grad-emerald'
+      },
+      {
+        id: 'swiss-jazz',
+        name: 'Radio Swiss Jazz',
+        genre: 'Džezs & Chill',
+        description: 'Džezs, souls un blūzs no Šveices',
+        url: 'https://stream.srg-ssr.ch/m/rsj/mp3_128',
+        fallbackUrl: 'https://stream.srg-ssr.ch/m/rsj/aacp_96',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'somafm-groove',
+        name: 'SomaFM: Groove Salad',
+        genre: 'Džezs & Chill',
+        description: 'Ambient, downtempo un elektroniskais chill',
+        url: 'https://ice2.somafm.com/groovesalad-128-mp3',
+        fallbackUrl: 'https://ice4.somafm.com/groovesalad-128-aac',
+        grad: 'grad-teal'
+      },
+      {
+        id: 'offline-synth',
+        name: 'Lietus & Ambient Sintezators',
+        genre: 'Džezs & Chill',
+        description: 'Iebūvēts bezsaistes fona skaņu ģenerators',
+        url: 'webaudio://ambient',
+        grad: 'grad-purple'
+      }
+    ];
+
+    /* ==========================================================================
+       STATE
+       ========================================================================== */
+    let stations = [];
+    let favorites = [];
+    let recentIds = [];
+    let selectedCategory = 'Visas';
+    let searchQuery = '';
+    let currentStationId = null;
+    let isPlaying = false;
+    let hlsInstance = null;
+    let synthNodes = null;
+    let sleepTimerId = null;
+    let sleepSecondsLeft = 0;
+    let snackbarTimeout = null;
+    let attemptToken = 0;
+    let activeSheetId = null;
+
+    function initData() {
+      const savedFavs = safeStorage.get('m3_radio_favs');
+      if (savedFavs) {
+        try { favorites = JSON.parse(savedFavs); } catch (e) { favorites = ['lr1', 'somafm-metal']; }
+      } else {
+        favorites = ['lr1', 'somafm-metal'];
+      }
+
+      const savedRecents = safeStorage.get('m3_radio_recents');
+      if (savedRecents) {
+        try { recentIds = JSON.parse(savedRecents); } catch (e) { recentIds = []; }
+      }
+
+      const savedCustom = safeStorage.get('m3_radio_custom_v1');
+      let customStations = [];
+      if (savedCustom) {
+        try { customStations = JSON.parse(savedCustom); } catch (e) { customStations = []; }
+      }
+      stations = [...DEFAULT_STATIONS, ...customStations];
+
+      // Restore last active station in paused state for instant 1-tap resume
+      const lastId = safeStorage.get('m3_radio_last_station');
+      if (lastId && stations.some(s => s.id === lastId)) {
+        currentStationId = lastId;
+        updatePlayerUI('Pauzēts (pēdējā stacija)');
+      }
+
+      const savedTheme = safeStorage.get('m3_radio_theme') || 'dark';
+      const savedPalette = safeStorage.get('m3_radio_palette') || 'indigo';
+      applyThemeAndPalette(savedTheme, savedPalette);
+    }
+
+    function saveCustomStations() {
+      const custom = stations.filter(s => s.isCustom);
+      safeStorage.set('m3_radio_custom_v1', JSON.stringify(custom));
+    }
+
+    function saveFavorites() {
+      safeStorage.set('m3_radio_favs', JSON.stringify(favorites));
+    }
+
+    function recordRecentStation(id) {
+      recentIds = [id, ...recentIds.filter(r => r !== id)].slice(0, 6);
+      safeStorage.set('m3_radio_recents', JSON.stringify(recentIds));
+      safeStorage.set('m3_radio_last_station', id);
+      renderRecentShelf();
+    }
+
+    /* ==========================================================================
+       ANDROID MEDIA SESSION API (LOCK SCREEN, NOTIFICATION SHADE & BLUETOOTH)
+       ========================================================================== */
+    function generateArtworkDataUrl(station) {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        const colors = {
+          'grad-red': ['#D32F2F', '#8E0000'],
+          'grad-amber': ['#F57C00', '#E65100'],
+          'grad-emerald': ['#00897B', '#004D40'],
+          'grad-indigo': ['#3949AB', '#1A237E'],
+          'grad-purple': ['#7B1FA2', '#4A148C'],
+          'grad-metal': ['#37474F', '#102027'],
+          'grad-crimson': ['#B71C1C', '#212121'],
+          'grad-teal': ['#0277BD', '#01579B']
+        };
+        const pair = colors[station.grad] || colors['grad-indigo'];
+        const grd = ctx.createLinearGradient(0, 0, 512, 512);
+        grd.addColorStop(0, pair[0]);
+        grd.addColorStop(1, pair[1]);
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, 512, 512);
+
+        const initials = station.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 160px Roboto, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initials || 'FM', 256, 265);
+        return canvas.toDataURL('image/png');
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function updateMediaSession(station, playing) {
+      if (!('mediaSession' in navigator) || !station) return;
+      try {
+        const artUrl = generateArtworkDataUrl(station);
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: station.name,
+          artist: station.genre || 'Internetradio',
+          album: 'Tiešraide',
+          artwork: artUrl ? [{ src: artUrl, sizes: '512x512', type: 'image/png' }] : []
+        });
+        navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
+
+        navigator.mediaSession.setActionHandler('play', () => {
+          if (!isPlaying && currentStationId) playStation(currentStationId);
+        });
+        navigator.mediaSession.setActionHandler('pause', () => {
+          if (isPlaying) togglePlayPause();
+        });
+        navigator.mediaSession.setActionHandler('previoustrack', () => skipStation(-1));
+        navigator.mediaSession.setActionHandler('nexttrack', () => skipStation(1));
+      } catch (e) {}
+    }
+
+    /* ==========================================================================
+       PREVIOUS / NEXT STATION NAVIGATION (CYCLES ACTIVE FILTERED LIST)
+       ========================================================================== */
+    function getFilteredStations() {
+      const q = searchQuery.trim().toLowerCase();
+      return stations.filter(st => {
+        if (selectedCategory === 'Favorīti' && !favorites.includes(st.id)) return false;
+        if (selectedCategory !== 'Visas' && selectedCategory !== 'Favorīti' && st.genre !== selectedCategory) return false;
+        if (q) {
+          const hay = `${st.name} ${st.description || ''} ${st.genre || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+    }
+
+    function skipStation(delta) {
+      const pool = getFilteredStations();
+      const list = pool.length > 0 ? pool : stations;
+      if (list.length === 0) return;
+
+      const idx = list.findIndex(s => s.id === currentStationId);
+      let nextIdx = 0;
+      if (idx !== -1) {
+        nextIdx = (idx + delta + list.length) % list.length;
+      }
+      playStation(list[nextIdx].id);
+    }
+
+    /* ==========================================================================
+       MATERIAL YOU THEME & DYNAMIC COLOR
+       ========================================================================== */
+    function applyThemeAndPalette(theme, palette) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-palette', palette);
+      safeStorage.set('m3_radio_theme', theme);
+      safeStorage.set('m3_radio_palette', palette);
+      const tcMeta = document.getElementById('themeColorMeta');
+      if (tcMeta) tcMeta.setAttribute('content', theme === 'dark' ? '#121318' : '#FBF8FF');
+
+      document.getElementById('themeModeBtn').textContent = theme === 'dark' ? 'Gaišais' : 'Tumšais';
+      document.querySelectorAll('.swatch-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.pal === palette);
+      });
+    }
+
+    /* ==========================================================================
+       SNACKBAR
+       ========================================================================== */
+    function showSnackbar(message, showRetry = false) {
+      const sb = document.getElementById('m3Snackbar');
+      document.getElementById('snackbarText').textContent = message;
+      document.getElementById('snackbarRetryBtn').style.display = showRetry ? 'inline-block' : 'none';
+      sb.classList.add('visible');
+      clearTimeout(snackbarTimeout);
+      snackbarTimeout = setTimeout(() => sb.classList.remove('visible'), 5500);
+    }
+
+    function hideSnackbar() {
+      clearTimeout(snackbarTimeout);
+      document.getElementById('m3Snackbar').classList.remove('visible');
+    }
+
+    /* ==========================================================================
+       RADIO BROWSER API LIVE MIRROR RESOLUTION (BATCH LV + FUZZY MATCH)
+       ========================================================================== */
+    const RB_SERVERS = [
+      'https://de1.api.radio-browser.info',
+      'https://fi1.api.radio-browser.info',
+      'https://at1.api.radio-browser.info'
+    ];
+
+    async function fetchRadioBrowserMirrors(query, countryCode = '') {
+      const params = new URLSearchParams({
+        limit: '25',
+        hidebroken: 'true',
+        order: 'clickcount',
+        reverse: 'true'
+      });
+      if (query) params.set('name', query);
+      if (countryCode) params.set('countrycode', countryCode);
+
+      for (const base of RB_SERVERS) {
+        try {
+          const controller = new AbortController();
+          const tid = setTimeout(() => controller.abort(), 4500);
+          const res = await fetch(`${base}/json/stations/search?${params.toString()}`, { signal: controller.signal });
+          clearTimeout(tid);
+          if (!res.ok) continue;
+          const data = await res.json();
+          const valid = data
+            .filter(item => item.url_resolved && /^https?:\/\//i.test(item.url_resolved))
+            .map(item => ({
+              name: (item.name || '').toLowerCase(),
+              url: item.url_resolved,
+              isHttps: item.url_resolved.startsWith('https://'),
+              hasPort: /:\d+/.test(item.url_resolved.replace(/^https?:\/\//, ''))
+            }));
+          // Sort: HTTPS standard 443 first, then other HTTPS, then HTTP
+          valid.sort((a, b) => {
+            if (a.isHttps !== b.isHttps) return a.isHttps ? -1 : 1;
+            if (a.hasPort !== b.hasPort) return a.hasPort ? 1 : -1;
+            return 0;
+          });
+          if (valid.length > 0) return valid;
+        } catch (e) {}
+      }
+      return [];
+    }
+
+    async function syncAllLatvianMirrors(silent = true) {
+      if (!silent) showSnackbar('Meklē aktīvās Latvijas tiešraides...', false);
+      const allLv = await fetchRadioBrowserMirrors('', 'LV');
+      let updatedCount = 0;
+
+      if (allLv.length > 0) {
+        const lvStations = stations.filter(s => s.countryCode === 'LV');
+        for (const st of lvStations) {
+          const keys = st.matchKeys || [st.name.toLowerCase()];
+          const matchedUrls = allLv
+            .filter(item => keys.some(k => item.name.includes(k)))
+            .map(item => item.url);
+          if (matchedUrls.length > 0) {
+            st.liveMirrors = [...new Set(matchedUrls)];
+            updatedCount++;
+          }
+        }
+      }
+
+      if (!silent) {
+        showSnackbar(updatedCount > 0
+          ? `Sinhronizētas ${updatedCount} Latvijas stacijas!`
+          : 'Izmanto iebūvētās straumju adreses.', false);
+      }
+    }
+
+    /* ==========================================================================
+       AUDIO ENGINE (HLS.JS + FALLBACKS + OFFLINE WEB AUDIO SYNTH)
+       ========================================================================== */
+    const audioEl = document.getElementById('audioPlayer');
+    audioEl.volume = 0.85;
+
+    function stopAmbientSynth() {
+      if (synthNodes) {
+        try {
+          synthNodes.noise.stop();
+          synthNodes.osc1.stop();
+          synthNodes.osc2.stop();
+          synthNodes.ctx.close();
+        } catch (e) {}
+        synthNodes = null;
+      }
+    }
+
+    function startAmbientSynth() {
+      stopAmbientSynth();
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioCtx();
+      const bufferSize = 2 * ctx.sampleRate;
+      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let lastOut = 0.0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        output[i] = (lastOut + (0.02 * white)) / 1.02;
+        lastOut = output[i];
+        output[i] *= 1.8;
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = noiseBuffer;
+      noise.loop = true;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 420;
+
+      const osc1 = ctx.createOscillator();
+      osc1.type = 'sine';
+      osc1.frequency.value = 110;
+      const osc2 = ctx.createOscillator();
+      osc2.type = 'triangle';
+      osc2.frequency.value = 164.81;
+
+      const masterGain = ctx.createGain();
+      masterGain.gain.value = audioEl.volume * 0.25;
+
+      noise.connect(filter);
+      filter.connect(masterGain);
+      osc1.connect(masterGain);
+      osc2.connect(masterGain);
+      masterGain.connect(ctx.destination);
+
+      noise.start();
+      osc1.start();
+      osc2.start();
+      synthNodes = { ctx, noise, osc1, osc2, masterGain };
+    }
+
+    function destroyHls() {
+      if (hlsInstance) {
+        try { hlsInstance.destroy(); } catch (e) {}
+        hlsInstance = null;
+      }
+    }
+
+    function loadHlsScript() {
+      return new Promise((resolve) => {
+        if (window.Hls) return resolve(window.Hls);
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js';
+        s.onload = () => resolve(window.Hls || null);
+        s.onerror = () => resolve(null);
+        document.head.appendChild(s);
+      });
+    }
+
+    async function tryPlayStreamUrl(url, token) {
+      if (token !== attemptToken) return false;
+      destroyHls();
+      audioEl.pause();
+      audioEl.removeAttribute('src');
+
+      if (url.includes('.m3u8')) {
+        const HlsLib = await loadHlsScript();
+        if (token !== attemptToken) return false;
+        if (HlsLib && HlsLib.isSupported()) {
+          return new Promise((resolve) => {
+            const hls = new HlsLib({ enableWorker: false, lowLatencyMode: true });
+            hlsInstance = hls;
+            let settled = false;
+            const finish = (ok) => {
+              if (!settled) { settled = true; resolve(ok); }
+            };
+            const timeout = setTimeout(() => { destroyHls(); finish(false); }, 9500);
+
+            hls.on(HlsLib.Events.MANIFEST_PARSED, () => {
+              audioEl.play().then(() => {
+                clearTimeout(timeout);
+                finish(true);
+              }).catch(() => {
+                clearTimeout(timeout);
+                finish(false);
+              });
+            });
+
+            hls.on(HlsLib.Events.ERROR, (ev, data) => {
+              if (data.fatal) {
+                clearTimeout(timeout);
+                destroyHls();
+                finish(false);
+              }
+            });
+
+            hls.loadSource(url);
+            hls.attachMedia(audioEl);
+          });
+        }
+      }
+
+      return new Promise((resolve) => {
+        let settled = false;
+        const finish = (ok) => {
+          if (!settled) {
+            settled = true;
+            audioEl.removeEventListener('playing', onPlaying);
+            audioEl.removeEventListener('error', onError);
+            resolve(ok);
+          }
+        };
+        const timeout = setTimeout(() => finish(false), 9500);
+        const onPlaying = () => { clearTimeout(timeout); finish(true); };
+        const onError = () => { clearTimeout(timeout); finish(false); };
+
+        audioEl.addEventListener('playing', onPlaying);
+        audioEl.addEventListener('error', onError);
+        audioEl.src = url;
+        audioEl.play().catch(() => {
+          clearTimeout(timeout);
+          finish(false);
+        });
+      });
+    }
+
+    async function playStation(stationId) {
+      const station = stations.find(s => s.id === stationId);
+      if (!station) return;
+
+      const token = ++attemptToken;
+      currentStationId = stationId;
+      isPlaying = false;
+      hideSnackbar();
+      stopAmbientSynth();
+      destroyHls();
+      audioEl.pause();
+
+      recordRecentStation(stationId);
+      updatePlayerUI('Savienojas...');
+      renderStations();
+
+      if (station.url === 'webaudio://ambient') {
+        startAmbientSynth();
+        isPlaying = true;
+        updatePlayerUI('Atskaņo (Bezsaistes sintezators)');
+        updateMediaSession(station, true);
+        renderStations();
+        renderRecentShelf();
+        return;
+      }
+
+      const candidates = [];
+      if (station.liveMirrors && station.liveMirrors.length > 0) {
+        candidates.push(...station.liveMirrors);
+      }
+      if (station.url) candidates.push(station.url);
+      if (station.fallbackUrl) candidates.push(station.fallbackUrl);
+
+      if (station.rbQuery && (!station.liveMirrors || station.liveMirrors.length === 0)) {
+        const fetchedObjs = await fetchRadioBrowserMirrors(station.rbQuery, station.countryCode || '');
+        if (token !== attemptToken) return;
+        const fetchedUrls = fetchedObjs.map(o => o.url);
+        if (fetchedUrls.length > 0) {
+          station.liveMirrors = fetchedUrls;
+          candidates.unshift(...fetchedUrls);
+        }
+      }
+
+      const uniqueCandidates = [...new Set(candidates)];
+      for (const candidateUrl of uniqueCandidates) {
+        if (token !== attemptToken) return;
+        const ok = await tryPlayStreamUrl(candidateUrl, token);
+        if (token !== attemptToken) return;
+        if (ok) {
+          isPlaying = true;
+          hideSnackbar();
+          updatePlayerUI('Tiešraide');
+          updateMediaSession(station, true);
+          renderStations();
+          renderRecentShelf();
+          return;
+        }
+      }
+
+      if (token === attemptToken) {
+        isPlaying = false;
+        updatePlayerUI('Savienojuma kļūda');
+        updateMediaSession(station, false);
+        renderStations();
+        showSnackbar(`Neizdevās savienoties ar "${station.name}"`, true);
+      }
+    }
+
+    function togglePlayPause() {
+      if (!currentStationId) {
+        if (stations.length > 0) playStation(stations[0].id);
+        return;
+      }
+      const station = stations.find(s => s.id === currentStationId);
+      if (!station) return;
+
+      if (isPlaying) {
+        attemptToken++;
+        isPlaying = false;
+        stopAmbientSynth();
+        destroyHls();
+        audioEl.pause();
+        updatePlayerUI('Pauzēts');
+        updateMediaSession(station, false);
+        renderStations();
+        renderRecentShelf();
+      } else {
+        playStation(currentStationId);
+      }
+    }
+
+    audioEl.addEventListener('playing', () => {
+      const station = stations.find(s => s.id === currentStationId);
+      isPlaying = true;
+      hideSnackbar();
+      updatePlayerUI('Tiešraide');
+      if (station) updateMediaSession(station, true);
+      renderStations();
+      renderRecentShelf();
+    });
+
+    /* ==========================================================================
+       UI RENDERING
+       ========================================================================== */
+    function renderCategories() {
+      const container = document.getElementById('categoryChips');
+      container.innerHTML = '';
+      CATEGORIES.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'm3-filter-chip' + (selectedCategory === cat ? ' selected' : '');
+        btn.innerHTML = `
+          <svg class="chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>${cat}</span>
+        `;
+        btn.addEventListener('click', () => {
+          selectedCategory = cat;
+          renderCategories();
+          renderStations();
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function renderRecentShelf() {
+      const section = document.getElementById('recentSection');
+      const scroll = document.getElementById('recentScroll');
+      const validRecents = recentIds
+        .map(id => stations.find(s => s.id === id))
+        .filter(Boolean);
+
+      if (validRecents.length === 0) {
+        section.classList.remove('visible');
+        return;
+      }
+
+      section.classList.add('visible');
+      scroll.innerHTML = '';
+      validRecents.forEach(st => {
+        const isCurrent = st.id === currentStationId;
+        const initials = st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+        const btn = document.createElement('button');
+        btn.className = 'recent-pill' + (isCurrent ? ' active' : '');
+        btn.innerHTML = `
+          <span class="recent-dot ${st.grad || 'grad-indigo'}">${initials}</span>
+          <span>${st.name}</span>
+        `;
+        btn.addEventListener('click', () => {
+          if (isCurrent) {
+            togglePlayPause();
+          } else {
+            playStation(st.id);
+          }
+        });
+        scroll.appendChild(btn);
+      });
+    }
+
+    function renderStations() {
+      const list = document.getElementById('stationsList');
+      const filtered = getFilteredStations();
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="empty-state">Nav atrastu radiostaciju izvēlētajā kategorijā.</div>`;
+        return;
+      }
+
+      list.innerHTML = '';
+      filtered.forEach(st => {
+        const isCurrent = st.id === currentStationId;
+        const isFav = favorites.includes(st.id);
+        const initials = st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+
+        const avatarOverlay = isCurrent
+          ? `<div class="avatar-overlay">${isPlaying
+              ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>'
+              : '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>'
+            }</div>`
+          : '';
+
+        const card = document.createElement('article');
+        card.className = 'm3-station-card' + (isCurrent ? ' active' : '');
+        card.innerHTML = `
+          <div class="station-avatar ${st.grad || 'grad-indigo'}">${initials}${avatarOverlay}</div>
+          <div class="station-info">
+            <div class="station-title-row">
+              <span class="station-name">${st.name}</span>
+              ${isCurrent && isPlaying ? '<span class="live-pill">TIEŠRAIDE</span>' : ''}
+            </div>
+            <div class="station-subtitle">${st.description || st.genre}</div>
+          </div>
+          <div class="card-actions">
+            ${st.isCustom ? `
+              <button class="m3-icon-btn del-btn" title="Dzēst staciju" aria-label="Dzēst staciju">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>` : ''}
+            <button class="fav-btn ${isFav ? 'is-fav' : ''}" title="Favorīts" aria-label="Pievienot favorītiem">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+            </button>
+          </div>
+        `;
+
+        // Consistent UX: tapping any station card always toggles Play/Pause for that station
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.fav-btn')) {
+            e.stopPropagation();
+            toggleFavorite(st.id);
+            return;
+          }
+          if (e.target.closest('.del-btn')) {
+            e.stopPropagation();
+            deleteCustomStation(st.id);
+            return;
+          }
+          if (isCurrent) {
+            togglePlayPause();
+          } else {
+            playStation(st.id);
+          }
+        });
+
+        list.appendChild(card);
+      });
+    }
+
+    function toggleFavorite(id) {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(f => f !== id);
+      } else {
+        favorites.push(id);
+      }
+      saveFavorites();
+      renderStations();
+      updatePlayerUI();
+    }
+
+    function deleteCustomStation(id) {
+      stations = stations.filter(s => s.id !== id);
+      recentIds = recentIds.filter(r => r !== id);
+      saveCustomStations();
+      if (currentStationId === id) {
+        if (isPlaying) togglePlayPause();
+        currentStationId = null;
+      }
+      renderStations();
+      renderRecentShelf();
+      showSnackbar('Stacija dzēsta', false);
+    }
+
+    function updatePlayerUI(statusOverride) {
+      const station = stations.find(s => s.id === currentStationId);
+      const miniTitle = document.getElementById('miniTitle');
+      const miniArt = document.getElementById('miniArt');
+      const miniStatusText = document.getElementById('miniStatusText');
+      const miniStatusDot = document.getElementById('miniStatusDot');
+      const miniEq = document.getElementById('miniEq');
+      const miniPlayBtn = document.getElementById('miniPlayBtn');
+      const miniPlayIcon = document.getElementById('miniPlayIcon');
+
+      const npTitle = document.getElementById('npTitle');
+      const npDesc = document.getElementById('npDesc');
+      const npArtwork = document.getElementById('npArtwork');
+      const npPlayBtn = document.getElementById('npPlayBtn');
+      const npPlayIcon = document.getElementById('npPlayIcon');
+      const npFavBtn = document.getElementById('npFavBtn');
+
+      if (station) {
+        miniTitle.textContent = station.name;
+        miniArt.className = `mini-art ${station.grad || 'grad-indigo'}`;
+        npTitle.textContent = station.name;
+        npDesc.textContent = station.description || station.genre;
+        npArtwork.className = `np-artwork ${station.grad || 'grad-indigo'}`;
+
+        const isFav = favorites.includes(station.id);
+        npFavBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>`;
+        npFavBtn.style.color = isFav ? 'var(--md-sys-color-primary)' : '';
+      }
+
+      if (statusOverride) {
+        miniStatusText.textContent = statusOverride;
+      }
+
+      miniStatusDot.classList.toggle('playing', isPlaying);
+      miniEq.classList.toggle('animating', isPlaying);
+      miniPlayBtn.classList.toggle('is-playing', isPlaying);
+      npPlayBtn.classList.toggle('is-playing', isPlaying);
+
+      const iconSvg = isPlaying
+        ? '<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>'
+        : '<polygon points="6 4 20 12 6 20 6 4"></polygon>';
+      miniPlayIcon.innerHTML = iconSvg;
+      npPlayIcon.innerHTML = iconSvg;
+    }
+
+    /* ==========================================================================
+       BOTTOM SHEETS + ANDROID SYSTEM BACK GESTURE SUPPORT
+       ========================================================================== */
+    function openSheet(sheetId, fromHistory = false) {
+      closeAllSheets(true);
+      activeSheetId = sheetId;
+      document.getElementById('sheetScrim').classList.add('open');
+      document.getElementById(sheetId).classList.add('open');
+      if (!fromHistory) {
+        try { history.pushState({ sheet: sheetId }, '', '#sheet'); } catch (e) {}
+      }
+    }
+
+    function closeAllSheets(skipHistoryBack = false) {
+      const wasOpen = activeSheetId !== null;
+      activeSheetId = null;
+      document.getElementById('sheetScrim').classList.remove('open');
+      document.querySelectorAll('.m3-bottom-sheet').forEach(s => s.classList.remove('open'));
+      if (wasOpen && !skipHistoryBack && location.hash === '#sheet') {
+        try { history.back(); } catch (e) {}
+      }
+    }
+
+    window.addEventListener('popstate', () => {
+      if (activeSheetId) {
+        closeAllSheets(true);
+      }
+    });
+
+    /* ==========================================================================
+       SLEEP TIMER
+       ========================================================================== */
+    function setSleepTimer(minutes) {
+      clearInterval(sleepTimerId);
+      const badge = document.getElementById('timerBadge');
+      const desc = document.getElementById('timerStatusDesc');
+      const btn = document.getElementById('timerOpenBtn');
+
+      if (!minutes || minutes <= 0) {
+        sleepSecondsLeft = 0;
+        badge.classList.remove('visible');
+        btn.classList.remove('active-tonal');
+        desc.textContent = 'Miega taimeris ir izslēgts.';
+        showSnackbar('Miega taimeris izslēgts', false);
+        return;
+      }
+
+      sleepSecondsLeft = minutes * 60;
+      btn.classList.add('active-tonal');
+      badge.classList.add('visible');
+      updateTimerDisplay();
+      showSnackbar(`Miega taimeris iestatīts uz ${minutes} min`, false);
+
+      sleepTimerId = setInterval(() => {
+        sleepSecondsLeft--;
+        if (sleepSecondsLeft <= 0) {
+          clearInterval(sleepTimerId);
+          badge.classList.remove('visible');
+          btn.classList.remove('active-tonal');
+          if (isPlaying) togglePlayPause();
+          showSnackbar('Miega taimeris apturēja atskaņošanu', false);
+        } else {
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.ceil(sleepSecondsLeft / 60);
+      document.getElementById('timerBadge').textContent = `${m}m`;
+      document.getElementById('timerStatusDesc').textContent = `Radio automātiski izslēgsies pēc ${m} minūtēm.`;
+    }
+
+    /* ==========================================================================
+       ONLINE RADIO BROWSER SEARCH (WITH DUPLICATE DETECTION & ENTER KEY)
+       ========================================================================== */
+    async function searchOnlineCatalog(query, country = '') {
+      const box = document.getElementById('rbResultsList');
+      box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Meklē aktīvās HTTPS stacijas...</div>';
+
+      const servers = ['https://de1.api.radio-browser.info', 'https://fi1.api.radio-browser.info'];
+      const params = new URLSearchParams({
+        name: query,
+        limit: '15',
+        hidebroken: 'true',
+        order: 'clickcount',
+        reverse: 'true'
+      });
+      if (country) params.set('countrycode', country);
+
+      let results = [];
+      for (const base of servers) {
+        try {
+          const res = await fetch(`${base}/json/stations/search?${params.toString()}`);
+          if (res.ok) {
+            const data = await res.json();
+            results = data.filter(s => s.url_resolved && s.url_resolved.startsWith('https://'));
+            if (results.length > 0) break;
+          }
+        } catch (e) {}
+      }
+
+      if (results.length === 0) {
+        box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Netika atrastas aktīvas HTTPS stacijas.</div>';
+        return;
+      }
+
+      box.innerHTML = '';
+      results.slice(0, 12).forEach(item => {
+        const cleanName = item.name.trim();
+        const alreadyExists = stations.some(s =>
+          s.url === item.url_resolved || s.name.toLowerCase() === cleanName.toLowerCase()
+        );
+
+        const row = document.createElement('div');
+        row.className = 'online-result-item';
+        const tags = (item.tags || item.country || 'Tiešraide').split(',').slice(0, 2).join(', ');
+        row.innerHTML = `
+          <div style="min-width:0;flex:1;">
+            <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cleanName}</div>
+            <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${tags}</div>
+          </div>
+          <button class="m3-tonal-btn" ${alreadyExists ? 'disabled' : ''}>${alreadyExists ? 'Pievienota ✓' : 'Pievienot'}</button>
+        `;
+        const addBtn = row.querySelector('button');
+        if (!alreadyExists) {
+          addBtn.addEventListener('click', () => {
+            const isMetal = /metal|death|thrash|speed|grind/i.test(`${cleanName} ${item.tags}`);
+            const isLv = item.countrycode === 'LV';
+            const newSt = {
+              id: 'custom-' + Date.now(),
+              name: cleanName,
+              genre: isLv ? 'Latvijas' : (isMetal ? 'Metāls' : 'Populārā'),
+              description: tags || 'Tiešsaistes radiostacija',
+              url: item.url_resolved,
+              grad: isMetal ? 'grad-metal' : 'grad-indigo',
+              isCustom: true
+            };
+            stations.unshift(newSt);
+            saveCustomStations();
+            renderStations();
+            closeAllSheets();
+            playStation(newSt.id);
+          });
+        }
+        box.appendChild(row);
+      });
+    }
+
+    /* ==========================================================================
+       TOUCH SWIPE GESTURES ON MINI-PLAYER (LEFT = NEXT, RIGHT = PREV)
+       ========================================================================== */
+    function initMiniPlayerSwipe() {
+      const el = document.getElementById('miniPlayer');
+      let startX = 0;
+      let startY = 0;
+      let deltaX = 0;
+      let swiping = false;
+
+      el.addEventListener('touchstart', (e) => {
+        if (e.target.closest('#miniPlayBtn')) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        deltaX = 0;
+        swiping = true;
+        el.style.transition = 'none';
+      }, { passive: true });
+
+      el.addEventListener('touchmove', (e) => {
+        if (!swiping) return;
+        deltaX = e.touches[0].clientX - startX;
+        const deltaY = e.touches[0].clientY - startY;
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+          el.style.transform = `translateX(${deltaX * 0.45}px)`;
+        }
+      }, { passive: true });
+
+      el.addEventListener('touchend', () => {
+        if (!swiping) return;
+        swiping = false;
+        el.style.transition = 'transform 0.2s var(--ease-standard)';
+        el.style.transform = 'translateX(0)';
+        if (deltaX < -55) {
+          skipStation(1);
+        } else if (deltaX > 55) {
+          skipStation(-1);
+        }
+      });
+    }
+
+    /* ==========================================================================
+       EVENT LISTENERS
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      initData();
+      renderCategories();
+      renderRecentShelf();
+      renderStations();
+      initMiniPlayerSwipe();
+
+      setTimeout(() => syncAllLatvianMirrors(true), 600);
+
+      // Scroll behavior: Elevate Top App Bar + Shrink Extended FAB on downward scroll
+      let lastScrollY = window.scrollY;
+      const topBar = document.getElementById('topAppBar');
+      const fab = document.getElementById('addStationFab');
+
+      window.addEventListener('scroll', () => {
+        const currentY = window.scrollY;
+        topBar.classList.toggle('scrolled', currentY > 8);
+        if (currentY > lastScrollY + 12 && currentY > 80) {
+          fab.classList.add('collapsed');
+        } else if (currentY < lastScrollY - 12 || currentY <= 40) {
+          fab.classList.remove('collapsed');
+        }
+        lastScrollY = currentY;
+      }, { passive: true });
+
+      // Top bar actions
+      document.getElementById('refreshLvBtn').addEventListener('click', () => syncAllLatvianMirrors(false));
+      document.getElementById('timerOpenBtn').addEventListener('click', () => openSheet('timerSheet'));
+      document.getElementById('paletteToggleBtn').addEventListener('click', () => {
+        document.getElementById('paletteBar').classList.toggle('open');
+      });
+
+      document.querySelectorAll('.swatch-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          applyThemeAndPalette(currentTheme, btn.dataset.pal);
+        });
+      });
+
+      document.getElementById('themeModeBtn').addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const currentPal = document.documentElement.getAttribute('data-palette');
+        applyThemeAndPalette(currentTheme === 'dark' ? 'light' : 'dark', currentPal);
+      });
+
+      // Search Bar
+      const searchInput = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('searchClearBtn');
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value;
+        clearBtn.classList.toggle('visible', searchQuery.length > 0);
+        renderStations();
+      });
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.classList.remove('visible');
+        renderStations();
+      });
+
+      // Mini Player & Now Playing Sheet
+      document.getElementById('miniPlayer').addEventListener('click', (e) => {
+        if (e.target.closest('#miniPlayBtn')) return;
+        openSheet('nowPlayingSheet');
+      });
+      document.getElementById('miniPlayBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlayPause();
+      });
+      document.getElementById('npPlayBtn').addEventListener('click', togglePlayPause);
+      document.getElementById('npPrevBtn').addEventListener('click', () => skipStation(-1));
+      document.getElementById('npNextBtn').addEventListener('click', () => skipStation(1));
+      document.getElementById('npFavBtn').addEventListener('click', () => {
+        if (currentStationId) toggleFavorite(currentStationId);
+      });
+      document.getElementById('npTimerShortcut').addEventListener('click', () => openSheet('timerSheet'));
+
+      // Volume Slider
+      const volSlider = document.getElementById('volumeSlider');
+      volSlider.addEventListener('input', () => {
+        const val = parseFloat(volSlider.value);
+        audioEl.volume = val;
+        if (synthNodes) synthNodes.masterGain.gain.value = val * 0.25;
+        document.getElementById('volumePct').textContent = Math.round(val * 100) + '%';
+      });
+
+      // Extended FAB -> Add Station Sheet
+      fab.addEventListener('click', () => openSheet('addStationSheet'));
+
+      // Sheet Scrim & Drag Handles
+      document.getElementById('sheetScrim').addEventListener('click', () => closeAllSheets());
+      document.querySelectorAll('[data-close-sheet]').forEach(el => {
+        el.addEventListener('click', () => closeAllSheets());
+      });
+
+      // Timer Buttons
+      document.querySelectorAll('#timerSheet [data-mins]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setSleepTimer(parseInt(btn.dataset.mins, 10));
+          closeAllSheets();
+        });
+      });
+
+      // Add Station Tabs
+      document.getElementById('tabOnlineBtn').addEventListener('click', () => {
+        document.getElementById('tabOnlineBtn').classList.add('active');
+        document.getElementById('tabManualBtn').classList.remove('active');
+        document.getElementById('onlinePane').style.display = 'flex';
+        document.getElementById('manualPane').style.display = 'none';
+      });
+      document.getElementById('tabManualBtn').addEventListener('click', () => {
+        document.getElementById('tabManualBtn').classList.add('active');
+        document.getElementById('tabOnlineBtn').classList.remove('active');
+        document.getElementById('manualPane').style.display = 'flex';
+        document.getElementById('onlinePane').style.display = 'none';
+      });
+
+      // Online Search Form (supports Enter / Search key on mobile keyboards)
+      document.querySelectorAll('.quick-rb-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          searchOnlineCatalog(btn.dataset.q, btn.dataset.country || '');
+        });
+      });
+      document.getElementById('rbSearchForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = document.getElementById('rbSearchInput').value.trim();
+        if (val) searchOnlineCatalog(val);
+      });
+
+      // Manual Form Submit
+      document.getElementById('manualPane').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('manName').value.trim();
+        const url = document.getElementById('manUrl').value.trim();
+        const genre = document.getElementById('manGenre').value;
+        const description = document.getElementById('manDesc').value.trim() || genre;
+        if (!name || !url) return;
+
+        const newSt = {
+          id: 'custom-' + Date.now(),
+          name,
+          url,
+          genre,
+          description,
+          grad: genre === 'Metāls' ? 'grad-metal' : 'grad-indigo',
+          isCustom: true
+        };
+        stations.unshift(newSt);
+        saveCustomStations();
+        renderStations();
+        e.target.reset();
+        closeAllSheets();
+        playStation(newSt.id);
+      });
+
+      // Snackbar Retry
+      document.getElementById('snackbarRetryBtn').addEventListener('click', () => {
+        if (currentStationId) playStation(currentStationId);
+      });
+    });
+  </script>
+
+  <script>
+    // PWA Service Worker Registration (relative path for GitHub Pages compatibility)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    // PWA Install Prompt Handling
+    let deferredInstallPrompt = null;
+    const installBtn = document.getElementById('installAppBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-flex';
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installBtn.style.display = 'none';
+          if (typeof showSnackbar === 'function') {
+            showSnackbar('Aplikācija veiksmīgi instalēta!', false);
+          }
+        }
+        deferredInstallPrompt = null;
+      });
+    }
+
+    window.addEventListener('appinstalled', () => {
+      if (installBtn) installBtn.style.display = 'none';
+      deferredInstallPrompt = null;
+    });
+  </script>
+</body>
+</html>
