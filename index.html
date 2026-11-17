@@ -1560,7 +1560,7 @@
     const CATEGORIES = ['Visas', 'Favorīti', 'Latvijas', 'Metāls', 'Populārā', 'Klasiskā', 'Džezs & Chill'];
 
     const DEFAULT_STATIONS = [
-      // LATVIJAS RADIOSTACIJAS
+      // LATVIJAS RADIOSTACIJAS (Standarta 443. porta HTTPS straumes + rezerves adreses)
       {
         id: 'lr1',
         name: 'Latvijas Radio 1',
@@ -1569,8 +1569,8 @@
         countryCode: 'LV',
         genre: 'Latvijas',
         description: 'Ziņas, analītika, diskusijas un kultūra',
-        url: 'https://lr1mp1.latvijasradio.lv:8012/;',
-        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/lr1/mp4:lr1/playlist.m3u8',
+        url: 'https://lr1mp1.latvijasradio.lv/lr1mp1',
+        fallbackUrl: 'https://lr1mp1.latvijasradio.lv:8012/;',
         grad: 'grad-red'
       },
       {
@@ -1581,8 +1581,8 @@
         countryCode: 'LV',
         genre: 'Latvijas',
         description: 'Dziesmas dzimtajā valodā',
-        url: 'https://lr2mp1.latvijasradio.lv:8002/;',
-        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/lr2/mp4:lr2/playlist.m3u8',
+        url: 'https://lr2mp1.latvijasradio.lv/lr2mp1',
+        fallbackUrl: 'https://lr2mp1.latvijasradio.lv:8002/;',
         grad: 'grad-amber'
       },
       {
@@ -1593,8 +1593,8 @@
         countryCode: 'LV',
         genre: 'Klasiskā',
         description: 'Klasiskā, džeza un laikmetīgā mūzika',
-        url: 'https://lr3mp0.latvijasradio.lv:8004/;',
-        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/lr3/mp4:lr3/playlist.m3u8',
+        url: 'https://lr3mp0.latvijasradio.lv/lr3mp0',
+        fallbackUrl: 'https://lr3mp0.latvijasradio.lv:8004/;',
         grad: 'grad-emerald'
       },
       {
@@ -1605,8 +1605,8 @@
         countryCode: 'LV',
         genre: 'Latvijas',
         description: 'Jauniešu mūzika un aktuālie hiti',
-        url: 'https://lr5mp1.latvijasradio.lv:8014/;',
-        fallbackUrl: 'https://5a44d7b21015b.streamlock.net/pieci/mp4:pieci/playlist.m3u8',
+        url: 'https://lr5mp1.latvijasradio.lv/lr5mp1',
+        fallbackUrl: 'https://lr5mp1.latvijasradio.lv:8014/;',
         grad: 'grad-indigo'
       },
       {
@@ -1658,7 +1658,7 @@
         grad: 'grad-red'
       },
 
-      // PASAULES DEATH METAL & SPEED METAL STACIJAS
+      // PASAULES DEATH METAL & SPEED METAL STACIJAS (443. porta HTTPS serveri)
       {
         id: 'somafm-metal',
         name: 'SomaFM: Metal Detector',
@@ -1689,7 +1689,7 @@
         genre: 'Metāls',
         description: 'Death Metal, Thrash & Extreme Heavy Metal',
         url: 'https://stream.laut.fm/chronix',
-        fallbackUrl: 'https://usa17.fastcast4u.com/proxy/chronixaggression?mp=/1',
+        fallbackUrl: 'https://stream.laut.fm/metal',
         grad: 'grad-metal'
       },
       {
@@ -1700,7 +1700,7 @@
         genre: 'Metāls',
         description: 'Ātrais Speed Metal un klasiskais Thrash Metal',
         url: 'https://stream.laut.fm/thrash',
-        fallbackUrl: 'https://stream.laut.fm/metal',
+        fallbackUrl: 'https://stream.laut.fm/speedmetal',
         grad: 'grad-crimson'
       },
       {
@@ -1711,7 +1711,7 @@
         genre: 'Metāls',
         description: 'Ekstrēmais Death Metal un Technical Death 24/7',
         url: 'https://stream.laut.fm/deathmetal',
-        fallbackUrl: 'https://stream.laut.fm/extreme-metal',
+        fallbackUrl: 'https://stream.laut.fm/extrememetal',
         grad: 'grad-metal'
       },
       {
@@ -1805,11 +1805,12 @@
       }
 
       const savedCustom = safeStorage.get('m3_radio_custom_v1');
-      let customStations = [];
+      let customStations = []; let hiddenIds = [];
       if (savedCustom) {
         try { customStations = JSON.parse(savedCustom); } catch (e) { customStations = []; }
       }
-      stations = [...DEFAULT_STATIONS, ...customStations];
+      const savedHidden = safeStorage.get('m3_radio_hidden'); if (savedHidden) { try { hiddenIds = JSON.parse(savedHidden); } catch(e) {} }
+      stations = [...DEFAULT_STATIONS, ...customStations].filter(s => !hiddenIds.includes(s.id));
 
       // Restore last active station in paused state for instant 1-tap resume
       const lastId = safeStorage.get('m3_radio_last_station');
@@ -2161,25 +2162,39 @@
 
       return new Promise((resolve) => {
         let settled = false;
+        let timeout = null;
+        const cleanup = () => {
+          clearTimeout(timeout);
+          audioEl.removeEventListener('playing', onPlaying);
+          audioEl.removeEventListener('canplay', onProgress);
+          audioEl.removeEventListener('loadedmetadata', onProgress);
+          audioEl.removeEventListener('error', onError);
+        };
         const finish = (ok) => {
           if (!settled) {
             settled = true;
-            audioEl.removeEventListener('playing', onPlaying);
-            audioEl.removeEventListener('error', onError);
+            cleanup();
             resolve(ok);
           }
         };
-        const timeout = setTimeout(() => finish(false), 9500);
-        const onPlaying = () => { clearTimeout(timeout); finish(true); };
-        const onError = () => { clearTimeout(timeout); finish(false); };
+        const resetTimer = (ms) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => finish(false), ms);
+        };
+        const onPlaying = () => finish(true);
+        const onProgress = () => {
+          updatePlayerUI('Buferē audio...');
+          resetTimer(12000);
+        };
+        const onError = () => finish(false);
 
+        resetTimer(15000);
         audioEl.addEventListener('playing', onPlaying);
+        audioEl.addEventListener('canplay', onProgress);
+        audioEl.addEventListener('loadedmetadata', onProgress);
         audioEl.addEventListener('error', onError);
         audioEl.src = url;
-        audioEl.play().catch(() => {
-          clearTimeout(timeout);
-          finish(false);
-        });
+        audioEl.play().catch(() => finish(false));
       });
     }
 
@@ -2392,7 +2407,7 @@
             <div class="station-subtitle">${st.description || st.genre}</div>
           </div>
           <div class="card-actions">
-            ${st.isCustom ? `
+            ${st.id !== 'offline-synth' ? `
               <button class="m3-icon-btn del-btn" title="Dzēst staciju" aria-label="Dzēst staciju">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -2441,6 +2456,7 @@
     }
 
     function deleteCustomStation(id) {
+      if (!id.startsWith('custom-')) { hiddenIds.push(id); safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds)); }
       stations = stations.filter(s => s.id !== id);
       recentIds = recentIds.filter(r => r !== id);
       saveCustomStations();

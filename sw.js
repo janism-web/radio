@@ -1,4 +1,4 @@
-const CACHE_NAME = 'internetradio-m3-flat-v2';
+const CACHE_NAME = 'internetradio-m3-flat-v3';
 const APP_SHELL = [
   './',
   './index.html',
