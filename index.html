@@ -300,64 +300,67 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      padding-bottom: 184px;
+      /* Space for Mini-Player + Bottom M3 Navigation Bar */
+      padding-bottom: 224px;
     }
 
     /* ==========================================================================
-       M3 TOP APP BAR
+       #1. COMPACT M3 DOCKED SEARCH HEADER (REPLACES BULKY 4-ROW HEADER)
        ========================================================================== */
-    .top-app-bar {
+    .compact-header {
       position: sticky;
       top: 0;
       z-index: 30;
       background-color: var(--md-sys-color-surface);
-      padding: 8px 12px 8px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 64px;
+      padding: 10px 16px 8px;
       transition: background-color 0.2s var(--ease-standard);
     }
 
-    .top-app-bar.scrolled {
+    .compact-header.scrolled {
       background-color: var(--md-sys-color-surface-container);
     }
 
-    .app-brand {
+    .m3-docked-search {
+      height: 52px;
+      border-radius: 26px;
+      background-color: var(--md-sys-color-surface-container-high);
       display: flex;
       align-items: center;
-      gap: 12px;
+      padding: 0 6px 0 14px;
+      gap: 8px;
     }
 
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+    .brand-dot-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 17px;
       background-color: var(--md-sys-color-primary-container);
       color: var(--md-sys-color-on-primary-container);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
-    .app-title {
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: 0;
+    .m3-search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
       color: var(--md-sys-color-on-surface);
-      line-height: 28px;
+      font-family: var(--font-family);
+      font-size: 15px;
+      outline: none;
+      min-width: 0;
     }
 
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    .m3-search-input::placeholder {
+      color: var(--md-sys-color-on-surface-variant);
     }
 
     .m3-icon-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 21px;
       border: none;
       background: transparent;
       color: var(--md-sys-color-on-surface-variant);
@@ -366,7 +369,7 @@
       justify-content: center;
       cursor: pointer;
       position: relative;
-      overflow: hidden;
+      flex-shrink: 0;
       transition: background-color 0.15s var(--ease-standard), color 0.15s var(--ease-standard);
     }
 
@@ -379,16 +382,23 @@
       color: var(--md-sys-color-on-secondary-container);
     }
 
+    .search-clear-btn {
+      display: none;
+    }
+    .search-clear-btn.visible {
+      display: inline-flex;
+    }
+
     .timer-badge {
       position: absolute;
-      bottom: 6px;
-      right: 4px;
+      bottom: 4px;
+      right: 2px;
       background-color: var(--md-sys-color-primary);
       color: var(--md-sys-color-on-primary);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-      padding: 1px 5px;
-      border-radius: 8px;
+      padding: 1px 4px;
+      border-radius: 7px;
       line-height: 1.2;
       display: none;
     }
@@ -397,26 +407,35 @@
       display: block;
     }
 
-    /* Dynamic Color Swatch Strip */
+    /* ==========================================================================
+       #5 & #6. MATERIAL YOU PALETTE & BACKUP/EXPORT DRAWER
+       ========================================================================== */
     .palette-bar {
       display: none;
-      padding: 8px 16px 12px;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 12px;
+      padding: 12px 16px;
       background-color: var(--md-sys-color-surface-container-low);
-      margin: 0 16px 8px;
-      border-radius: 16px;
+      margin: 0 16px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--md-sys-color-outline-variant);
     }
 
     .palette-bar.open {
       display: flex;
     }
 
+    .palette-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
     .palette-label {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
-      color: var(--md-sys-color-on-surface-variant);
+      color: var(--md-sys-color-on-surface);
     }
 
     .swatches {
@@ -438,97 +457,13 @@
       transform: scale(1.1);
     }
 
-    /* ==========================================================================
-       M3 SEGMENTED MODE SWITCHER (RADIO TIEŠRAIDES / PODKĀSTI LV)
-       ========================================================================== */
-    .mode-switch-wrap {
-      padding: 0 16px 10px;
-    }
-
-    .m3-mode-segmented {
+    .backup-row {
       display: flex;
-      background-color: var(--md-sys-color-surface-container);
-      border: 1px solid var(--md-sys-color-outline-variant);
-      border-radius: 22px;
-      padding: 3px;
-      gap: 4px;
-    }
-
-    .mode-tab-btn {
-      flex: 1;
-      height: 38px;
-      border-radius: 18px;
-      border: none;
-      background: transparent;
-      color: var(--md-sys-color-on-surface-variant);
-      font-family: var(--font-family);
-      font-size: 14px;
-      font-weight: 500;
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       gap: 8px;
-      cursor: pointer;
-      transition: background-color 0.2s var(--ease-standard), color 0.2s var(--ease-standard);
-    }
-
-    .mode-tab-btn.active {
-      background-color: var(--md-sys-color-secondary-container);
-      color: var(--md-sys-color-on-secondary-container);
-    }
-
-    /* ==========================================================================
-       M3 SEARCH BAR
-       ========================================================================== */
-    .search-section {
-      padding: 2px 16px 12px;
-    }
-
-    .m3-search-bar {
-      height: 50px;
-      border-radius: 25px;
-      background-color: var(--md-sys-color-surface-container-high);
-      display: flex;
-      align-items: center;
-      padding: 0 8px 0 16px;
-      gap: 12px;
-    }
-
-    .m3-search-bar svg {
-      color: var(--md-sys-color-on-surface-variant);
-      flex-shrink: 0;
-    }
-
-    .m3-search-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      color: var(--md-sys-color-on-surface);
-      font-family: var(--font-family);
-      font-size: 16px;
-      outline: none;
-      min-width: 0;
-    }
-
-    .m3-search-input::placeholder {
-      color: var(--md-sys-color-on-surface-variant);
-    }
-
-    .search-clear-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      border: none;
-      background: transparent;
-      color: var(--md-sys-color-on-surface-variant);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .search-clear-btn.visible {
-      display: flex;
+      padding-top: 8px;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
     }
 
     /* ==========================================================================
@@ -537,7 +472,7 @@
     .chips-scroll {
       display: flex;
       gap: 8px;
-      padding: 0 16px 12px;
+      padding: 2px 16px 10px;
       overflow-x: auto;
       scrollbar-width: none;
     }
@@ -588,7 +523,7 @@
       display: none;
       flex-direction: column;
       gap: 8px;
-      padding: 0 0 12px;
+      padding: 0 0 10px;
     }
 
     .recent-section.visible {
@@ -596,7 +531,7 @@
     }
 
     .section-overline {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.5px;
       text-transform: uppercase;
@@ -639,9 +574,9 @@
     }
 
     .recent-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -651,17 +586,15 @@
     }
 
     /* ==========================================================================
-       M3 STATION & PODCAST CARDS
+       #2. UNIFIED STATION & PODCAST CARDS WITH SWIPE-TO-DELETE & FAVORITES
        ========================================================================== */
     .stations-list {
-      padding: 4px 16px;
+      padding: 2px 16px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-
-    /* Swipe-to-Delete (Swipe Right) Wrapper */
     .station-swipe-wrap {
       position: relative;
       border-radius: 16px;
@@ -669,6 +602,7 @@
       background-color: var(--md-sys-color-error);
       color: var(--md-sys-color-on-error);
     }
+
     .swipe-delete-bg {
       position: absolute;
       inset: 0;
@@ -683,18 +617,15 @@
       transition: opacity 0.15s ease;
       pointer-events: none;
     }
+
     .station-swipe-wrap.swiping .swipe-delete-bg {
       opacity: 1;
-    }
-    .m3-station-card {
-      touch-action: pan-y;
-      will-change: transform;
     }
 
     .m3-station-card {
       background-color: var(--md-sys-color-surface-container-low);
       border-radius: 16px;
-      padding: 10px 10px 10px 12px;
+      padding: 10px 8px 10px 12px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -702,6 +633,8 @@
       transition: background-color 0.2s var(--ease-standard);
       position: relative;
       user-select: none;
+      touch-action: pan-y;
+      will-change: transform;
     }
 
     .m3-station-card:hover {
@@ -887,11 +820,11 @@
     }
 
     /* ==========================================================================
-       M3 EXTENDED FAB
+       #3. AUTO-COLLAPSING M3 EXTENDED FAB
        ========================================================================== */
     .fab-container {
       position: fixed;
-      bottom: 96px;
+      bottom: 164px;
       right: max(16px, calc(50vw - 284px));
       z-index: 35;
     }
@@ -911,7 +844,7 @@
       justify-content: center;
       gap: 10px;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.28);
       transition: padding 0.25s var(--ease-emphasized), width 0.25s var(--ease-emphasized), transform 0.15s var(--ease-standard);
       overflow: hidden;
       white-space: nowrap;
@@ -932,7 +865,7 @@
        ========================================================================== */
     .m3-snackbar {
       position: fixed;
-      bottom: 162px;
+      bottom: 230px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       width: calc(100% - 32px);
@@ -973,35 +906,52 @@
     }
 
     /* ==========================================================================
-       FLOATING M3 MINI-PLAYER
+       #3. DOCKED MINI-PLAYER WITH LINEAR PROGRESS INDICATOR + ALBUM ART
        ========================================================================== */
     .mini-player-wrap {
       position: fixed;
-      bottom: 12px;
+      bottom: 76px;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 24px);
-      max-width: 576px;
+      width: calc(100% - 16px);
+      max-width: 584px;
       z-index: 40;
       touch-action: pan-y;
     }
 
     .m3-mini-player {
-      height: 72px;
-      border-radius: 20px;
+      height: 68px;
+      border-radius: 18px;
       background-color: var(--md-sys-color-surface-container-highest);
       padding: 8px 10px 8px 12px;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
       cursor: pointer;
       user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-linear-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background-color: var(--md-sys-color-primary);
+      transition: width 0.25s linear;
+      display: none;
+    }
+
+    .mini-linear-progress.visible {
+      display: block;
     }
 
     .mini-art {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       border-radius: 12px;
       background-color: var(--md-sys-color-primary-container);
       color: var(--md-sys-color-on-primary-container);
@@ -1010,6 +960,12 @@
       justify-content: center;
       flex-shrink: 0;
       overflow: hidden;
+    }
+
+    .mini-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .mini-meta {
@@ -1024,7 +980,7 @@
     }
 
     .mini-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--md-sys-color-on-surface);
       white-space: nowrap;
@@ -1077,8 +1033,8 @@
     }
 
     .m3-play-morph-btn {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       border-radius: 16px;
       border: none;
       background-color: var(--md-sys-color-primary);
@@ -1092,11 +1048,68 @@
     }
 
     .m3-play-morph-btn.is-playing {
-      border-radius: 26px;
+      border-radius: 24px;
     }
 
     /* ==========================================================================
-       M3 MODAL BOTTOM SHEETS
+       #1. OFFICIAL M3 BOTTOM NAVIGATION BAR (RADIO / PODKĀSTI)
+       ========================================================================== */
+    .m3-bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      height: 70px;
+      background-color: var(--md-sys-color-surface-container);
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 42;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .m3-nav-item {
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: var(--font-family);
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .m3-nav-pill {
+      width: 64px;
+      height: 32px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s var(--ease-standard), color 0.2s var(--ease-standard);
+    }
+
+    .m3-nav-item.active {
+      color: var(--md-sys-color-on-surface);
+      font-weight: 700;
+    }
+
+    .m3-nav-item.active .m3-nav-pill {
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    /* ==========================================================================
+       M3 MODAL BOTTOM SHEETS (WITH SWIPE-TO-DISMISS)
        ========================================================================== */
     .sheet-scrim {
       position: fixed;
@@ -1120,7 +1133,7 @@
       transform: translateX(-50%) translateY(100%);
       width: 100%;
       max-width: 600px;
-      max-height: 92vh;
+      max-height: 90dvh;
       background-color: var(--md-sys-color-surface-container-low);
       border-radius: 28px 28px 0 0;
       z-index: 70;
@@ -1128,18 +1141,17 @@
       flex-direction: column;
       overflow: hidden;
       transition: transform 0.32s var(--ease-emphasized);
+      will-change: transform;
     }
 
     .m3-bottom-sheet.open {
       transform: translateX(-50%) translateY(0);
     }
 
-    .m3-bottom-sheet {
-      will-change: transform;
-    }
     .m3-bottom-sheet.dragging {
       transition: none !important;
     }
+
     .sheet-drag-handle-area {
       padding: 14px 0 10px;
       display: flex;
@@ -1170,8 +1182,8 @@
     }
 
     .np-artwork {
-      width: 160px;
-      height: 160px;
+      width: 164px;
+      height: 164px;
       border-radius: 28px;
       margin: 0 auto;
       display: flex;
@@ -1180,6 +1192,12 @@
       color: #FFFFFF;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
       overflow: hidden;
+    }
+
+    .np-artwork img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .np-details {
@@ -1196,6 +1214,22 @@
     .np-desc {
       font-size: 13px;
       color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .np-show-notes {
+      font-size: 13px;
+      line-height: 19px;
+      color: var(--md-sys-color-on-surface-variant);
+      background-color: var(--md-sys-color-surface-container);
+      padding: 12px 14px;
+      border-radius: 14px;
+      max-height: 96px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .np-show-notes.visible {
+      display: block;
     }
 
     /* Podcast Seek Bar inside Now Playing */
@@ -1220,7 +1254,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 20px;
     }
 
     .m3-skip-btn {
@@ -1231,11 +1265,8 @@
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
       cursor: pointer;
     }
 
@@ -1339,16 +1370,20 @@
     }
 
     .m3-tonal-btn {
-      height: 40px;
-      border-radius: 20px;
+      height: 38px;
+      border-radius: 19px;
       border: none;
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
       font-family: var(--font-family);
       font-size: 13px;
       font-weight: 500;
-      padding: 0 16px;
+      padding: 0 14px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .m3-tonal-btn:disabled {
@@ -1372,20 +1407,6 @@
       gap: 10px;
     }
 
-    .grad-red { background: linear-gradient(135deg, #D32F2F, #8E0000); }
-    .grad-amber { background: linear-gradient(135deg, #F57C00, #E65100); }
-    .grad-emerald { background: linear-gradient(135deg, #00897B, #004D40); }
-    .grad-indigo { background: linear-gradient(135deg, #3949AB, #1A237E); }
-    .grad-purple { background: linear-gradient(135deg, #7B1FA2, #4A148C); }
-    .grad-metal { background: linear-gradient(135deg, #37474F, #102027); }
-    .grad-crimson { background: linear-gradient(135deg, #B71C1C, #212121); }
-    .grad-teal { background: linear-gradient(135deg, #0277BD, #01579B); }
-
-
-    /* Android UX Add Station Sheet Enhancements */
-    .m3-bottom-sheet {
-      max-height: 90dvh;
-    }
     .preview-play-btn {
       width: 40px;
       height: 40px;
@@ -1398,13 +1419,14 @@
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background-color 0.15s, color 0.15s;
     }
+
     .preview-play-btn.previewing {
       background: var(--md-sys-color-primary);
       color: var(--md-sys-color-on-primary);
       border-color: transparent;
     }
+
     .codec-badge {
       display: inline-block;
       font-size: 10px;
@@ -1416,11 +1438,13 @@
       margin-right: 6px;
       text-transform: uppercase;
     }
+
     .grad-picker-row {
       display: flex;
       gap: 10px;
       align-items: center;
     }
+
     .grad-choice {
       width: 34px;
       height: 34px;
@@ -1428,10 +1452,20 @@
       border: 2px solid transparent;
       cursor: pointer;
     }
+
     .grad-choice.selected {
       border-color: var(--md-sys-color-on-surface);
       transform: scale(1.08);
     }
+
+    .grad-red { background: linear-gradient(135deg, #D32F2F, #8E0000); }
+    .grad-amber { background: linear-gradient(135deg, #F57C00, #E65100); }
+    .grad-emerald { background: linear-gradient(135deg, #00897B, #004D40); }
+    .grad-indigo { background: linear-gradient(135deg, #3949AB, #1A237E); }
+    .grad-purple { background: linear-gradient(135deg, #7B1FA2, #4A148C); }
+    .grad-metal { background: linear-gradient(135deg, #37474F, #102027); }
+    .grad-crimson { background: linear-gradient(135deg, #B71C1C, #212121); }
+    .grad-teal { background: linear-gradient(135deg, #0277BD, #01579B); }
 
     .empty-state {
       text-align: center;
@@ -1443,29 +1477,32 @@
 </head>
 <body>
   <div class="app-shell">
-    <!-- M3 TOP APP BAR -->
-    <header class="top-app-bar" id="topAppBar">
-      <div class="app-brand">
-        <div class="brand-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- #1. COMPACT M3 DOCKED SEARCH HEADER -->
+    <header class="compact-header" id="topAppBar">
+      <div class="m3-docked-search">
+        <div class="brand-dot-btn" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="2"></circle>
-            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49"></path>
           </svg>
         </div>
-        <h1 class="app-title">Internetradio</h1>
-      </div>
+        <input type="search" id="searchInput" class="m3-search-input" placeholder="Meklēt staciju vai žanru..." autocomplete="off" />
+        <button class="m3-icon-btn search-clear-btn" id="searchClearBtn" aria-label="Notīrīt">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
 
-      <div class="top-actions">
         <button class="m3-icon-btn" id="installAppBtn" title="Instalēt aplikāciju" aria-label="Instalēt aplikāciju" style="display:none;color:var(--md-sys-color-primary);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
         </button>
 
-        <button class="m3-icon-btn" id="refreshBtn" title="Atjaunot tiešraides / podkāstus" aria-label="Atjaunot">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button class="m3-icon-btn" id="refreshBtn" title="Atjaunot" aria-label="Atjaunot">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
             <path d="M3 3v5h5"></path>
             <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
@@ -1474,14 +1511,14 @@
         </button>
 
         <button class="m3-icon-btn" id="timerOpenBtn" title="Miega taimeris" aria-label="Miega taimeris">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
           </svg>
           <span class="timer-badge" id="timerBadge"></span>
         </button>
 
-        <button class="m3-icon-btn" id="paletteToggleBtn" title="Material You krāsas un tēma" aria-label="Material You krāsas">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button class="m3-icon-btn" id="paletteToggleBtn" title="Material You krāsas un dublējums" aria-label="Material You krāsas">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
             <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
             <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
@@ -1492,52 +1529,25 @@
       </div>
     </header>
 
-    <!-- DYNAMIC COLOR PALETTE & THEME STRIP -->
+    <!-- #5 & #6. DYNAMIC COLOR PALETTE, THEME ICON & JSON BACKUP DRAWER -->
     <div class="palette-bar" id="paletteBar">
-      <span class="palette-label">Material You</span>
-      <div class="swatches">
-        <button class="swatch-btn selected" data-pal="indigo" style="background:#7986CB;"></button>
-        <button class="swatch-btn" data-pal="emerald" style="background:#4DB6AC;"></button>
-        <button class="swatch-btn" data-pal="coral" style="background:#E57373;"></button>
-        <button class="swatch-btn" data-pal="amber" style="background:#FFB74D;"></button>
-        <button class="m3-tonal-btn" id="themeModeBtn" style="height:32px;padding:0 12px;">Gaišais</button>
+      <div class="palette-top-row">
+        <span class="palette-label">Material You</span>
+        <div class="swatches">
+          <button class="swatch-btn selected" data-pal="indigo" style="background:#7986CB;" aria-label="Indigo"></button>
+          <button class="swatch-btn" data-pal="emerald" style="background:#4DB6AC;" aria-label="Smaragds"></button>
+          <button class="swatch-btn" data-pal="coral" style="background:#E57373;" aria-label="Koraļļi"></button>
+          <button class="swatch-btn" data-pal="amber" style="background:#FFB74D;" aria-label="Dzintars"></button>
+          <button class="m3-tonal-btn" id="themeModeBtn" style="height:34px;padding:0 12px;"></button>
+        </div>
       </div>
-    </div>
-
-    <!-- MODE SWITCHER: RADIO TIEŠRAIDES vs PODKĀSTI (LV) -->
-    <div class="mode-switch-wrap">
-      <div class="m3-mode-segmented" role="tablist">
-        <button class="mode-tab-btn active" id="modeRadioBtn" role="tab" aria-selected="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="2"></circle>
-            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49"></path>
-          </svg>
-          <span>Radio tiešraides</span>
-        </button>
-        <button class="mode-tab-btn" id="modePodcastsBtn" role="tab" aria-selected="false">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-            <line x1="12" y1="19" x2="12" y2="22"></line>
-          </svg>
-          <span>Podkāsti (LV)</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- M3 SEARCH BAR -->
-    <div class="search-section">
-      <div class="m3-search-bar">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.3-4.3"></path>
-        </svg>
-        <input type="search" id="searchInput" class="m3-search-input" placeholder="Meklēt staciju vai žanru..." autocomplete="off" />
-        <button class="search-clear-btn" id="searchClearBtn" aria-label="Notīrīt">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 6 6 18M6 6l12 12"></path>
-          </svg>
-        </button>
+      <div class="backup-row">
+        <span style="font-size:12px;color:var(--md-sys-color-on-surface-variant);">Datu rezerves kopija</span>
+        <div style="display:flex;gap:8px;">
+          <button type="button" class="m3-tonal-btn" id="exportDataBtn" style="height:32px;font-size:12px;">Eksportēt JSON</button>
+          <button type="button" class="m3-tonal-btn" id="importDataBtn" style="height:32px;font-size:12px;">Importēt</button>
+          <input type="file" id="importFileInput" accept=".json,application/json" style="display:none;" />
+        </div>
       </div>
     </div>
 
@@ -1553,7 +1563,7 @@
     <!-- MAIN LIST (STATIONS OR LATVIAN PODCASTS) -->
     <main class="stations-list" id="mainList"></main>
 
-    <!-- M3 EXTENDED FAB -->
+    <!-- #3. AUTO-COLLAPSING M3 EXTENDED FAB -->
     <div class="fab-container">
       <button class="m3-extended-fab" id="addFab">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1569,7 +1579,7 @@
       <button class="snackbar-action" id="snackbarRetryBtn">Mēģināt vēlreiz</button>
     </div>
 
-    <!-- FLOATING M3 MINI-PLAYER -->
+    <!-- #3. FLOATING M3 MINI-PLAYER WITH PROGRESS BAR & ARTWORK -->
     <div class="mini-player-wrap">
       <div class="m3-mini-player" id="miniPlayer">
         <div class="mini-art grad-indigo" id="miniArt">
@@ -1596,8 +1606,32 @@
             <polygon points="6 4 20 12 6 20 6 4"></polygon>
           </svg>
         </button>
+        <div class="mini-linear-progress" id="miniLinearProgress"></div>
       </div>
     </div>
+
+    <!-- #1. OFFICIAL M3 BOTTOM NAVIGATION BAR -->
+    <nav class="m3-bottom-nav" aria-label="Galvenā navigācija">
+      <button class="m3-nav-item active" id="modeRadioBtn" aria-selected="true">
+        <span class="m3-nav-pill">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2"></circle>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+          </svg>
+        </span>
+        <span>Radio</span>
+      </button>
+      <button class="m3-nav-item" id="modePodcastsBtn" aria-selected="false">
+        <span class="m3-nav-pill">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+        </span>
+        <span>Podkāsti (LV)</span>
+      </button>
+    </nav>
   </div>
 
   <!-- MODAL SCRIM -->
@@ -1625,7 +1659,7 @@
     </div>
   </section>
 
-  <!-- NOW PLAYING BOTTOM SHEET (SUPPORTS BOTH LIVE RADIO & PODCAST SEEKING) -->
+  <!-- #4. NOW PLAYING BOTTOM SHEET (WITH ALBUM ART, SHOW NOTES, EPISODES BUTTON & SVG ICONS) -->
   <section class="m3-bottom-sheet" id="nowPlayingSheet" aria-label="Tagad skan">
     <div class="sheet-drag-handle-area" data-close-sheet>
       <div class="sheet-drag-handle"></div>
@@ -1638,12 +1672,15 @@
           </svg>
         </button>
         <span id="npModeLabel" style="font-size:12px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--md-sys-color-on-surface-variant);">Tagad skan</span>
-        <button class="m3-tonal-btn" id="npSpeedBtn" style="display:none;height:34px;padding:0 12px;">1.0x</button>
-        <button class="m3-icon-btn" id="npTimerShortcut" title="Miega taimeris">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-          </svg>
-        </button>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <button class="m3-tonal-btn" id="npEpisodesBtn" style="display:none;height:34px;padding:0 12px;">Epizodes</button>
+          <button class="m3-tonal-btn" id="npSpeedBtn" style="display:none;height:34px;padding:0 12px;">1.0x</button>
+          <button class="m3-icon-btn" id="npTimerShortcut" title="Miega taimeris">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="np-artwork grad-indigo" id="npArtwork">
@@ -1658,6 +1695,9 @@
         <div class="np-desc" id="npDesc">Pieskarieties sarakstā</div>
       </div>
 
+      <!-- PODCAST SHOW NOTES (EPISODE DESCRIPTION) -->
+      <div class="np-show-notes" id="npShowNotes"></div>
+
       <!-- PODCAST TIMELINE SCRUBBER -->
       <div class="podcast-seek-box" id="podcastSeekBox">
         <input type="range" id="seekSlider" class="m3-slider" min="0" max="100" value="0" />
@@ -1667,9 +1707,10 @@
         </div>
       </div>
 
+      <!-- #2. PURE MATERIAL 3 VECTOR SVG TRANSPORT ICONS -->
       <div class="np-transport">
-        <button class="m3-skip-btn" id="npPrevBtn" title="Iepriekšējā / -15s">
-          <span id="npPrevLabel">⏮</span>
+        <button class="m3-skip-btn" id="npPrevBtn" title="Iepriekšējā / -15s" aria-label="Iepriekšējā vai atpakaļ 15s">
+          <span id="npPrevIcon"></span>
         </button>
 
         <button class="m3-play-large" id="npPlayBtn" aria-label="Atskaņot vai pauzēt">
@@ -1678,8 +1719,8 @@
           </svg>
         </button>
 
-        <button class="m3-skip-btn" id="npNextBtn" title="Nākamā / +30s">
-          <span id="npNextLabel">⏭</span>
+        <button class="m3-skip-btn" id="npNextBtn" title="Nākamā / +30s" aria-label="Nākamā vai uz priekšu 30s">
+          <span id="npNextIcon"></span>
         </button>
       </div>
 
@@ -1715,12 +1756,12 @@
     </div>
   </section>
 
-  <!-- ADD STATION / PODCAST BOTTOM SHEET (ANDROID UX OPTIMIZED) -->
+  <!-- ADD STATION / PODCAST BOTTOM SHEET -->
   <section class="m3-bottom-sheet" id="addSheet">
     <div class="sheet-drag-handle-area" data-close-sheet>
       <div class="sheet-drag-handle"></div>
     </div>
-    <div class="sheet-body" id="addSheetBody">
+    <div class="sheet-body">
       <div style="display:flex;align-items:center;justify-content:space-between;">
         <h2 id="addSheetTitle" style="font-size:20px;font-weight:500;">Pievienot staciju</h2>
         <span id="previewStatusTag" style="font-size:12px;font-weight:500;color:var(--md-sys-color-primary);display:none;">Skan priekšskatījums...</span>
@@ -1732,7 +1773,7 @@
 
       <!-- ONLINE SEARCH TAB -->
       <div id="onlinePane" style="display:flex;flex-direction:column;gap:12px;">
-        <form id="onlineSearchForm" class="m3-search-bar" style="padding-right:6px;">
+        <form id="onlineSearchForm" class="m3-docked-search" style="padding-right:6px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="m21 21-4.3-4.3"></path>
@@ -1754,7 +1795,7 @@
           <label for="manUrl" id="manUrlLabel">Straumes adrese (HTTPS) *</label>
           <div style="display:flex;gap:8px;">
             <input type="url" id="manUrl" class="m3-input" style="flex:1;" placeholder="https://..." required />
-            <button type="button" class="m3-tonal-btn" id="manTestBtn" style="height:48px;border-radius:12px;padding:0 14px;" title="Pārbaudīt straumi">▶ Pārbaudīt</button>
+            <button type="button" class="m3-tonal-btn" id="manTestBtn" style="height:48px;border-radius:12px;padding:0 14px;" title="Pārbaudīt straumi"></button>
           </div>
         </div>
         <div class="m3-field" id="manGenreField">
@@ -1791,6 +1832,22 @@
   <audio id="previewAudio" preload="none"></audio>
 
   <script>
+    /* ==========================================================================
+       SVG ICON HELPERS (PURE MATERIAL 3 VECTORS — NO EMOJI SYMBOLS)
+       ========================================================================== */
+    const ICONS = {
+      playSm: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>',
+      stopSm: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>',
+      prevTrack: '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></line></svg>',
+      nextTrack: '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></line></svg>',
+      replay15: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><text x="12" y="15.5" font-size="7.5" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle" font-family="Roboto, sans-serif">15</text></svg>',
+      forward30: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><text x="12" y="15.5" font-size="7.5" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle" font-family="Roboto, sans-serif">30</text></svg>',
+      sun: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>',
+      moon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>',
+      radioArt: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>',
+      radioArtLg: '<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49"></path></svg>'
+    };
+
     /* ==========================================================================
        SAFE STORAGE & DATA MODELS
        ========================================================================== */
@@ -2003,7 +2060,6 @@
       }
     ];
 
-    /* CURATED LATVIAN PODCASTS (DIRECT CLIENT-SIDE RSS + ITUNES LOOKUP, ZERO GITHUB ACTIONS) */
     const DEFAULT_PODCASTS = [
       {
         id: 'pod-krustpunkta',
@@ -2062,15 +2118,16 @@
     let stations = [];
     let podcasts = [];
     let favorites = [];
+    let podcastFavorites = [];
     let recentIds = [];
     let hiddenIds = [];
+    let hiddenPodIds = [];
     let selectedCategory = 'Visas';
     let searchQuery = '';
 
-    // Playback State (Radio OR Podcast Episode)
     let playbackType = 'radio'; // 'radio' | 'podcast'
     let currentStationId = null;
-    let currentEpisode = null; // { title, podcastName, audioUrl, pubDate, grad, artworkUrl }
+    let currentEpisode = null;
     let activePodcastObj = null;
     let isPlaying = false;
     let playbackSpeed = 1.0;
@@ -2081,31 +2138,24 @@
     let snackbarTimeout = null;
     let attemptToken = 0;
     let activeSheetId = null;
-    let episodeProgressMap = {}; // { audioUrl: { currentTime, duration } }
+    let episodeProgressMap = {};
 
     function initData() {
-      const savedFavs = safeStorage.get('m3_radio_favs');
-      if (savedFavs) { try { favorites = JSON.parse(savedFavs); } catch (e) { favorites = ['lr1', 'somafm-metal']; } }
-      else { favorites = ['lr1', 'somafm-metal']; }
+      try { favorites = JSON.parse(safeStorage.get('m3_radio_favs') || '["lr1","somafm-metal"]'); } catch (e) { favorites = ['lr1', 'somafm-metal']; }
+      try { podcastFavorites = JSON.parse(safeStorage.get('m3_pod_favs') || '[]'); } catch (e) { podcastFavorites = []; }
+      try { recentIds = JSON.parse(safeStorage.get('m3_radio_recents') || '[]'); } catch (e) { recentIds = []; }
+      try { hiddenIds = JSON.parse(safeStorage.get('m3_radio_hidden') || '[]'); } catch (e) { hiddenIds = []; }
+      try { hiddenPodIds = JSON.parse(safeStorage.get('m3_pod_hidden') || '[]'); } catch (e) { hiddenPodIds = []; }
 
-      const savedRecents = safeStorage.get('m3_radio_recents');
-      if (savedRecents) { try { recentIds = JSON.parse(savedRecents); } catch (e) { recentIds = []; } }
-
-      const savedHidden = safeStorage.get('m3_radio_hidden');
-      if (savedHidden) { try { hiddenIds = JSON.parse(savedHidden); } catch (e) { hiddenIds = []; } }
-
-      const savedCustom = safeStorage.get('m3_radio_custom_v1');
       let customStations = [];
-      if (savedCustom) { try { customStations = JSON.parse(savedCustom); } catch (e) { customStations = []; } }
+      try { customStations = JSON.parse(safeStorage.get('m3_radio_custom_v1') || '[]'); } catch (e) {}
       stations = [...DEFAULT_STATIONS, ...customStations].filter(s => !hiddenIds.includes(s.id));
 
-      const savedCustomPods = safeStorage.get('m3_podcasts_custom_v1');
       let customPods = [];
-      if (savedCustomPods) { try { customPods = JSON.parse(savedCustomPods); } catch (e) { customPods = []; } }
-      podcasts = [...DEFAULT_PODCASTS, ...customPods];
+      try { customPods = JSON.parse(safeStorage.get('m3_podcasts_custom_v1') || '[]'); } catch (e) {}
+      podcasts = [...DEFAULT_PODCASTS, ...customPods].filter(p => !hiddenPodIds.includes(p.id));
 
-      const savedProgress = safeStorage.get('m3_podcast_progress');
-      if (savedProgress) { try { episodeProgressMap = JSON.parse(savedProgress); } catch (e) { episodeProgressMap = {}; } }
+      try { episodeProgressMap = JSON.parse(safeStorage.get('m3_podcast_progress') || '{}'); } catch (e) { episodeProgressMap = {}; }
 
       const lastId = safeStorage.get('m3_radio_last_station');
       if (lastId && stations.some(s => s.id === lastId)) {
@@ -2131,6 +2181,7 @@
 
     function saveFavorites() {
       safeStorage.set('m3_radio_favs', JSON.stringify(favorites));
+      safeStorage.set('m3_pod_favs', JSON.stringify(podcastFavorites));
     }
 
     function recordRecentStation(id) {
@@ -2141,8 +2192,15 @@
     }
 
     /* ==========================================================================
-       DIRECT CLIENT-SIDE PODCAST RSS & ITUNES RESOLVER (NO GITHUB ACTIONS NEEDED)
+       DIRECT CLIENT-SIDE PODCAST RSS & ITUNES RESOLVER
        ========================================================================== */
+    function stripHtml(htmlStr) {
+      if (!htmlStr) return '';
+      const tmp = document.createElement('div');
+      tmp.innerHTML = htmlStr;
+      return (tmp.textContent || tmp.innerText || '').trim();
+    }
+
     function parseRssXmlText(xmlText, fallbackTitle = '') {
       const parser = new DOMParser();
       const doc = parser.parseFromString(xmlText, 'text/xml');
@@ -2165,6 +2223,10 @@
         if (!audioUrl || !/^https?:\/\//i.test(audioUrl)) return;
 
         const title = item.querySelector('title')?.textContent?.trim() || 'Epizode';
+        const rawDesc = item.querySelector('description')?.textContent ||
+                        item.querySelector('itunes\\:summary')?.textContent || '';
+        const description = stripHtml(rawDesc).slice(0, 420);
+
         const pubRaw = item.querySelector('pubDate')?.textContent?.trim() || '';
         let pubDate = '';
         if (pubRaw) {
@@ -2177,6 +2239,7 @@
 
         episodes.push({
           title,
+          description,
           audioUrl,
           pubDate,
           duration,
@@ -2232,7 +2295,6 @@
       const feedUrlsToTry = [];
       if (podcast.rssUrl) feedUrlsToTry.push(podcast.rssUrl);
 
-      // If iTunes query exists, also resolve official feedUrl dynamically
       if (podcast.itunesQuery) {
         const itunesFeed = await resolvePodcastFeedUrlViaItunes(podcast.itunesQuery);
         if (itunesFeed && !feedUrlsToTry.includes(itunesFeed)) {
@@ -2242,12 +2304,10 @@
       }
 
       for (const feedUrl of feedUrlsToTry) {
-        // Strategy 1: Direct XML fetch (works if server sends Access-Control-Allow-Origin: *)
         try {
           const directRes = await fetchWithTimeout(feedUrl, 4500);
           if (directRes.ok) {
-            const xmlText = await directRes.text();
-            const parsed = parseRssXmlText(xmlText, podcast.name);
+            const parsed = parseRssXmlText(await directRes.text(), podcast.name);
             if (parsed && parsed.episodes.length > 0) {
               safeStorage.set(cacheKey, JSON.stringify({ ts: Date.now(), episodes: parsed.episodes }));
               return parsed.episodes;
@@ -2255,13 +2315,10 @@
           }
         } catch (e) {}
 
-        // Strategy 2: AllOrigins CORS proxy -> raw XML
         try {
-          const aoUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`;
-          const aoRes = await fetchWithTimeout(aoUrl, 6500);
+          const aoRes = await fetchWithTimeout(`https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`, 6500);
           if (aoRes.ok) {
-            const xmlText = await aoRes.text();
-            const parsed = parseRssXmlText(xmlText, podcast.name);
+            const parsed = parseRssXmlText(await aoRes.text(), podcast.name);
             if (parsed && parsed.episodes.length > 0) {
               safeStorage.set(cacheKey, JSON.stringify({ ts: Date.now(), episodes: parsed.episodes }));
               return parsed.episodes;
@@ -2269,10 +2326,8 @@
           }
         } catch (e) {}
 
-        // Strategy 3: rss2json public API
         try {
-          const r2jUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
-          const r2jRes = await fetchWithTimeout(r2jUrl, 6500);
+          const r2jRes = await fetchWithTimeout(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`, 6500);
           if (r2jRes.ok) {
             const json = await r2jRes.json();
             if (json.status === 'ok' && Array.isArray(json.items)) {
@@ -2280,6 +2335,7 @@
                 .filter(it => it.enclosure && it.enclosure.link)
                 .map(it => ({
                   title: it.title || 'Epizode',
+                  description: stripHtml(it.description || '').slice(0, 420),
                   audioUrl: it.enclosure.link,
                   pubDate: it.pubDate ? new Date(it.pubDate).toLocaleDateString('lv-LV', { day: 'numeric', month: 'short', year: 'numeric' }) : '',
                   duration: '',
@@ -2353,6 +2409,7 @@
           } else {
             playPodcastEpisode({
               ...ep,
+              podcastId: podcast.id,
               grad: podcast.grad || 'grad-indigo',
               artworkUrl: ep.artworkUrl || podcast.artworkUrl || ''
             });
@@ -2364,7 +2421,7 @@
     }
 
     /* ==========================================================================
-       AUDIO ENGINE (LIVE RADIO + PODCAST EPISODES WITH RESUME & SPEED)
+       AUDIO ENGINE (LIVE RADIO + PODCAST EPISODES)
        ========================================================================== */
     const audioEl = document.getElementById('audioPlayer');
     audioEl.volume = 0.85;
@@ -2383,11 +2440,17 @@
       if (playbackType === 'podcast' && currentEpisode && audioEl.duration) {
         const cur = audioEl.currentTime;
         const dur = audioEl.duration;
+        const pct = Math.min(100, (cur / dur) * 100);
+
         const seekSlider = document.getElementById('seekSlider');
         seekSlider.max = Math.floor(dur);
         seekSlider.value = Math.floor(cur);
         document.getElementById('seekCurrentTime').textContent = formatTime(cur);
         document.getElementById('seekTotalTime').textContent = formatTime(dur);
+
+        // #3. Update Mini-Player 3dp Linear Progress Bar
+        const miniBar = document.getElementById('miniLinearProgress');
+        miniBar.style.width = `${pct}%`;
 
         if (Math.floor(cur) % 5 === 0) {
           episodeProgressMap[currentEpisode.audioUrl] = { currentTime: cur, duration: dur };
@@ -2418,15 +2481,13 @@
       audioEl.play().then(() => {
         isPlaying = true;
         updatePlayerUI('Podkāsts');
-        updateMediaSession({ name: ep.title, genre: ep.podcastName, grad: ep.grad }, true);
+        updateMediaSession({ name: ep.title, genre: ep.podcastName, artworkUrl: ep.artworkUrl }, true);
       }).catch(() => {
         isPlaying = false;
         updatePlayerUI('Kļūda atskaņojot');
         showSnackbar('Neizdevās atskaņot šo epizodi', false);
       });
     }
-
-
 
     function destroyHls() {
       if (hlsInstance) { try { hlsInstance.destroy(); } catch (e) {} hlsInstance = null; }
@@ -2602,10 +2663,12 @@
           isPlaying = false;
           audioEl.pause();
           updatePlayerUI('Podkāsts pauzēts');
+          updateMediaSession({ name: currentEpisode.title, genre: currentEpisode.podcastName, artworkUrl: currentEpisode.artworkUrl }, false);
         } else {
           audioEl.play().then(() => {
             isPlaying = true;
             updatePlayerUI('Podkāsts');
+            updateMediaSession({ name: currentEpisode.title, genre: currentEpisode.podcastName, artworkUrl: currentEpisode.artworkUrl }, true);
           }).catch(() => {});
         }
         return;
@@ -2618,7 +2681,7 @@
       if (isPlaying) {
         attemptToken++;
         isPlaying = false;
-          destroyHls();
+        destroyHls();
         audioEl.pause();
         updatePlayerUI('Pauzēts');
         renderMainList();
@@ -2635,17 +2698,38 @@
     });
 
     /* ==========================================================================
-       MEDIA SESSION API & NAVIGATION
+       #5. ENHANCED ANDROID MEDIA SESSION API (LOCK SCREEN SEEK -15s / +30s)
        ========================================================================== */
     function updateMediaSession(item, playing) {
       if (!('mediaSession' in navigator) || !item) return;
       try {
+        const artwork = item.artworkUrl ? [{ src: item.artworkUrl, sizes: '512x512', type: 'image/jpeg' }] : [];
         navigator.mediaSession.metadata = new MediaMetadata({
           title: item.name,
           artist: item.genre || 'Internetradio',
-          album: playbackType === 'podcast' ? 'Podkāsts' : 'Tiešraide'
+          album: playbackType === 'podcast' ? 'Podkāsts' : 'Tiešraide',
+          artwork
         });
         navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
+
+        navigator.mediaSession.setActionHandler('play', () => { if (!isPlaying) togglePlayPause(); });
+        navigator.mediaSession.setActionHandler('pause', () => { if (isPlaying) togglePlayPause(); });
+
+        if (playbackType === 'podcast') {
+          navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+            audioEl.currentTime = Math.max(0, audioEl.currentTime - (details.seekOffset || 15));
+          });
+          navigator.mediaSession.setActionHandler('seekforward', (details) => {
+            audioEl.currentTime = Math.min(audioEl.duration || Infinity, audioEl.currentTime + (details.seekOffset || 30));
+          });
+          navigator.mediaSession.setActionHandler('previoustrack', () => skipStation(-1));
+          navigator.mediaSession.setActionHandler('nexttrack', () => skipStation(1));
+        } else {
+          navigator.mediaSession.setActionHandler('seekbackward', null);
+          navigator.mediaSession.setActionHandler('seekforward', null);
+          navigator.mediaSession.setActionHandler('previoustrack', () => skipStation(-1));
+          navigator.mediaSession.setActionHandler('nexttrack', () => skipStation(1));
+        }
       } catch (e) {}
     }
 
@@ -2672,14 +2756,18 @@
     }
 
     /* ==========================================================================
-       UI RENDERING
+       UI RENDERING (UNIFIED SWIPE-TO-DELETE & FAVORITES FOR RADIO + PODCASTS)
        ========================================================================== */
     function switchMode(newMode) {
       appMode = newMode;
       safeStorage.set('m3_radio_app_mode', newMode);
       const isRadio = newMode === 'radio';
+
       document.getElementById('modeRadioBtn').classList.toggle('active', isRadio);
+      document.getElementById('modeRadioBtn').setAttribute('aria-selected', String(isRadio));
       document.getElementById('modePodcastsBtn').classList.toggle('active', !isRadio);
+      document.getElementById('modePodcastsBtn').setAttribute('aria-selected', String(!isRadio));
+
       document.getElementById('categoryChips').style.display = isRadio ? 'flex' : 'none';
       document.getElementById('searchInput').placeholder = isRadio ? 'Meklēt staciju vai žanru...' : 'Meklēt latviešu podkāstu...';
       document.getElementById('fabLabelText').textContent = isRadio ? 'Pievienot staciju' : 'Pievienot podkāstu';
@@ -2717,22 +2805,90 @@
       });
     }
 
+    function attachCardSwipeToDelete(wrap, card, onDelete) {
+      let startX = 0, startY = 0, deltaX = 0, isDragging = false, didSwipe = false;
+
+      card.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        deltaX = 0;
+        isDragging = true;
+        didSwipe = false;
+        card.style.transition = 'none';
+      }, { passive: true });
+
+      card.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const dx = e.touches[0].clientX - startX;
+        const dy = e.touches[0].clientY - startY;
+        if (!didSwipe && Math.abs(dy) > Math.abs(dx)) {
+          isDragging = false;
+          return;
+        }
+        if (dx > 8) {
+          didSwipe = true;
+          deltaX = dx;
+          wrap.classList.add('swiping');
+          card.style.transform = `translateX(${deltaX}px)`;
+        } else {
+          deltaX = 0;
+          wrap.classList.remove('swiping');
+          card.style.transform = 'translateX(0)';
+        }
+      }, { passive: true });
+
+      card.addEventListener('touchend', () => {
+        if (!isDragging && !didSwipe) return;
+        isDragging = false;
+        const threshold = Math.max(115, card.offsetWidth * 0.38);
+        if (didSwipe && deltaX >= threshold) {
+          card.style.transition = 'transform 0.2s var(--ease-emphasized)';
+          card.style.transform = 'translateX(105%)';
+          setTimeout(onDelete, 180);
+        } else {
+          card.style.transition = 'transform 0.22s var(--ease-standard)';
+          card.style.transform = 'translateX(0)';
+          setTimeout(() => {
+            wrap.classList.remove('swiping');
+            didSwipe = false;
+          }, 220);
+        }
+      });
+
+      return () => didSwipe;
+    }
+
     function renderMainList() {
       const list = document.getElementById('mainList');
       const q = searchQuery.trim().toLowerCase();
 
       if (appMode === 'podcasts') {
-        const filteredPods = podcasts.filter(p => !q || `${p.name} ${p.description || ''}`.toLowerCase().includes(q));
+        const filteredPods = podcasts
+          .filter(p => !q || `${p.name} ${p.description || ''}`.toLowerCase().includes(q))
+          .sort((a, b) => (podcastFavorites.includes(b.id) ? 1 : 0) - (podcastFavorites.includes(a.id) ? 1 : 0));
+
         if (filteredPods.length === 0) {
           list.innerHTML = `<div class="empty-state">Nav atrastu podkāstu.</div>`;
           return;
         }
         list.innerHTML = '';
         filteredPods.forEach(pod => {
+          const isFav = podcastFavorites.includes(pod.id);
           const initials = pod.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
-          const avatarHtml = pod.artworkUrl
-            ? `<img src="${pod.artworkUrl}" alt="" />`
-            : initials;
+          const avatarHtml = pod.artworkUrl ? `<img src="${pod.artworkUrl}" alt="" />` : initials;
+
+          const wrap = document.createElement('div');
+          wrap.className = 'station-swipe-wrap';
+          wrap.innerHTML = `
+            <div class="swipe-delete-bg" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Dzēst</span>
+            </div>
+          `;
+
           const card = document.createElement('article');
           card.className = 'm3-station-card';
           card.innerHTML = `
@@ -2744,11 +2900,23 @@
               <div class="station-subtitle">${pod.description || 'Latviešu raidieraksts'}</div>
             </div>
             <div class="card-actions">
-              <span style="padding:0 10px;color:var(--md-sys-color-on-surface-variant);">›</span>
+              <button class="fav-btn ${isFav ? 'is-fav' : ''}" title="Favorīts">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+              </button>
             </div>
           `;
-          card.addEventListener('click', () => openPodcastEpisodesSheet(pod, false));
-          list.appendChild(card);
+
+          const checkDidSwipe = attachCardSwipeToDelete(wrap, card, () => deletePodcast(pod.id));
+          card.addEventListener('click', (e) => {
+            if (checkDidSwipe()) { e.stopPropagation(); return; }
+            if (e.target.closest('.fav-btn')) { e.stopPropagation(); togglePodcastFavorite(pod.id); return; }
+            openPodcastEpisodesSheet(pod, false);
+          });
+
+          wrap.appendChild(card);
+          list.appendChild(wrap);
         });
         return;
       }
@@ -2802,58 +2970,9 @@
           </div>
         `;
 
-        let startX = 0, startY = 0, deltaX = 0, isDragging = false, didSwipe = false;
-
-        card.addEventListener('touchstart', (e) => {
-          if (e.touches.length !== 1) return;
-          startX = e.touches[0].clientX;
-          startY = e.touches[0].clientY;
-          deltaX = 0;
-          isDragging = true;
-          didSwipe = false;
-          card.style.transition = 'none';
-        }, { passive: true });
-
-        card.addEventListener('touchmove', (e) => {
-          if (!isDragging) return;
-          const dx = e.touches[0].clientX - startX;
-          const dy = e.touches[0].clientY - startY;
-          if (!didSwipe && Math.abs(dy) > Math.abs(dx)) {
-            isDragging = false;
-            return;
-          }
-          if (dx > 8) {
-            didSwipe = true;
-            deltaX = dx;
-            wrap.classList.add('swiping');
-            card.style.transform = `translateX(${deltaX}px)`;
-          } else {
-            deltaX = 0;
-            wrap.classList.remove('swiping');
-            card.style.transform = 'translateX(0)';
-          }
-        }, { passive: true });
-
-        card.addEventListener('touchend', () => {
-          if (!isDragging && !didSwipe) return;
-          isDragging = false;
-          const threshold = Math.max(115, card.offsetWidth * 0.38);
-          if (didSwipe && deltaX >= threshold) {
-            card.style.transition = 'transform 0.2s var(--ease-emphasized)';
-            card.style.transform = 'translateX(105%)';
-            setTimeout(() => deleteStation(st.id), 180);
-          } else {
-            card.style.transition = 'transform 0.22s var(--ease-standard)';
-            card.style.transform = 'translateX(0)';
-            setTimeout(() => {
-              wrap.classList.remove('swiping');
-              didSwipe = false;
-            }, 220);
-          }
-        });
-
+        const checkDidSwipe = attachCardSwipeToDelete(wrap, card, () => deleteStation(st.id));
         card.addEventListener('click', (e) => {
-          if (didSwipe) { e.stopPropagation(); return; }
+          if (checkDidSwipe()) { e.stopPropagation(); return; }
           if (e.target.closest('.fav-btn')) { e.stopPropagation(); toggleFavorite(st.id); return; }
           isCurrent ? togglePlayPause() : playStation(st.id);
         });
@@ -2870,13 +2989,20 @@
       updatePlayerUI();
     }
 
-    let lastDeletedStation = null;
+    function togglePodcastFavorite(id) {
+      podcastFavorites = podcastFavorites.includes(id) ? podcastFavorites.filter(f => f !== id) : [...podcastFavorites, id];
+      saveFavorites();
+      renderMainList();
+      updatePlayerUI();
+    }
+
+    let lastDeletedItem = null;
 
     function deleteStation(id) {
       const idx = stations.findIndex(s => s.id === id);
       if (idx === -1) return;
       const removed = stations[idx];
-      lastDeletedStation = { station: removed, index: idx };
+      lastDeletedItem = { type: 'station', item: removed, index: idx };
 
       if (!id.startsWith('custom-')) {
         hiddenIds.push(id);
@@ -2888,16 +3014,41 @@
       if (currentStationId === id) { if (isPlaying) togglePlayPause(); currentStationId = null; }
       renderMainList();
       renderRecentShelf();
-      showSnackbar(`"${removed.name}" dzēsta`, false, 'Atcelt', () => {
-        if (!lastDeletedStation) return;
-        const { station, index } = lastDeletedStation;
-        hiddenIds = hiddenIds.filter(h => h !== station.id);
+      showSnackbar(`"${removed.name}" dzēsta`, false, 'Atcelt', undoLastDelete);
+    }
+
+    function deletePodcast(id) {
+      const idx = podcasts.findIndex(p => p.id === id);
+      if (idx === -1) return;
+      const removed = podcasts[idx];
+      lastDeletedItem = { type: 'podcast', item: removed, index: idx };
+
+      if (!id.startsWith('pod-custom-')) {
+        hiddenPodIds.push(id);
+        safeStorage.set('m3_pod_hidden', JSON.stringify(hiddenPodIds));
+      }
+      podcasts.splice(idx, 1);
+      saveCustomPodcasts();
+      renderMainList();
+      showSnackbar(`"${removed.name}" dzēsts`, false, 'Atcelt', undoLastDelete);
+    }
+
+    function undoLastDelete() {
+      if (!lastDeletedItem) return;
+      const { type, item, index } = lastDeletedItem;
+      if (type === 'station') {
+        hiddenIds = hiddenIds.filter(h => h !== item.id);
         safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds));
-        stations.splice(Math.min(index, stations.length), 0, station);
+        stations.splice(Math.min(index, stations.length), 0, item);
         saveCustomStations();
-        renderMainList();
-        lastDeletedStation = null;
-      });
+      } else {
+        hiddenPodIds = hiddenPodIds.filter(h => h !== item.id);
+        safeStorage.set('m3_pod_hidden', JSON.stringify(hiddenPodIds));
+        podcasts.splice(Math.min(index, podcasts.length), 0, item);
+        saveCustomPodcasts();
+      }
+      renderMainList();
+      lastDeletedItem = null;
     }
 
     function updatePlayerUI(statusOverride) {
@@ -2908,43 +3059,74 @@
       const miniEq = document.getElementById('miniEq');
       const miniPlayBtn = document.getElementById('miniPlayBtn');
       const miniPlayIcon = document.getElementById('miniPlayIcon');
+      const miniLinearProgress = document.getElementById('miniLinearProgress');
 
       const npTitle = document.getElementById('npTitle');
       const npDesc = document.getElementById('npDesc');
       const npArtwork = document.getElementById('npArtwork');
+      const npShowNotes = document.getElementById('npShowNotes');
       const npPlayBtn = document.getElementById('npPlayBtn');
       const npPlayIcon = document.getElementById('npPlayIcon');
       const podcastSeekBox = document.getElementById('podcastSeekBox');
       const npSpeedBtn = document.getElementById('npSpeedBtn');
-      const npPrevLabel = document.getElementById('npPrevLabel');
-      const npNextLabel = document.getElementById('npNextLabel');
+      const npEpisodesBtn = document.getElementById('npEpisodesBtn');
+      const npPrevIcon = document.getElementById('npPrevIcon');
+      const npNextIcon = document.getElementById('npNextIcon');
       const npModeLabel = document.getElementById('npModeLabel');
+      const npFavBtn = document.getElementById('npFavBtn');
 
       if (playbackType === 'podcast' && currentEpisode) {
         miniTitle.textContent = currentEpisode.title;
         miniArt.className = `mini-art ${currentEpisode.grad || 'grad-indigo'}`;
+        miniArt.innerHTML = currentEpisode.artworkUrl ? `<img src="${currentEpisode.artworkUrl}" alt="" />` : ICONS.radioArt;
+
         npTitle.textContent = currentEpisode.title;
         npDesc.textContent = currentEpisode.podcastName;
         npArtwork.className = `np-artwork ${currentEpisode.grad || 'grad-indigo'}`;
+        npArtwork.innerHTML = currentEpisode.artworkUrl ? `<img src="${currentEpisode.artworkUrl}" alt="" />` : ICONS.radioArtLg;
+
+        if (currentEpisode.description) {
+          npShowNotes.textContent = currentEpisode.description;
+          npShowNotes.classList.add('visible');
+        } else {
+          npShowNotes.classList.remove('visible');
+        }
+
+        miniLinearProgress.classList.add('visible');
         podcastSeekBox.classList.add('visible');
-        npSpeedBtn.style.display = 'inline-block';
+        npSpeedBtn.style.display = 'inline-flex';
         npSpeedBtn.textContent = playbackSpeed.toFixed(1) + 'x';
-        npPrevLabel.textContent = '-15s';
-        npNextLabel.textContent = '+30s';
+        npEpisodesBtn.style.display = currentEpisode.podcastId ? 'inline-flex' : 'none';
+        npPrevIcon.innerHTML = ICONS.replay15;
+        npNextIcon.innerHTML = ICONS.forward30;
         npModeLabel.textContent = 'Podkāsts';
+
+        const isFav = currentEpisode.podcastId && podcastFavorites.includes(currentEpisode.podcastId);
+        npFavBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>`;
+        npFavBtn.style.color = isFav ? 'var(--md-sys-color-primary)' : '';
       } else {
         const station = stations.find(s => s.id === currentStationId);
+        miniLinearProgress.classList.remove('visible');
         podcastSeekBox.classList.remove('visible');
+        npShowNotes.classList.remove('visible');
         npSpeedBtn.style.display = 'none';
-        npPrevLabel.textContent = '⏮';
-        npNextLabel.textContent = '⏭';
+        npEpisodesBtn.style.display = 'none';
+        npPrevIcon.innerHTML = ICONS.prevTrack;
+        npNextIcon.innerHTML = ICONS.nextTrack;
         npModeLabel.textContent = 'Tiešraide';
+        miniArt.innerHTML = ICONS.radioArt;
+        npArtwork.innerHTML = ICONS.radioArtLg;
+
         if (station) {
           miniTitle.textContent = station.name;
           miniArt.className = `mini-art ${station.grad || 'grad-indigo'}`;
           npTitle.textContent = station.name;
           npDesc.textContent = station.description || station.genre;
           npArtwork.className = `np-artwork ${station.grad || 'grad-indigo'}`;
+
+          const isFav = favorites.includes(station.id);
+          npFavBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>`;
+          npFavBtn.style.color = isFav ? 'var(--md-sys-color-primary)' : '';
         }
       }
 
@@ -2963,7 +3145,7 @@
     }
 
     /* ==========================================================================
-       SHEETS, SNACKBAR, TIMER & ADD DIALOGS
+       SHEETS, SNACKBAR, TIMER, THEME & BACKUP EXPORT/IMPORT
        ========================================================================== */
     let snackbarCallback = null;
 
@@ -3019,19 +3201,13 @@
 
     function initBottomSheetSwipeDown() {
       document.querySelectorAll('.m3-bottom-sheet').forEach(sheet => {
-        let startY = 0;
-        let currentDeltaY = 0;
-        let isDragging = false;
+        let startY = 0, currentDeltaY = 0, isDragging = false;
 
         sheet.addEventListener('touchstart', (e) => {
           if (e.touches.length !== 1) return;
-          // Ignore range sliders (seek / volume) so scrubbing doesn't drag the sheet
           if (e.target.closest('input[type="range"]')) return;
-
-          // Check if touch started inside a scrollable container that is not scrolled to top
-          let scrollable = e.target.closest('#episodesListContainer, #onlineResultsList, .sheet-body');
+          let scrollable = e.target.closest('#episodesListContainer, #onlineResultsList, .np-show-notes, .sheet-body');
           if (scrollable && scrollable.scrollTop > 2) return;
-
           startY = e.touches[0].clientY;
           currentDeltaY = 0;
           isDragging = true;
@@ -3040,8 +3216,6 @@
         sheet.addEventListener('touchmove', (e) => {
           if (!isDragging) return;
           const dy = e.touches[0].clientY - startY;
-
-          // If dragging upward, let inner list scroll naturally
           if (dy <= 0) {
             if (currentDeltaY > 0) {
               currentDeltaY = 0;
@@ -3049,16 +3223,13 @@
             }
             return;
           }
-
-          // Re-check scrollTop in case inner list scrolled first
-          let scrollable = e.target.closest('#episodesListContainer, #onlineResultsList, .sheet-body');
+          let scrollable = e.target.closest('#episodesListContainer, #onlineResultsList, .np-show-notes, .sheet-body');
           if (scrollable && scrollable.scrollTop > 2) {
             isDragging = false;
             sheet.classList.remove('dragging');
             sheet.style.transform = '';
             return;
           }
-
           currentDeltaY = dy;
           sheet.classList.add('dragging');
           sheet.style.transform = `translateX(-50%) translateY(${dy}px)`;
@@ -3068,7 +3239,6 @@
           if (!isDragging) return;
           isDragging = false;
           sheet.classList.remove('dragging');
-
           const dismissThreshold = Math.min(130, sheet.offsetHeight * 0.25);
           if (currentDeltaY > dismissThreshold) {
             sheet.style.transform = 'translateX(-50%) translateY(100%)';
@@ -3090,10 +3260,61 @@
       safeStorage.set('m3_radio_palette', palette);
       const tcMeta = document.getElementById('themeColorMeta');
       if (tcMeta) tcMeta.setAttribute('content', theme === 'dark' ? '#121318' : '#FBF8FF');
-      document.getElementById('themeModeBtn').textContent = theme === 'dark' ? 'Gaišais' : 'Tumšais';
+
+      const modeBtn = document.getElementById('themeModeBtn');
+      modeBtn.innerHTML = theme === 'dark' ? `${ICONS.sun}<span>Gaišais</span>` : `${ICONS.moon}<span>Tumšais</span>`;
       document.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.toggle('selected', btn.dataset.pal === palette));
     }
 
+    /* #6. EXPORT / IMPORT USER DATA AS JSON */
+    function exportUserBackup() {
+      const payload = {
+        version: 11,
+        exportedAt: new Date().toISOString(),
+        favorites,
+        podcastFavorites,
+        hiddenIds,
+        hiddenPodIds,
+        customStations: stations.filter(s => s.isCustom),
+        customPodcasts: podcasts.filter(p => p.isCustom),
+        theme: document.documentElement.getAttribute('data-theme'),
+        palette: document.documentElement.getAttribute('data-palette')
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `internetradio-kopija-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showSnackbar('Rezerves kopija lejupielādēta!', false);
+    }
+
+    function importUserBackup(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (Array.isArray(data.favorites)) safeStorage.set('m3_radio_favs', JSON.stringify(data.favorites));
+          if (Array.isArray(data.podcastFavorites)) safeStorage.set('m3_pod_favs', JSON.stringify(data.podcastFavorites));
+          if (Array.isArray(data.hiddenIds)) safeStorage.set('m3_radio_hidden', JSON.stringify(data.hiddenIds));
+          if (Array.isArray(data.hiddenPodIds)) safeStorage.set('m3_pod_hidden', JSON.stringify(data.hiddenPodIds));
+          if (Array.isArray(data.customStations)) safeStorage.set('m3_radio_custom_v1', JSON.stringify(data.customStations));
+          if (Array.isArray(data.customPodcasts)) safeStorage.set('m3_podcasts_custom_v1', JSON.stringify(data.customPodcasts));
+          if (data.theme && data.palette) applyThemeAndPalette(data.theme, data.palette);
+          initData();
+          renderMainList();
+          renderRecentShelf();
+          showSnackbar('Iestatījumi veiksmīgi atjaunoti!', false);
+        } catch (err) {
+          showSnackbar('Nederīgs kopijas fails', false);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    /* PREVIEW STREAM & ADD CATALOG */
     const previewEl = document.getElementById('previewAudio');
     let previewingUrl = null;
     let selectedCustomGrad = 'grad-indigo';
@@ -3106,10 +3327,10 @@
       if (tag) tag.style.display = 'none';
       document.querySelectorAll('.preview-play-btn').forEach(b => {
         b.classList.remove('previewing');
-        b.textContent = '▶';
+        b.innerHTML = ICONS.playSm;
       });
       const testBtn = document.getElementById('manTestBtn');
-      if (testBtn) testBtn.textContent = '▶ Pārbaudīt';
+      if (testBtn) testBtn.innerHTML = `${ICONS.playSm}<span>Pārbaudīt</span>`;
     }
 
     function togglePreviewStream(url, btnEl = null) {
@@ -3122,7 +3343,7 @@
       previewingUrl = url;
       const tag = document.getElementById('previewStatusTag');
       if (tag) { tag.textContent = 'Savienojas...'; tag.style.display = 'inline'; }
-      if (btnEl) { btnEl.classList.add('previewing'); btnEl.textContent = '■'; }
+      if (btnEl) { btnEl.classList.add('previewing'); btnEl.innerHTML = ICONS.stopSm; }
 
       previewEl.src = url;
       previewEl.play().then(() => {
@@ -3141,6 +3362,7 @@
       document.getElementById('manGenreField').style.display = isPod ? 'none' : 'flex';
       document.getElementById('manColorField').style.display = isPod ? 'none' : 'flex';
       document.getElementById('manTestBtn').style.display = isPod ? 'none' : 'inline-flex';
+      document.getElementById('manTestBtn').innerHTML = `${ICONS.playSm}<span>Pārbaudīt</span>`;
       document.getElementById('onlineSearchInput').value = '';
       document.getElementById('onlineSearchInput').placeholder = isPod ? 'Meklēt podkāstu (piem., Latvijas Radio, LSM)...' : 'Meklēt staciju vai žanru...';
 
@@ -3187,7 +3409,7 @@
               <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.collectionName}</div>
               <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.artistName || 'Podkāsts'}</div>
             </div>
-            <button class="m3-tonal-btn" ${exists ? 'disabled' : ''}>${exists ? 'Pievienots ✓' : 'Pievienot'}</button>
+            <button class="m3-tonal-btn" ${exists ? 'disabled' : ''}>${exists ? 'Pievienots' : 'Pievienot'}</button>
           `;
           if (!exists) {
             row.querySelector('button').addEventListener('click', () => {
@@ -3233,14 +3455,14 @@
                 const row = document.createElement('div');
                 row.className = 'online-result-item';
                 row.innerHTML = `
-                  <button type="button" class="preview-play-btn" title="Paklausīties pirms pievienošanas" aria-label="Priekšskatījums">▶</button>
+                  <button type="button" class="preview-play-btn" title="Paklausīties pirms pievienošanas" aria-label="Priekšskatījums">${ICONS.playSm}</button>
                   <div style="min-width:0;flex:1;">
                     <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cleanName}</div>
                     <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                       <span class="codec-badge">${codecInfo}</span>${item.country || 'Tiešraide'}
                     </div>
                   </div>
-                  <button type="button" class="m3-tonal-btn add-res-btn" ${exists ? 'disabled' : ''}>${exists ? 'Ir ✓' : 'Pievienot'}</button>
+                  <button type="button" class="m3-tonal-btn add-res-btn" ${exists ? 'disabled' : ''}>${exists ? 'Ir sarakstā' : 'Pievienot'}</button>
                 `;
                 const prevBtn = row.querySelector('.preview-play-btn');
                 prevBtn.addEventListener('click', () => togglePreviewStream(item.url_resolved, prevBtn));
@@ -3310,6 +3532,18 @@
 
       setTimeout(() => syncAllLatvianMirrors(true), 600);
 
+      // #3. Auto-collapse Extended FAB on downward scroll + elevate Compact Header
+      let lastScrollY = window.scrollY;
+      const topBar = document.getElementById('topAppBar');
+      const fab = document.getElementById('addFab');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        topBar.classList.toggle('scrolled', y > 8);
+        if (y > lastScrollY + 12 && y > 70) fab.classList.add('collapsed');
+        else if (y < lastScrollY - 12 || y <= 30) fab.classList.remove('collapsed');
+        lastScrollY = y;
+      }, { passive: true });
+
       document.getElementById('modeRadioBtn').addEventListener('click', () => switchMode('radio'));
       document.getElementById('modePodcastsBtn').addEventListener('click', () => switchMode('podcasts'));
 
@@ -3319,7 +3553,7 @@
         } else {
           podcasts.forEach(p => { try { localStorage.removeItem('m3_pod_cache_' + p.id); } catch (e) {} });
           renderMainList();
-          showSnackbar('Podkāstu kešatmiņa atjaunota!', false);
+          showSnackbar('Podkāstu saraksts atjaunots!', false);
         }
       });
 
@@ -3338,6 +3572,13 @@
         applyThemeAndPalette(t === 'dark' ? 'light' : 'dark', document.documentElement.getAttribute('data-palette'));
       });
 
+      // Export / Import Backup
+      document.getElementById('exportDataBtn').addEventListener('click', exportUserBackup);
+      document.getElementById('importDataBtn').addEventListener('click', () => document.getElementById('importFileInput').click());
+      document.getElementById('importFileInput').addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) importUserBackup(e.target.files[0]);
+      });
+
       const searchInput = document.getElementById('searchInput');
       const clearBtn = document.getElementById('searchClearBtn');
       searchInput.addEventListener('input', () => {
@@ -3352,7 +3593,16 @@
       document.getElementById('npPlayBtn').addEventListener('click', togglePlayPause);
       document.getElementById('npPrevBtn').addEventListener('click', () => skipStation(-1));
       document.getElementById('npNextBtn').addEventListener('click', () => skipStation(1));
-      document.getElementById('npFavBtn').addEventListener('click', () => { if (currentStationId) toggleFavorite(currentStationId); });
+      document.getElementById('npFavBtn').addEventListener('click', () => {
+        if (playbackType === 'podcast' && currentEpisode?.podcastId) togglePodcastFavorite(currentEpisode.podcastId);
+        else if (currentStationId) toggleFavorite(currentStationId);
+      });
+      document.getElementById('npEpisodesBtn').addEventListener('click', () => {
+        if (currentEpisode?.podcastId) {
+          const pod = podcasts.find(p => p.id === currentEpisode.podcastId);
+          if (pod) openPodcastEpisodesSheet(pod, false);
+        }
+      });
       document.getElementById('npTimerShortcut').addEventListener('click', () => openSheet('timerSheet'));
 
       document.getElementById('npSpeedBtn').addEventListener('click', () => {
@@ -3373,7 +3623,7 @@
         document.getElementById('volumePct').textContent = Math.round(val * 100) + '%';
       });
 
-      document.getElementById('addFab').addEventListener('click', openAddDialogForCurrentMode);
+      fab.addEventListener('click', openAddDialogForCurrentMode);
 
       document.querySelectorAll('#gradPickerRow .grad-choice').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -3391,7 +3641,7 @@
           stopPreviewAudio();
         } else {
           togglePreviewStream(url);
-          btn.textContent = '■ Apturēt';
+          btn.innerHTML = `${ICONS.stopSm}<span>Apturēt</span>`;
         }
       });
 

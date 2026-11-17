@@ -1,3 +1,3 @@
-# Internetradio & Podkāsti (Material 3 PWA — v10)
+# Internetradio & Podkāsti (Material 3 PWA — v11)
 
-Pievienots Swipe-to-Dismiss (vilkšanas uz leju) žests visiem apakšējiem logiem (podkāstu epizodēm, Tagad skan, pievienošanas logam un taimerim).
+Pilns Material 3 dizaina atjauninājums: Docked Search Bar, M3 apakšējā navigācijas josla, vienots Swipe-to-Delete podkāstiem un radio, SVG vadības ikonas, epizodes apraksts (Show Notes), mini-atskaņotāja progresa josla un JSON datu eksports/imports.
