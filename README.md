@@ -1,3 +1,3 @@
-# Internetradio & Podkāsti (Material 3 PWA — v6)
+# Internetradio & Podkāsti (Material 3 PWA — v8)
 
-Tieša latviešu podkāstu ielāde aplikācijā bez GitHub Actions (iTunes API + RSS CORS pārveidotāji), kā arī pilns radio atskaņotājs.
+Pievienots žests staciju dzēšanai ar svaipu pa labi (Swipe-to-Delete) un Undo atcelšanu.

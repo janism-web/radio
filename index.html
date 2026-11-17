@@ -660,6 +660,37 @@
       gap: 8px;
     }
 
+
+    /* Swipe-to-Delete (Swipe Right) Wrapper */
+    .station-swipe-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: var(--md-sys-color-error);
+      color: var(--md-sys-color-on-error);
+    }
+    .swipe-delete-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 20px;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+    }
+    .station-swipe-wrap.swiping .swipe-delete-bg {
+      opacity: 1;
+    }
+    .m3-station-card {
+      touch-action: pan-y;
+      will-change: transform;
+    }
+
     .m3-station-card {
       background-color: var(--md-sys-color-surface-container-low);
       border-radius: 16px;
@@ -1343,6 +1374,58 @@
     .grad-crimson { background: linear-gradient(135deg, #B71C1C, #212121); }
     .grad-teal { background: linear-gradient(135deg, #0277BD, #01579B); }
 
+
+    /* Android UX Add Station Sheet Enhancements */
+    .m3-bottom-sheet {
+      max-height: 90dvh;
+    }
+    .preview-play-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      background: var(--md-sys-color-surface-container-high);
+      color: var(--md-sys-color-on-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s, color 0.15s;
+    }
+    .preview-play-btn.previewing {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      border-color: transparent;
+    }
+    .codec-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 6px;
+      background: var(--md-sys-color-surface-container-highest);
+      color: var(--md-sys-color-on-surface-variant);
+      margin-right: 6px;
+      text-transform: uppercase;
+    }
+    .grad-picker-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .grad-choice {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .grad-choice.selected {
+      border-color: var(--md-sys-color-on-surface);
+      transform: scale(1.08);
+    }
+
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -1625,37 +1708,47 @@
     </div>
   </section>
 
-  <!-- ADD STATION / PODCAST BOTTOM SHEET -->
+  <!-- ADD STATION / PODCAST BOTTOM SHEET (ANDROID UX OPTIMIZED) -->
   <section class="m3-bottom-sheet" id="addSheet">
     <div class="sheet-drag-handle-area" data-close-sheet>
       <div class="sheet-drag-handle"></div>
     </div>
-    <div class="sheet-body">
-      <h2 id="addSheetTitle" style="font-size:20px;font-weight:500;">Pievienot staciju</h2>
+    <div class="sheet-body" id="addSheetBody">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <h2 id="addSheetTitle" style="font-size:20px;font-weight:500;">Pievienot staciju</h2>
+        <span id="previewStatusTag" style="font-size:12px;font-weight:500;color:var(--md-sys-color-primary);display:none;">Skan priekšskatījums...</span>
+      </div>
       <div class="m3-segmented-row">
-        <button class="m3-seg-btn active" id="tabOnlineBtn">Meklēt tiešsaistē</button>
+        <button class="m3-seg-btn active" id="tabOnlineBtn">Meklēt katalogā</button>
         <button class="m3-seg-btn" id="tabManualBtn">Pievienot manuāli</button>
       </div>
 
       <!-- ONLINE SEARCH TAB -->
       <div id="onlinePane" style="display:flex;flex-direction:column;gap:12px;">
-        <div id="quickPresetsRow" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
-        <form id="onlineSearchForm" style="display:flex;gap:8px;">
-          <input type="search" id="onlineSearchInput" class="m3-input" style="flex:1;" placeholder="Ievadiet nosaukumu..." enterkeyhint="search" />
-          <button type="submit" class="m3-filled-btn">Meklēt</button>
+        <form id="onlineSearchForm" class="m3-search-bar" style="padding-right:6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <input type="search" id="onlineSearchInput" class="m3-search-input" placeholder="Meklēt staciju vai žanru..." enterkeyhint="search" />
+          <button type="submit" class="m3-filled-btn" style="height:38px;padding:0 16px;font-size:13px;">Meklēt</button>
         </form>
-        <div id="onlineResultsList" style="display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;"></div>
+        <div id="quickPresetsRow" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;"></div>
+        <div id="onlineResultsList" style="display:flex;flex-direction:column;gap:8px;max-height:44dvh;overflow-y:auto;"></div>
       </div>
 
       <!-- MANUAL ADD TAB -->
       <form id="manualPane" style="display:none;flex-direction:column;gap:12px;">
         <div class="m3-field">
           <label for="manName">Nosaukums *</label>
-          <input type="text" id="manName" class="m3-input" placeholder="piem., Latvijas Radio 1 vai Podkāsts" required />
+          <input type="text" id="manName" class="m3-input" placeholder="piem., Kurzemes Radio" required />
         </div>
         <div class="m3-field">
           <label for="manUrl" id="manUrlLabel">Straumes adrese (HTTPS) *</label>
-          <input type="url" id="manUrl" class="m3-input" placeholder="https://..." required />
+          <div style="display:flex;gap:8px;">
+            <input type="url" id="manUrl" class="m3-input" style="flex:1;" placeholder="https://..." required />
+            <button type="button" class="m3-tonal-btn" id="manTestBtn" style="height:48px;border-radius:12px;padding:0 14px;" title="Pārbaudīt straumi">▶ Pārbaudīt</button>
+          </div>
         </div>
         <div class="m3-field" id="manGenreField">
           <label for="manGenre">Kategorija</label>
@@ -1667,16 +1760,28 @@
             <option value="Džezs & Chill">Džezs & Chill</option>
           </select>
         </div>
+        <div class="m3-field" id="manColorField">
+          <label>Kartītes krāsa</label>
+          <div class="grad-picker-row" id="gradPickerRow">
+            <button type="button" class="grad-choice grad-indigo selected" data-grad="grad-indigo"></button>
+            <button type="button" class="grad-choice grad-red" data-grad="grad-red"></button>
+            <button type="button" class="grad-choice grad-amber" data-grad="grad-amber"></button>
+            <button type="button" class="grad-choice grad-emerald" data-grad="grad-emerald"></button>
+            <button type="button" class="grad-choice grad-metal" data-grad="grad-metal"></button>
+            <button type="button" class="grad-choice grad-purple" data-grad="grad-purple"></button>
+          </div>
+        </div>
         <div class="m3-field">
           <label for="manDesc">Īss apraksts</label>
           <input type="text" id="manDesc" class="m3-input" placeholder="Apraksts vai žanrs" />
         </div>
-        <button type="submit" class="m3-filled-btn">Saglabāt</button>
+        <button type="submit" class="m3-filled-btn">Saglabāt sarakstā</button>
       </form>
     </div>
   </section>
 
   <audio id="audioPlayer" preload="none"></audio>
+  <audio id="previewAudio" preload="none"></audio>
 
   <script>
     /* ==========================================================================
@@ -1888,14 +1993,6 @@
         url: 'https://ice6.somafm.com/groovesalad-128-mp3',
         fallbackUrl: 'https://ice4.somafm.com/groovesalad-128-mp3',
         grad: 'grad-teal'
-      },
-      {
-        id: 'offline-synth',
-        name: 'Lietus & Ambient Sintezators',
-        genre: 'Džezs & Chill',
-        description: 'Iebūvēts bezsaistes fona skaņu ģenerators',
-        url: 'webaudio://ambient',
-        grad: 'grad-purple'
       }
     ];
 
@@ -1972,7 +2069,6 @@
     let playbackSpeed = 1.0;
 
     let hlsInstance = null;
-    let synthNodes = null;
     let sleepTimerId = null;
     let sleepSecondsLeft = 0;
     let snackbarTimeout = null;
@@ -2297,7 +2393,6 @@
       currentStationId = null;
       isPlaying = false;
       hideSnackbar();
-      stopAmbientSynth();
       destroyHls();
       audioEl.pause();
 
@@ -2321,49 +2416,7 @@
       });
     }
 
-    function stopAmbientSynth() {
-      if (synthNodes) {
-        try { synthNodes.noise.stop(); synthNodes.osc1.stop(); synthNodes.osc2.stop(); synthNodes.ctx.close(); } catch (e) {}
-        synthNodes = null;
-      }
-    }
 
-    function startAmbientSynth() {
-      stopAmbientSynth();
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AudioCtx();
-      const bufferSize = 2 * ctx.sampleRate;
-      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const output = noiseBuffer.getChannelData(0);
-      let lastOut = 0.0;
-      for (let i = 0; i < bufferSize; i++) {
-        const white = Math.random() * 2 - 1;
-        output[i] = (lastOut + (0.02 * white)) / 1.02;
-        lastOut = output[i];
-        output[i] *= 1.8;
-      }
-      const noise = ctx.createBufferSource();
-      noise.buffer = noiseBuffer;
-      noise.loop = true;
-      const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = 420;
-      const osc1 = ctx.createOscillator();
-      osc1.type = 'sine';
-      osc1.frequency.value = 110;
-      const osc2 = ctx.createOscillator();
-      osc2.type = 'triangle';
-      osc2.frequency.value = 164.81;
-      const masterGain = ctx.createGain();
-      masterGain.gain.value = audioEl.volume * 0.25;
-      noise.connect(filter);
-      filter.connect(masterGain);
-      osc1.connect(masterGain);
-      osc2.connect(masterGain);
-      masterGain.connect(ctx.destination);
-      noise.start(); osc1.start(); osc2.start();
-      synthNodes = { ctx, noise, osc1, osc2, masterGain };
-    }
 
     function destroyHls() {
       if (hlsInstance) { try { hlsInstance.destroy(); } catch (e) {} hlsInstance = null; }
@@ -2485,22 +2538,12 @@
       currentStationId = stationId;
       isPlaying = false;
       hideSnackbar();
-      stopAmbientSynth();
       destroyHls();
       audioEl.pause();
 
       recordRecentStation(stationId);
       updatePlayerUI('Savienojas...');
       renderMainList();
-
-      if (station.url === 'webaudio://ambient') {
-        startAmbientSynth();
-        isPlaying = true;
-        updatePlayerUI('Atskaņo (Bezsaistes sintezators)');
-        updateMediaSession(station, true);
-        renderMainList();
-        return;
-      }
 
       const candidates = [...new Set([...(station.liveMirrors || []), station.url, station.fallbackUrl].filter(Boolean))];
       for (const candidateUrl of candidates) {
@@ -2565,8 +2608,7 @@
       if (isPlaying) {
         attemptToken++;
         isPlaying = false;
-        stopAmbientSynth();
-        destroyHls();
+          destroyHls();
         audioEl.pause();
         updatePlayerUI('Pauzēts');
         renderMainList();
@@ -2718,6 +2760,17 @@
             }</div>`
           : '';
 
+        const wrap = document.createElement('div');
+        wrap.className = 'station-swipe-wrap';
+        wrap.innerHTML = `
+          <div class="swipe-delete-bg" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Dzēst</span>
+          </div>
+        `;
+
         const card = document.createElement('article');
         card.className = 'm3-station-card' + (isCurrent ? ' active' : '');
         card.innerHTML = `
@@ -2730,12 +2783,6 @@
             <div class="station-subtitle">${st.description || st.genre}</div>
           </div>
           <div class="card-actions">
-            ${st.id !== 'offline-synth' ? `
-              <button class="m3-icon-btn del-btn" title="Dzēst staciju">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                </svg>
-              </button>` : ''}
             <button class="fav-btn ${isFav ? 'is-fav' : ''}" title="Favorīts">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
                 <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
@@ -2743,12 +2790,65 @@
             </button>
           </div>
         `;
+
+        let startX = 0, startY = 0, deltaX = 0, isDragging = false, didSwipe = false;
+
+        card.addEventListener('touchstart', (e) => {
+          if (e.touches.length !== 1) return;
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          deltaX = 0;
+          isDragging = true;
+          didSwipe = false;
+          card.style.transition = 'none';
+        }, { passive: true });
+
+        card.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          const dx = e.touches[0].clientX - startX;
+          const dy = e.touches[0].clientY - startY;
+          if (!didSwipe && Math.abs(dy) > Math.abs(dx)) {
+            isDragging = false;
+            return;
+          }
+          if (dx > 8) {
+            didSwipe = true;
+            deltaX = dx;
+            wrap.classList.add('swiping');
+            card.style.transform = `translateX(${deltaX}px)`;
+          } else {
+            deltaX = 0;
+            wrap.classList.remove('swiping');
+            card.style.transform = 'translateX(0)';
+          }
+        }, { passive: true });
+
+        card.addEventListener('touchend', () => {
+          if (!isDragging && !didSwipe) return;
+          isDragging = false;
+          const threshold = Math.max(115, card.offsetWidth * 0.38);
+          if (didSwipe && deltaX >= threshold) {
+            card.style.transition = 'transform 0.2s var(--ease-emphasized)';
+            card.style.transform = 'translateX(105%)';
+            setTimeout(() => deleteStation(st.id), 180);
+          } else {
+            card.style.transition = 'transform 0.22s var(--ease-standard)';
+            card.style.transform = 'translateX(0)';
+            setTimeout(() => {
+              wrap.classList.remove('swiping');
+              didSwipe = false;
+            }, 220);
+          }
+        });
+
         card.addEventListener('click', (e) => {
+          if (didSwipe) { e.stopPropagation(); return; }
           if (e.target.closest('.fav-btn')) { e.stopPropagation(); toggleFavorite(st.id); return; }
-          if (e.target.closest('.del-btn')) { e.stopPropagation(); deleteStation(st.id); return; }
           isCurrent ? togglePlayPause() : playStation(st.id);
         });
-        list.appendChild(card);
+
+        wrap.appendChild(card);
+        list.appendChild(wrap);
       });
     }
 
@@ -2759,15 +2859,34 @@
       updatePlayerUI();
     }
 
+    let lastDeletedStation = null;
+
     function deleteStation(id) {
-      if (!id.startsWith('custom-')) { hiddenIds.push(id); safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds)); }
-      stations = stations.filter(s => s.id !== id);
+      const idx = stations.findIndex(s => s.id === id);
+      if (idx === -1) return;
+      const removed = stations[idx];
+      lastDeletedStation = { station: removed, index: idx };
+
+      if (!id.startsWith('custom-')) {
+        hiddenIds.push(id);
+        safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds));
+      }
+      stations.splice(idx, 1);
       recentIds = recentIds.filter(r => r !== id);
       saveCustomStations();
       if (currentStationId === id) { if (isPlaying) togglePlayPause(); currentStationId = null; }
       renderMainList();
       renderRecentShelf();
-      showSnackbar('Stacija dzēsta', false);
+      showSnackbar(`"${removed.name}" dzēsta`, false, 'Atcelt', () => {
+        if (!lastDeletedStation) return;
+        const { station, index } = lastDeletedStation;
+        hiddenIds = hiddenIds.filter(h => h !== station.id);
+        safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds));
+        stations.splice(Math.min(index, stations.length), 0, station);
+        saveCustomStations();
+        renderMainList();
+        lastDeletedStation = null;
+      });
     }
 
     function updatePlayerUI(statusOverride) {
@@ -2835,10 +2954,24 @@
     /* ==========================================================================
        SHEETS, SNACKBAR, TIMER & ADD DIALOGS
        ========================================================================== */
-    function showSnackbar(message, showRetry = false) {
+    let snackbarCallback = null;
+
+    function showSnackbar(message, showRetry = false, customActionLabel = '', customActionFn = null) {
       const sb = document.getElementById('m3Snackbar');
+      const btn = document.getElementById('snackbarRetryBtn');
       document.getElementById('snackbarText').textContent = message;
-      document.getElementById('snackbarRetryBtn').style.display = showRetry ? 'inline-block' : 'none';
+      if (customActionLabel && customActionFn) {
+        btn.textContent = customActionLabel;
+        btn.style.display = 'inline-block';
+        snackbarCallback = customActionFn;
+      } else if (showRetry) {
+        btn.textContent = 'Mēģināt vēlreiz';
+        btn.style.display = 'inline-block';
+        snackbarCallback = () => { if (currentStationId) playStation(currentStationId); };
+      } else {
+        btn.style.display = 'none';
+        snackbarCallback = null;
+      }
       sb.classList.add('visible');
       clearTimeout(snackbarTimeout);
       snackbarTimeout = setTimeout(() => sb.classList.remove('visible'), 5500);
@@ -2858,6 +2991,7 @@
     }
 
     function closeAllSheets(skipHistoryBack = false) {
+      stopPreviewAudio();
       const wasOpen = activeSheetId !== null;
       activeSheetId = null;
       document.getElementById('sheetScrim').classList.remove('open');
@@ -2878,30 +3012,76 @@
       document.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.toggle('selected', btn.dataset.pal === palette));
     }
 
+    const previewEl = document.getElementById('previewAudio');
+    let previewingUrl = null;
+    let selectedCustomGrad = 'grad-indigo';
+
+    function stopPreviewAudio() {
+      previewingUrl = null;
+      previewEl.pause();
+      previewEl.removeAttribute('src');
+      const tag = document.getElementById('previewStatusTag');
+      if (tag) tag.style.display = 'none';
+      document.querySelectorAll('.preview-play-btn').forEach(b => {
+        b.classList.remove('previewing');
+        b.textContent = '▶';
+      });
+      const testBtn = document.getElementById('manTestBtn');
+      if (testBtn) testBtn.textContent = '▶ Pārbaudīt';
+    }
+
+    function togglePreviewStream(url, btnEl = null) {
+      if (previewingUrl === url) {
+        stopPreviewAudio();
+        return;
+      }
+      stopPreviewAudio();
+      if (isPlaying) togglePlayPause();
+      previewingUrl = url;
+      const tag = document.getElementById('previewStatusTag');
+      if (tag) { tag.textContent = 'Savienojas...'; tag.style.display = 'inline'; }
+      if (btnEl) { btnEl.classList.add('previewing'); btnEl.textContent = '■'; }
+
+      previewEl.src = url;
+      previewEl.play().then(() => {
+        if (previewingUrl === url && tag) tag.textContent = 'Skan priekšskatījums';
+      }).catch(() => {
+        stopPreviewAudio();
+        showSnackbar('Šī straume šobrīd neatbild', false);
+      });
+    }
+
     function openAddDialogForCurrentMode() {
+      stopPreviewAudio();
       const isPod = appMode === 'podcasts';
       document.getElementById('addSheetTitle').textContent = isPod ? 'Pievienot podkāstu' : 'Pievienot radiostaciju';
       document.getElementById('manUrlLabel').textContent = isPod ? 'Podkāsta RSS saite (XML) *' : 'Straumes adrese (HTTPS) *';
       document.getElementById('manGenreField').style.display = isPod ? 'none' : 'flex';
-      document.getElementById('onlineSearchInput').placeholder = isPod ? 'Meklēt podkāstu (piem., Latvijas Radio, LSM)...' : 'Ievadiet staciju vai žanru...';
-      document.getElementById('onlineResultsList').innerHTML = '';
+      document.getElementById('manColorField').style.display = isPod ? 'none' : 'flex';
+      document.getElementById('manTestBtn').style.display = isPod ? 'none' : 'inline-flex';
+      document.getElementById('onlineSearchInput').value = '';
+      document.getElementById('onlineSearchInput').placeholder = isPod ? 'Meklēt podkāstu (piem., Latvijas Radio, LSM)...' : 'Meklēt staciju vai žanru...';
 
       const presetsRow = document.getElementById('quickPresetsRow');
       if (isPod) {
         presetsRow.innerHTML = `
-          <button type="button" class="m3-tonal-btn pod-preset-btn" data-q="Latvijas Radio">Latvijas Radio</button>
-          <button type="button" class="m3-tonal-btn pod-preset-btn" data-q="Latvija">Latvijas podkāsti</button>
+          <button type="button" class="m3-tonal-btn pod-preset-btn" style="height:34px;flex-shrink:0;" data-q="Latvijas Radio">Latvijas Radio</button>
+          <button type="button" class="m3-tonal-btn pod-preset-btn" style="height:34px;flex-shrink:0;" data-q="Latvija">Latvijas podkāsti</button>
         `;
         presetsRow.querySelectorAll('.pod-preset-btn').forEach(b => b.addEventListener('click', () => searchItunesPodcasts(b.dataset.q)));
+        openSheet('addSheet');
+        searchItunesPodcasts('Latvija');
       } else {
         presetsRow.innerHTML = `
-          <button type="button" class="m3-tonal-btn rb-preset-btn" data-q="Latvia" data-country="LV">Latvijas stacijas</button>
-          <button type="button" class="m3-tonal-btn rb-preset-btn" data-q="death metal">Death Metal</button>
-          <button type="button" class="m3-tonal-btn rb-preset-btn" data-q="speed metal">Speed Metal</button>
+          <button type="button" class="m3-tonal-btn rb-preset-btn" style="height:34px;flex-shrink:0;" data-q="" data-country="LV">Latvijas</button>
+          <button type="button" class="m3-tonal-btn rb-preset-btn" style="height:34px;flex-shrink:0;" data-q="slager">Šlāgeris</button>
+          <button type="button" class="m3-tonal-btn rb-preset-btn" style="height:34px;flex-shrink:0;" data-q="death metal">Death Metal</button>
+          <button type="button" class="m3-tonal-btn rb-preset-btn" style="height:34px;flex-shrink:0;" data-q="speed metal">Speed Metal</button>
         `;
         presetsRow.querySelectorAll('.rb-preset-btn').forEach(b => b.addEventListener('click', () => searchRadioBrowserCatalog(b.dataset.q, b.dataset.country || '')));
+        openSheet('addSheet');
+        searchRadioBrowserCatalog('', 'LV');
       }
-      openSheet('addSheet');
     }
 
     async function searchItunesPodcasts(query) {
@@ -2967,17 +3147,24 @@
               data.slice(0, 12).forEach(item => {
                 const cleanName = item.name.trim();
                 const exists = stations.some(s => s.url === item.url_resolved);
+                const codecInfo = item.codec ? `${item.codec}${item.bitrate ? ' • ' + item.bitrate + 'k' : ''}` : 'HTTPS';
                 const row = document.createElement('div');
                 row.className = 'online-result-item';
                 row.innerHTML = `
+                  <button type="button" class="preview-play-btn" title="Paklausīties pirms pievienošanas" aria-label="Priekšskatījums">▶</button>
                   <div style="min-width:0;flex:1;">
                     <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cleanName}</div>
-                    <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);">${item.country || 'Tiešraide'}</div>
+                    <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                      <span class="codec-badge">${codecInfo}</span>${item.country || 'Tiešraide'}
+                    </div>
                   </div>
-                  <button class="m3-tonal-btn" ${exists ? 'disabled' : ''}>${exists ? 'Pievienota ✓' : 'Pievienot'}</button>
+                  <button type="button" class="m3-tonal-btn add-res-btn" ${exists ? 'disabled' : ''}>${exists ? 'Ir ✓' : 'Pievienot'}</button>
                 `;
+                const prevBtn = row.querySelector('.preview-play-btn');
+                prevBtn.addEventListener('click', () => togglePreviewStream(item.url_resolved, prevBtn));
+                const addBtn = row.querySelector('.add-res-btn');
                 if (!exists) {
-                  row.querySelector('button').addEventListener('click', () => {
+                  addBtn.addEventListener('click', () => {
                     const isMetal = /metal|death|thrash|speed/i.test(`${cleanName} ${item.tags}`);
                     const newSt = {
                       id: 'custom-' + Date.now(),
@@ -3096,11 +3283,31 @@
       volSlider.addEventListener('input', () => {
         const val = parseFloat(volSlider.value);
         audioEl.volume = val;
-        if (synthNodes) synthNodes.masterGain.gain.value = val * 0.25;
         document.getElementById('volumePct').textContent = Math.round(val * 100) + '%';
       });
 
       document.getElementById('addFab').addEventListener('click', openAddDialogForCurrentMode);
+
+      document.querySelectorAll('#gradPickerRow .grad-choice').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#gradPickerRow .grad-choice').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedCustomGrad = btn.dataset.grad;
+        });
+      });
+
+      document.getElementById('manTestBtn').addEventListener('click', () => {
+        const url = document.getElementById('manUrl').value.trim();
+        if (!url) { showSnackbar('Vispirms ievadiet straumes adresi', false); return; }
+        const btn = document.getElementById('manTestBtn');
+        if (previewingUrl === url) {
+          stopPreviewAudio();
+        } else {
+          togglePreviewStream(url);
+          btn.textContent = '■ Apturēt';
+        }
+      });
+
       document.getElementById('sheetScrim').addEventListener('click', () => closeAllSheets());
       document.querySelectorAll('[data-close-sheet]').forEach(el => el.addEventListener('click', () => closeAllSheets()));
 
@@ -3159,7 +3366,7 @@
             url,
             genre,
             description: description || genre,
-            grad: genre === 'Metāls' ? 'grad-metal' : 'grad-indigo',
+            grad: selectedCustomGrad || (genre === 'Metāls' ? 'grad-metal' : 'grad-indigo'),
             isCustom: true
           };
           stations.unshift(newSt);
@@ -3171,7 +3378,7 @@
         }
       });
 
-      document.getElementById('snackbarRetryBtn').addEventListener('click', () => { if (currentStationId) playStation(currentStationId); });
+      document.getElementById('snackbarRetryBtn').addEventListener('click', () => { hideSnackbar(); if (snackbarCallback) snackbarCallback(); });
     });
 
     if ('serviceWorker' in navigator) {
