@@ -1,3 +1,3 @@
-# Internetradio (Material 3 PWA — v3)
+# Internetradio (Material 3 PWA — v4)
 
-Atjaunināta versija ar gudrāku buferēšanas taimautu (15s), standarta 443. porta HTTPS straumēm un iespēju izdzēst jebkuru nevajadzīgu staciju.
+Pievienota `no-referrer` politika SomaFM/Laut.fm atbloķēšanai, atjaunotas Latvijas Radio 1/2/3/5 HLS un Radio Browser saites.

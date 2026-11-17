@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Internetradio — Material 3</title>
+  <meta name="referrer" content="no-referrer" />
   <meta name="theme-color" content="#121318" id="themeColorMeta" />
   <meta name="description" content="Moderns Google Material 3 internetradio atskaņotājs ar Latvijas un pasaules radiostacijām." />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -1560,16 +1561,16 @@
     const CATEGORIES = ['Visas', 'Favorīti', 'Latvijas', 'Metāls', 'Populārā', 'Klasiskā', 'Džezs & Chill'];
 
     const DEFAULT_STATIONS = [
-      // LATVIJAS RADIOSTACIJAS (Standarta 443. porta HTTPS straumes + rezerves adreses)
+      // LATVIJAS RADIOSTACIJAS
       {
         id: 'lr1',
         name: 'Latvijas Radio 1',
         matchKeys: ['latvijas radio 1', 'lr1', 'lr 1'],
-        rbQuery: 'Latvijas Radio',
+        rbQuery: 'Latvijas Radio 1',
         countryCode: 'LV',
         genre: 'Latvijas',
         description: 'Ziņas, analītika, diskusijas un kultūra',
-        url: 'https://lr1mp1.latvijasradio.lv/lr1mp1',
+        url: 'https://5a44d7b21015b.streamlock.net/lr1/mp4:lr1/playlist.m3u8',
         fallbackUrl: 'https://lr1mp1.latvijasradio.lv:8012/;',
         grad: 'grad-red'
       },
@@ -1577,11 +1578,11 @@
         id: 'lr2',
         name: 'Latvijas Radio 2',
         matchKeys: ['latvijas radio 2', 'lr2', 'lr 2'],
-        rbQuery: 'Latvijas Radio',
+        rbQuery: 'Latvijas Radio 2',
         countryCode: 'LV',
         genre: 'Latvijas',
         description: 'Dziesmas dzimtajā valodā',
-        url: 'https://lr2mp1.latvijasradio.lv/lr2mp1',
+        url: 'https://5a44d7b21015b.streamlock.net/lr2/mp4:lr2/playlist.m3u8',
         fallbackUrl: 'https://lr2mp1.latvijasradio.lv:8002/;',
         grad: 'grad-amber'
       },
@@ -1589,11 +1590,11 @@
         id: 'lr3',
         name: 'Latvijas Radio 3 - Klasika',
         matchKeys: ['latvijas radio 3', 'klasika', 'lr3', 'lr 3'],
-        rbQuery: 'Klasika',
+        rbQuery: 'Latvijas Radio 3',
         countryCode: 'LV',
         genre: 'Klasiskā',
         description: 'Klasiskā, džeza un laikmetīgā mūzika',
-        url: 'https://lr3mp0.latvijasradio.lv/lr3mp0',
+        url: 'https://5a44d7b21015b.streamlock.net/lr3/mp4:lr3/playlist.m3u8',
         fallbackUrl: 'https://lr3mp0.latvijasradio.lv:8004/;',
         grad: 'grad-emerald'
       },
@@ -1605,7 +1606,7 @@
         countryCode: 'LV',
         genre: 'Latvijas',
         description: 'Jauniešu mūzika un aktuālie hiti',
-        url: 'https://lr5mp1.latvijasradio.lv/lr5mp1',
+        url: 'https://5a44d7b21015b.streamlock.net/pieci/mp4:pieci/playlist.m3u8',
         fallbackUrl: 'https://lr5mp1.latvijasradio.lv:8014/;',
         grad: 'grad-indigo'
       },
@@ -1658,16 +1659,16 @@
         grad: 'grad-red'
       },
 
-      // PASAULES DEATH METAL & SPEED METAL STACIJAS (443. porta HTTPS serveri)
+      // PASAULES DEATH METAL & SPEED METAL STACIJAS (ar no-referrer + pārbaudītiem 443. porta spoguļiem)
       {
         id: 'somafm-metal',
         name: 'SomaFM: Metal Detector',
         matchKeys: ['metal detector'],
-        rbQuery: 'Metal Detector',
+        rbQuery: 'SomaFM Metal Detector',
         genre: 'Metāls',
         description: 'Death, Black, Doom, Thrash & Speed Metal',
         url: 'https://ice2.somafm.com/metal-128-mp3',
-        fallbackUrl: 'https://ice4.somafm.com/metal-128-aac',
+        fallbackUrl: 'https://ice1.somafm.com/metal-128-mp3',
         grad: 'grad-metal'
       },
       {
@@ -1688,8 +1689,8 @@
         rbQuery: 'ChroniX',
         genre: 'Metāls',
         description: 'Death Metal, Thrash & Extreme Heavy Metal',
-        url: 'https://stream.laut.fm/chronix',
-        fallbackUrl: 'https://stream.laut.fm/metal',
+        url: 'https://usa17.fastcast4u.com/proxy/chronixaggression?mp=/1',
+        fallbackUrl: 'https://stream.laut.fm/chronix.m3u',
         grad: 'grad-metal'
       },
       {
@@ -1700,7 +1701,7 @@
         genre: 'Metāls',
         description: 'Ātrais Speed Metal un klasiskais Thrash Metal',
         url: 'https://stream.laut.fm/thrash',
-        fallbackUrl: 'https://stream.laut.fm/speedmetal',
+        fallbackUrl: 'https://stream.rockantenne.de/heavy-metal/stream/mp3',
         grad: 'grad-crimson'
       },
       {
@@ -1711,18 +1712,18 @@
         genre: 'Metāls',
         description: 'Ekstrēmais Death Metal un Technical Death 24/7',
         url: 'https://stream.laut.fm/deathmetal',
-        fallbackUrl: 'https://stream.laut.fm/extrememetal',
+        fallbackUrl: 'https://streams.radiobob.de/bob-deathmetal/mp3-192/mediaplayer',
         grad: 'grad-metal'
       },
       {
         id: 'heavy-speed-metal',
-        name: 'Metal Hammer / Heavy & Speed',
-        matchKeys: ['heavymetal', 'speed metal'],
-        rbQuery: 'speed metal',
+        name: 'ROCK ANTENNE Heavy & Speed Metal',
+        matchKeys: ['heavy metal', 'speed metal'],
+        rbQuery: 'heavy metal',
         genre: 'Metāls',
-        description: 'Klasiskais Speed, Power un Heavy Metal',
-        url: 'https://stream.laut.fm/heavymetal',
-        fallbackUrl: 'https://stream.laut.fm/powermetal',
+        description: 'Klasiskais Speed, Power un Heavy Metal 24/7',
+        url: 'https://stream.rockantenne.de/heavy-metal/stream/mp3',
+        fallbackUrl: 'https://streams.radiobob.de/bob-metal/mp3-192/mediaplayer',
         grad: 'grad-crimson'
       },
 
@@ -1757,10 +1758,11 @@
       {
         id: 'somafm-groove',
         name: 'SomaFM: Groove Salad',
+        rbQuery: 'SomaFM Groove Salad',
         genre: 'Džezs & Chill',
         description: 'Ambient, downtempo un elektroniskais chill',
         url: 'https://ice2.somafm.com/groovesalad-128-mp3',
-        fallbackUrl: 'https://ice4.somafm.com/groovesalad-128-aac',
+        fallbackUrl: 'https://ice1.somafm.com/groovesalad-128-mp3',
         grad: 'grad-teal'
       },
       {
@@ -1975,7 +1977,7 @@
 
     async function fetchRadioBrowserMirrors(query, countryCode = '') {
       const params = new URLSearchParams({
-        limit: '25',
+        limit: '100',
         hidebroken: 'true',
         order: 'clickcount',
         reverse: 'true'
