@@ -18,13 +18,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* ==========================================================================
+       GOOGLE MATERIAL DESIGN 3 (MATERIAL YOU) TOKEN SYSTEM
+       ========================================================================== */
     :root {
       --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --ease-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
       --ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1.0);
     }
 
-    /* DARK THEME - INDIGO */
+    /* DARK THEME - INDIGO / LAVENDER */
     [data-theme="dark"][data-palette="indigo"] {
       --md-sys-color-primary: #BAC3FF;
       --md-sys-color-on-primary: #1D296B;
@@ -39,6 +42,7 @@
       --md-sys-color-tertiary-container: #5D3C54;
       --md-sys-color-on-tertiary-container: #FFD7F0;
       --md-sys-color-surface: #121318;
+      --md-sys-color-surface-container-lowest: #0D0E13;
       --md-sys-color-surface-container-low: #1A1B21;
       --md-sys-color-surface-container: #1E1F25;
       --md-sys-color-surface-container-high: #292A2F;
@@ -50,6 +54,8 @@
       --md-sys-color-inverse-surface: #E3E1E9;
       --md-sys-color-inverse-on-surface: #2F3036;
       --md-sys-color-inverse-primary: #4D599C;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
     }
 
     /* DARK THEME - EMERALD */
@@ -67,6 +73,7 @@
       --md-sys-color-tertiary-container: #2E4B60;
       --md-sys-color-on-tertiary-container: #CDE5FF;
       --md-sys-color-surface: #0E1513;
+      --md-sys-color-surface-container-lowest: #090F0E;
       --md-sys-color-surface-container-low: #161D1B;
       --md-sys-color-surface-container: #1A211F;
       --md-sys-color-surface-container-high: #252B2A;
@@ -78,9 +85,11 @@
       --md-sys-color-inverse-surface: #DEE4E1;
       --md-sys-color-inverse-on-surface: #2B3230;
       --md-sys-color-inverse-primary: #006A60;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
     }
 
-    /* DARK THEME - CORAL */
+    /* DARK THEME - CORAL / METAL CRIMSON */
     [data-theme="dark"][data-palette="coral"] {
       --md-sys-color-primary: #FFB4AB;
       --md-sys-color-on-primary: #690005;
@@ -95,6 +104,7 @@
       --md-sys-color-tertiary-container: #584419;
       --md-sys-color-on-tertiary-container: #FDDF9E;
       --md-sys-color-surface: #1A1110;
+      --md-sys-color-surface-container-lowest: #140C0B;
       --md-sys-color-surface-container-low: #231918;
       --md-sys-color-surface-container: #271D1C;
       --md-sys-color-surface-container-high: #322826;
@@ -106,9 +116,11 @@
       --md-sys-color-inverse-surface: #F1DFDD;
       --md-sys-color-inverse-on-surface: #392E2D;
       --md-sys-color-inverse-primary: #BA1A1A;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
     }
 
-    /* DARK THEME - AMBER */
+    /* DARK THEME - AMBER / GOLD */
     [data-theme="dark"][data-palette="amber"] {
       --md-sys-color-primary: #F5BF48;
       --md-sys-color-on-primary: #402D00;
@@ -123,6 +135,7 @@
       --md-sys-color-tertiary-container: #354D2E;
       --md-sys-color-on-tertiary-container: #CFEBC1;
       --md-sys-color-surface: #17130B;
+      --md-sys-color-surface-container-lowest: #120E07;
       --md-sys-color-surface-container-low: #201B13;
       --md-sys-color-surface-container: #241F17;
       --md-sys-color-surface-container-high: #2F2921;
@@ -134,9 +147,11 @@
       --md-sys-color-inverse-surface: #ECE1D4;
       --md-sys-color-inverse-on-surface: #353027;
       --md-sys-color-inverse-primary: #795900;
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
     }
 
-    /* LIGHT THEMES */
+    /* LIGHT THEME - INDIGO */
     [data-theme="light"][data-palette="indigo"] {
       --md-sys-color-primary: #4D599C;
       --md-sys-color-on-primary: #FFFFFF;
@@ -151,6 +166,7 @@
       --md-sys-color-tertiary-container: #FFD7F0;
       --md-sys-color-on-tertiary-container: #2D1227;
       --md-sys-color-surface: #FBF8FF;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
       --md-sys-color-surface-container-low: #F5F2FA;
       --md-sys-color-surface-container: #EFEDF4;
       --md-sys-color-surface-container-high: #E9E7EF;
@@ -162,7 +178,11 @@
       --md-sys-color-inverse-surface: #303036;
       --md-sys-color-inverse-on-surface: #F2EFF7;
       --md-sys-color-inverse-primary: #BAC3FF;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
     }
+
+    /* LIGHT THEME - EMERALD */
     [data-theme="light"][data-palette="emerald"] {
       --md-sys-color-primary: #006A60;
       --md-sys-color-on-primary: #FFFFFF;
@@ -177,6 +197,7 @@
       --md-sys-color-tertiary-container: #CDE5FF;
       --md-sys-color-on-tertiary-container: #001D32;
       --md-sys-color-surface: #F4FBF8;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
       --md-sys-color-surface-container-low: #EFF5F2;
       --md-sys-color-surface-container: #E9EFED;
       --md-sys-color-surface-container-high: #E3EAE7;
@@ -188,7 +209,11 @@
       --md-sys-color-inverse-surface: #2B3230;
       --md-sys-color-inverse-on-surface: #ECF2EF;
       --md-sys-color-inverse-primary: #82D5C8;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
     }
+
+    /* LIGHT THEME - CORAL */
     [data-theme="light"][data-palette="coral"] {
       --md-sys-color-primary: #BA1A1A;
       --md-sys-color-on-primary: #FFFFFF;
@@ -203,6 +228,7 @@
       --md-sys-color-tertiary-container: #FDDF9E;
       --md-sys-color-on-tertiary-container: #261900;
       --md-sys-color-surface: #FFF8F7;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
       --md-sys-color-surface-container-low: #FFF0EE;
       --md-sys-color-surface-container: #FCEAE8;
       --md-sys-color-surface-container-high: #F7E4E2;
@@ -214,7 +240,11 @@
       --md-sys-color-inverse-surface: #392E2D;
       --md-sys-color-inverse-on-surface: #FFEDEA;
       --md-sys-color-inverse-primary: #FFB4AB;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
     }
+
+    /* LIGHT THEME - AMBER */
     [data-theme="light"][data-palette="amber"] {
       --md-sys-color-primary: #795900;
       --md-sys-color-on-primary: #FFFFFF;
@@ -229,6 +259,7 @@
       --md-sys-color-tertiary-container: #CFEBC1;
       --md-sys-color-on-tertiary-container: #0A2006;
       --md-sys-color-surface: #FFF8F2;
+      --md-sys-color-surface-container-lowest: #FFFFFF;
       --md-sys-color-surface-container-low: #FCF2E5;
       --md-sys-color-surface-container: #F6ECDF;
       --md-sys-color-surface-container-high: #F1E6D9;
@@ -240,9 +271,16 @@
       --md-sys-color-inverse-surface: #353027;
       --md-sys-color-inverse-on-surface: #F9EFE2;
       --md-sys-color-inverse-primary: #F5BF48;
+      --md-sys-color-error: #BA1A1A;
+      --md-sys-color-on-error: #FFFFFF;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       font-family: var(--font-family);
@@ -265,7 +303,9 @@
       padding-bottom: 184px;
     }
 
-    /* TOP APP BAR */
+    /* ==========================================================================
+       M3 TOP APP BAR
+       ========================================================================== */
     .top-app-bar {
       position: sticky;
       top: 0;
@@ -276,357 +316,1022 @@
       align-items: center;
       justify-content: space-between;
       min-height: 64px;
+      transition: background-color 0.2s var(--ease-standard);
     }
-    .top-app-bar.scrolled { background-color: var(--md-sys-color-surface-container); }
 
-    .app-brand { display: flex; align-items: center; gap: 12px; }
+    .top-app-bar.scrolled {
+      background-color: var(--md-sys-color-surface-container);
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .brand-icon {
-      width: 40px; height: 40px; border-radius: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
       background-color: var(--md-sys-color-primary-container);
       color: var(--md-sys-color-on-primary-container);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .app-title { font-size: 21px; font-weight: 500; color: var(--md-sys-color-on-surface); }
 
-    .top-actions { display: flex; align-items: center; gap: 2px; }
+    .app-title {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--md-sys-color-on-surface);
+      line-height: 28px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
     .m3-icon-btn {
-      width: 48px; height: 48px; border-radius: 24px; border: none; background: transparent;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      border: none;
+      background: transparent;
       color: var(--md-sys-color-on-surface-variant);
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.15s var(--ease-standard), color 0.15s var(--ease-standard);
     }
-    .m3-icon-btn:hover { background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent); }
+
+    .m3-icon-btn:hover {
+      background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+    }
+
     .m3-icon-btn.active-tonal {
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
     }
 
     .timer-badge {
-      position: absolute; bottom: 6px; right: 4px;
-      background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);
-      font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 8px; display: none;
+      position: absolute;
+      bottom: 6px;
+      right: 4px;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 8px;
+      line-height: 1.2;
+      display: none;
     }
-    .timer-badge.visible { display: block; }
 
+    .timer-badge.visible {
+      display: block;
+    }
+
+    /* Dynamic Color Swatch Strip */
     .palette-bar {
-      display: none; padding: 8px 16px 12px; gap: 10px; align-items: center;
-      justify-content: space-between; background-color: var(--md-sys-color-surface-container-low);
-      margin: 0 16px 8px; border-radius: 16px;
+      display: none;
+      padding: 8px 16px 12px;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--md-sys-color-surface-container-low);
+      margin: 0 16px 8px;
+      border-radius: 16px;
     }
-    .palette-bar.open { display: flex; }
-    .palette-label { font-size: 12px; font-weight: 500; color: var(--md-sys-color-on-surface-variant); }
-    .swatches { display: flex; gap: 10px; align-items: center; }
-    .swatch-btn {
-      width: 32px; height: 32px; border-radius: 16px; border: 2px solid transparent; cursor: pointer;
-    }
-    .swatch-btn.selected { border-color: var(--md-sys-color-on-surface); transform: scale(1.1); }
 
-    /* MODE SWITCHER (RADIO / PODCASTS) */
-    .mode-switch-wrap { padding: 2px 16px 10px; }
-    .m3-mode-tabs {
-      display: flex; background-color: var(--md-sys-color-surface-container);
-      padding: 4px; border-radius: 24px; gap: 4px;
+    .palette-bar.open {
+      display: flex;
     }
-    .m3-mode-tab {
-      flex: 1; height: 40px; border-radius: 20px; border: none; background: transparent;
-      color: var(--md-sys-color-on-surface-variant); font-family: var(--font-family);
-      font-size: 14px; font-weight: 500; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+
+    .palette-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .swatches {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .swatch-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .swatch-btn.selected {
+      border-color: var(--md-sys-color-on-surface);
+      transform: scale(1.1);
+    }
+
+    /* ==========================================================================
+       M3 SEGMENTED MODE SWITCHER (RADIO TIEŠRAIDES / PODKĀSTI LV)
+       ========================================================================== */
+    .mode-switch-wrap {
+      padding: 0 16px 10px;
+    }
+
+    .m3-mode-segmented {
+      display: flex;
+      background-color: var(--md-sys-color-surface-container);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 22px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .mode-tab-btn {
+      flex: 1;
+      height: 38px;
+      border-radius: 18px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
       transition: background-color 0.2s var(--ease-standard), color 0.2s var(--ease-standard);
     }
-    .m3-mode-tab.active {
+
+    .mode-tab-btn.active {
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
     }
 
-    /* SEARCH BAR */
-    .search-section { padding: 2px 16px 10px; }
-    .m3-search-bar {
-      height: 50px; border-radius: 25px; background-color: var(--md-sys-color-surface-container-high);
-      display: flex; align-items: center; padding: 0 8px 0 16px; gap: 12px;
+    /* ==========================================================================
+       M3 SEARCH BAR
+       ========================================================================== */
+    .search-section {
+      padding: 2px 16px 12px;
     }
-    .m3-search-input {
-      flex: 1; border: none; background: transparent; color: var(--md-sys-color-on-surface);
-      font-family: var(--font-family); font-size: 16px; outline: none; min-width: 0;
-    }
-    .search-clear-btn {
-      width: 40px; height: 40px; border-radius: 20px; border: none; background: transparent;
-      color: var(--md-sys-color-on-surface-variant); display: none; align-items: center; justify-content: center; cursor: pointer;
-    }
-    .search-clear-btn.visible { display: flex; }
 
-    /* FILTER CHIPS */
+    .m3-search-bar {
+      height: 50px;
+      border-radius: 25px;
+      background-color: var(--md-sys-color-surface-container-high);
+      display: flex;
+      align-items: center;
+      padding: 0 8px 0 16px;
+      gap: 12px;
+    }
+
+    .m3-search-bar svg {
+      color: var(--md-sys-color-on-surface-variant);
+      flex-shrink: 0;
+    }
+
+    .m3-search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface);
+      font-family: var(--font-family);
+      font-size: 16px;
+      outline: none;
+      min-width: 0;
+    }
+
+    .m3-search-input::placeholder {
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .search-clear-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .search-clear-btn.visible {
+      display: flex;
+    }
+
+    /* ==========================================================================
+       M3 FILTER CHIPS
+       ========================================================================== */
     .chips-scroll {
-      display: flex; gap: 8px; padding: 0 16px 12px; overflow-x: auto; scrollbar-width: none;
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
-    .chips-scroll::-webkit-scrollbar { display: none; }
+
+    .chips-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
     .m3-filter-chip {
-      height: 32px; padding: 0 14px; border-radius: 8px;
-      border: 1px solid var(--md-sys-color-outline-variant); background: transparent;
-      color: var(--md-sys-color-on-surface-variant); font-family: var(--font-family);
-      font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
-      white-space: nowrap; cursor: pointer; flex-shrink: 0;
+      height: 32px;
+      padding: 0 14px;
+      border-radius: 8px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      background-color: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
     }
+
     .m3-filter-chip.selected {
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
-      border-color: transparent; padding-left: 10px;
+      border-color: transparent;
+      padding-left: 10px;
     }
-    .chip-check { display: none; width: 18px; height: 18px; }
-    .m3-filter-chip.selected .chip-check { display: inline-flex; }
 
-    /* RECENTLY PLAYED */
-    .recent-section { display: none; flex-direction: column; gap: 8px; padding: 0 0 12px; }
-    .recent-section.visible { display: flex; }
+    .chip-check {
+      display: none;
+      width: 18px;
+      height: 18px;
+    }
+
+    .m3-filter-chip.selected .chip-check {
+      display: inline-flex;
+    }
+
+    /* ==========================================================================
+       RECENTLY PLAYED HORIZONTAL SHELF
+       ========================================================================== */
+    .recent-section {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 0 12px;
+    }
+
+    .recent-section.visible {
+      display: flex;
+    }
+
     .section-overline {
-      font-size: 12px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
-      color: var(--md-sys-color-on-surface-variant); padding: 0 16px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--md-sys-color-on-surface-variant);
+      padding: 0 16px;
     }
-    .recent-scroll { display: flex; gap: 10px; padding: 0 16px; overflow-x: auto; scrollbar-width: none; }
-    .recent-scroll::-webkit-scrollbar { display: none; }
+
+    .recent-scroll {
+      display: flex;
+      gap: 10px;
+      padding: 0 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .recent-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
     .recent-pill {
-      display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px;
-      border-radius: 14px; background-color: var(--md-sys-color-surface-container);
-      color: var(--md-sys-color-on-surface); border: none; font-family: var(--font-family);
-      font-size: 13px; font-weight: 500; white-space: nowrap; cursor: pointer; flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px 6px 6px;
+      border-radius: 14px;
+      background-color: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-on-surface);
+      border: none;
+      font-family: var(--font-family);
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
     }
+
     .recent-pill.active {
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
     }
+
     .recent-dot {
-      width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center;
-      justify-content: center; color: #FFFFFF; font-size: 11px; font-weight: 700;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
     }
 
-    /* STATION & PODCAST CARDS */
-    .stations-list { padding: 4px 16px; display: flex; flex-direction: column; gap: 8px; }
+    /* ==========================================================================
+       M3 STATION & PODCAST CARDS
+       ========================================================================== */
+    .stations-list {
+      padding: 4px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     .m3-station-card {
       background-color: var(--md-sys-color-surface-container-low);
-      border-radius: 16px; padding: 10px 8px 10px 12px;
-      display: flex; align-items: center; gap: 14px; cursor: pointer;
-      transition: background-color 0.2s var(--ease-standard); user-select: none;
+      border-radius: 16px;
+      padding: 10px 10px 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease-standard);
+      position: relative;
+      user-select: none;
     }
-    .m3-station-card:hover { background-color: var(--md-sys-color-surface-container); }
-    .m3-station-card.active { background-color: var(--md-sys-color-secondary-container); }
+
+    .m3-station-card:hover {
+      background-color: var(--md-sys-color-surface-container);
+    }
+
+    .m3-station-card.active {
+      background-color: var(--md-sys-color-secondary-container);
+    }
 
     .station-avatar {
-      width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center;
-      justify-content: center; color: #FFFFFF; font-weight: 700; font-size: 16px;
-      flex-shrink: 0; position: relative; overflow: hidden;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
     }
+
+    .station-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .avatar-overlay {
-      position: absolute; inset: 0; background: rgba(0, 0, 0, 0.35);
-      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .station-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-    .station-title-row { display: flex; align-items: center; gap: 8px; }
+
+    .station-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .station-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .station-name {
-      font-size: 16px; font-weight: 500; line-height: 22px; color: var(--md-sys-color-on-surface);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22px;
+      color: var(--md-sys-color-on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .m3-station-card.active .station-name { color: var(--md-sys-color-on-secondary-container); }
+
+    .m3-station-card.active .station-name {
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
     .live-pill {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.3px; padding: 2px 8px; border-radius: 6px;
-      background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      flex-shrink: 0;
     }
+
     .station-subtitle {
-      font-size: 13px; line-height: 18px; color: var(--md-sys-color-on-surface-variant);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-size: 13px;
+      line-height: 18px;
+      color: var(--md-sys-color-on-surface-variant);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+
     .m3-station-card.active .station-subtitle {
       color: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 82%, transparent);
     }
-    .card-actions { display: flex; align-items: center; flex-shrink: 0; }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
     .fav-btn {
-      width: 48px; height: 48px; border-radius: 24px; border: none; background: transparent;
-      color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; cursor: pointer;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface-variant);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
-    .fav-btn.is-fav { color: var(--md-sys-color-primary); }
 
-    /* EXTENDED FAB */
+    .fav-btn.is-fav {
+      color: var(--md-sys-color-primary);
+    }
+
+    /* ==========================================================================
+       EPISODE ITEM INSIDE PODCAST SHEET
+       ========================================================================== */
+    .episode-card {
+      background-color: var(--md-sys-color-surface-container);
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: background-color 0.15s var(--ease-standard);
+    }
+
+    .episode-card:hover {
+      background-color: var(--md-sys-color-surface-container-high);
+    }
+
+    .episode-card.playing {
+      background-color: var(--md-sys-color-secondary-container);
+    }
+
+    .ep-play-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ep-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ep-title {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 20px;
+      color: var(--md-sys-color-on-surface);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .ep-date {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-top: 4px;
+    }
+
+    .ep-progress-track {
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--md-sys-color-surface-container-highest);
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .ep-progress-fill {
+      height: 100%;
+      background-color: var(--md-sys-color-primary);
+    }
+
+    /* ==========================================================================
+       M3 EXTENDED FAB
+       ========================================================================== */
     .fab-container {
-      position: fixed; bottom: 96px; right: max(16px, calc(50vw - 284px)); z-index: 35;
+      position: fixed;
+      bottom: 96px;
+      right: max(16px, calc(50vw - 284px));
+      z-index: 35;
     }
-    .m3-extended-fab {
-      height: 56px; padding: 0 20px 0 16px; border-radius: 16px; border: none;
-      background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);
-      font-family: var(--font-family); font-size: 14px; font-weight: 500;
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      cursor: pointer; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
-      transition: padding 0.25s var(--ease-emphasized), width 0.25s var(--ease-emphasized);
-      overflow: hidden; white-space: nowrap;
-    }
-    .m3-extended-fab.collapsed { padding: 0; width: 56px; gap: 0; }
-    .m3-extended-fab.collapsed .fab-label { display: none; }
 
-    /* SNACKBAR */
+    .m3-extended-fab {
+      height: 56px;
+      padding: 0 20px 0 16px;
+      border-radius: 16px;
+      border: none;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+      transition: padding 0.25s var(--ease-emphasized), width 0.25s var(--ease-emphasized), transform 0.15s var(--ease-standard);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .m3-extended-fab.collapsed {
+      padding: 0;
+      width: 56px;
+      gap: 0;
+    }
+
+    .m3-extended-fab.collapsed .fab-label {
+      display: none;
+    }
+
+    /* ==========================================================================
+       M3 SNACKBAR
+       ========================================================================== */
     .m3-snackbar {
-      position: fixed; bottom: 162px; left: 50%; transform: translateX(-50%) translateY(20px);
-      width: calc(100% - 32px); max-width: 568px; min-height: 48px; padding: 6px 8px 6px 16px;
-      border-radius: 12px; background-color: var(--md-sys-color-inverse-surface);
-      color: var(--md-sys-color-inverse-on-surface); display: flex; align-items: center;
-      justify-content: space-between; gap: 8px; font-size: 14px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      opacity: 0; pointer-events: none; z-index: 45;
+      position: fixed;
+      bottom: 162px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      width: calc(100% - 32px);
+      max-width: 568px;
+      min-height: 48px;
+      padding: 6px 8px 6px 16px;
+      border-radius: 12px;
+      background-color: var(--md-sys-color-inverse-surface);
+      color: var(--md-sys-color-inverse-on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 45;
       transition: opacity 0.2s var(--ease-standard), transform 0.25s var(--ease-emphasized);
     }
-    .m3-snackbar.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+
+    .m3-snackbar.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .snackbar-action {
-      border: none; background: transparent; color: var(--md-sys-color-inverse-primary);
-      font-family: var(--font-family); font-size: 14px; font-weight: 700; padding: 8px 12px; cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-inverse-primary);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    /* FLOATING MINI-PLAYER */
+    /* ==========================================================================
+       FLOATING M3 MINI-PLAYER
+       ========================================================================== */
     .mini-player-wrap {
-      position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 24px); max-width: 576px; z-index: 40; touch-action: pan-y;
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 576px;
+      z-index: 40;
+      touch-action: pan-y;
     }
-    .m3-mini-player {
-      height: 72px; border-radius: 20px; background-color: var(--md-sys-color-surface-container-highest);
-      padding: 8px 10px 8px 12px; display: flex; align-items: center; gap: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); cursor: pointer; user-select: none;
-    }
-    .mini-art {
-      width: 48px; height: 48px; border-radius: 12px;
-      background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .mini-meta { flex: 1; min-width: 0; }
-    .mini-title-row { display: flex; align-items: center; gap: 8px; }
-    .mini-title {
-      font-size: 15px; font-weight: 500; color: var(--md-sys-color-on-surface);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .mini-status {
-      font-size: 12px; color: var(--md-sys-color-on-surface-variant);
-      display: flex; align-items: center; gap: 6px; margin-top: 2px;
-    }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background-color: var(--md-sys-color-outline); }
-    .status-dot.playing { background-color: var(--md-sys-color-primary); }
 
-    .eq-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
-    .eq-bars span { width: 3px; height: 4px; border-radius: 2px; background-color: var(--md-sys-color-primary); }
+    .m3-mini-player {
+      height: 72px;
+      border-radius: 20px;
+      background-color: var(--md-sys-color-surface-container-highest);
+      padding: 8px 10px 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mini-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .mini-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mini-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mini-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-status {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-outline);
+    }
+
+    .status-dot.playing {
+      background-color: var(--md-sys-color-primary);
+    }
+
+    .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+
+    .eq-bars span {
+      width: 3px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--md-sys-color-primary);
+    }
+
     .eq-bars.animating span:nth-child(1) { animation: eq 0.7s infinite alternate; }
     .eq-bars.animating span:nth-child(2) { animation: eq 0.5s 0.2s infinite alternate; }
     .eq-bars.animating span:nth-child(3) { animation: eq 0.8s 0.1s infinite alternate; }
     .eq-bars.animating span:nth-child(4) { animation: eq 0.6s 0.3s infinite alternate; }
-    @keyframes eq { 0% { height: 3px; } 100% { height: 12px; } }
+
+    @keyframes eq {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
 
     .m3-play-morph-btn {
-      width: 52px; height: 52px; border-radius: 16px; border: none;
-      background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);
-      display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: none;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
       transition: border-radius 0.3s var(--ease-emphasized);
     }
-    .m3-play-morph-btn.is-playing { border-radius: 26px; }
 
-    /* MODAL BOTTOM SHEETS */
-    .sheet-scrim {
-      position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.55); z-index: 60;
-      opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease-standard);
+    .m3-play-morph-btn.is-playing {
+      border-radius: 26px;
     }
-    .sheet-scrim.open { opacity: 1; pointer-events: auto; }
+
+    /* ==========================================================================
+       M3 MODAL BOTTOM SHEETS
+       ========================================================================== */
+    .sheet-scrim {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease-standard);
+    }
+
+    .sheet-scrim.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
     .m3-bottom-sheet {
-      position: fixed; left: 50%; bottom: 0; transform: translateX(-50%) translateY(100%);
-      width: 100%; max-width: 600px; max-height: 92vh;
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%) translateY(100%);
+      width: 100%;
+      max-width: 600px;
+      max-height: 92vh;
       background-color: var(--md-sys-color-surface-container-low);
-      border-radius: 28px 28px 0 0; z-index: 70; display: flex; flex-direction: column;
-      overflow: hidden; transition: transform 0.32s var(--ease-emphasized);
+      border-radius: 28px 28px 0 0;
+      z-index: 70;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.32s var(--ease-emphasized);
     }
-    .m3-bottom-sheet.open { transform: translateX(-50%) translateY(0); }
 
-    .sheet-drag-handle-area { padding: 12px 0 8px; display: flex; justify-content: center; cursor: pointer; }
-    .sheet-drag-handle { width: 32px; height: 4px; border-radius: 2px; background-color: var(--md-sys-color-outline-variant); }
-    .sheet-body { padding: 4px 24px 28px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+    .m3-bottom-sheet.open {
+      transform: translateX(-50%) translateY(0);
+    }
 
-    /* NOW PLAYING & PODCAST SCRUBBER */
-    .np-header-bar { display: flex; align-items: center; justify-content: space-between; }
+    .sheet-drag-handle-area {
+      padding: 12px 0 8px;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .sheet-drag-handle {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--md-sys-color-outline-variant);
+    }
+
+    .sheet-body {
+      padding: 4px 24px 28px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .np-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .np-artwork {
-      width: 156px; height: 156px; border-radius: 28px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center; color: #FFFFFF;
+      width: 160px;
+      height: 160px;
+      border-radius: 28px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
     }
-    .np-details { text-align: center; }
-    .np-title { font-size: 20px; font-weight: 500; color: var(--md-sys-color-on-surface); margin-bottom: 4px; }
-    .np-desc { font-size: 13px; color: var(--md-sys-color-on-surface-variant); }
 
+    .np-details {
+      text-align: center;
+    }
+
+    .np-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 4px;
+    }
+
+    .np-desc {
+      font-size: 13px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    /* Podcast Seek Bar inside Now Playing */
     .podcast-seek-box {
-      display: none; flex-direction: column; gap: 6px;
-      background-color: var(--md-sys-color-surface-container); padding: 12px 16px; border-radius: 16px;
-    }
-    .podcast-seek-box.visible { display: flex; }
-    .seek-times {
-      display: flex; justify-content: space-between; font-size: 12px;
-      color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .np-transport { display: flex; align-items: center; justify-content: center; gap: 16px; }
-    .m3-skip-btn {
-      width: 56px; height: 56px; border-radius: 28px; border: none;
-      background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700; cursor: pointer;
+    .podcast-seek-box.visible {
+      display: flex;
     }
+
+    .seek-times {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .np-transport {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .m3-skip-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      border: none;
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
     .m3-play-large {
-      width: 72px; height: 72px; border-radius: 24px; border: none;
-      background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);
-      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      width: 74px;
+      height: 74px;
+      border-radius: 24px;
+      border: none;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       transition: border-radius 0.3s var(--ease-emphasized);
     }
-    .m3-play-large.is-playing { border-radius: 36px; }
+
+    .m3-play-large.is-playing {
+      border-radius: 37px;
+    }
 
     .m3-slider-row {
-      display: flex; align-items: center; gap: 12px;
-      background-color: var(--md-sys-color-surface-container); padding: 12px 16px; border-radius: 16px;
-    }
-    .m3-slider { flex: 1; accent-color: var(--md-sys-color-primary); height: 6px; cursor: pointer; }
-
-    /* EPISODE LIST ITEMS */
-    .episode-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       background-color: var(--md-sys-color-surface-container);
-      border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; cursor: pointer;
-    }
-    .episode-card.active { background-color: var(--md-sys-color-secondary-container); }
-    .ep-play-circle {
-      width: 42px; height: 42px; border-radius: 21px;
-      background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      padding: 12px 16px;
+      border-radius: 16px;
     }
 
-    /* FORMS & BUTTONS */
-    .m3-segmented-row { display: flex; border: 1px solid var(--md-sys-color-outline); border-radius: 20px; overflow: hidden; }
-    .m3-seg-btn {
-      flex: 1; height: 40px; border: none; background: transparent; color: var(--md-sys-color-on-surface);
-      font-family: var(--font-family); font-size: 14px; font-weight: 500; cursor: pointer;
+    .m3-slider {
+      flex: 1;
+      accent-color: var(--md-sys-color-primary);
+      height: 6px;
+      cursor: pointer;
     }
+
+    .m3-segmented-row {
+      display: flex;
+      border: 1px solid var(--md-sys-color-outline);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .m3-seg-btn {
+      flex: 1;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: var(--md-sys-color-on-surface);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
     .m3-seg-btn.active {
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);
     }
-    .m3-field { display: flex; flex-direction: column; gap: 6px; }
-    .m3-field label { font-size: 12px; font-weight: 500; color: var(--md-sys-color-on-surface-variant); }
+
+    .m3-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .m3-field label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
     .m3-input, .m3-select {
-      height: 48px; border-radius: 12px; border: 1px solid var(--md-sys-color-outline);
-      background-color: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface);
-      padding: 0 14px; font-family: var(--font-family); font-size: 15px; outline: none;
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid var(--md-sys-color-outline);
+      background-color: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-on-surface);
+      padding: 0 14px;
+      font-family: var(--font-family);
+      font-size: 15px;
+      outline: none;
     }
+
     .m3-filled-btn {
-      height: 48px; border-radius: 24px; border: none;
-      background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);
-      font-family: var(--font-family); font-size: 14px; font-weight: 500; padding: 0 24px; cursor: pointer;
+      height: 48px;
+      border-radius: 24px;
+      border: none;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0 24px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
+
     .m3-tonal-btn {
-      height: 40px; border-radius: 20px; border: none;
-      background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);
-      font-family: var(--font-family); font-size: 13px; font-weight: 500; padding: 0 16px; cursor: pointer;
+      height: 40px;
+      border-radius: 20px;
+      border: none;
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      font-family: var(--font-family);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0 16px;
+      cursor: pointer;
     }
-    .m3-tonal-btn:disabled { opacity: 0.55; cursor: default; }
-    .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+    .m3-tonal-btn:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
     .online-result-item {
-      background-color: var(--md-sys-color-surface-container); padding: 10px 12px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background-color: var(--md-sys-color-surface-container);
+      padding: 10px 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
 
     .grad-red { background: linear-gradient(135deg, #D32F2F, #8E0000); }
@@ -638,12 +1343,17 @@
     .grad-crimson { background: linear-gradient(135deg, #B71C1C, #212121); }
     .grad-teal { background: linear-gradient(135deg, #0277BD, #01579B); }
 
-    .empty-state { text-align: center; padding: 40px 20px; color: var(--md-sys-color-on-surface-variant); font-size: 14px; }
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <div class="app-shell">
-    <!-- TOP APP BAR -->
+    <!-- M3 TOP APP BAR -->
     <header class="top-app-bar" id="topAppBar">
       <div class="app-brand">
         <div class="brand-icon" aria-hidden="true">
@@ -657,15 +1367,15 @@
 
       <div class="top-actions">
         <button class="m3-icon-btn" id="installAppBtn" title="Instalēt aplikāciju" aria-label="Instalēt aplikāciju" style="display:none;color:var(--md-sys-color-primary);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
         </button>
 
-        <button class="m3-icon-btn" id="refreshBtn" title="Atjaunot tiešraides un podkāstus" aria-label="Atjaunot">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button class="m3-icon-btn" id="refreshBtn" title="Atjaunot tiešraides / podkāstus" aria-label="Atjaunot">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
             <path d="M3 3v5h5"></path>
             <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
@@ -674,14 +1384,14 @@
         </button>
 
         <button class="m3-icon-btn" id="timerOpenBtn" title="Miega taimeris" aria-label="Miega taimeris">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
           </svg>
           <span class="timer-badge" id="timerBadge"></span>
         </button>
 
-        <button class="m3-icon-btn" id="paletteToggleBtn" title="Material You krāsas" aria-label="Material You krāsas">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button class="m3-icon-btn" id="paletteToggleBtn" title="Material You krāsas un tēma" aria-label="Material You krāsas">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
             <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
             <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
@@ -692,7 +1402,7 @@
       </div>
     </header>
 
-    <!-- DYNAMIC COLOR PALETTE -->
+    <!-- DYNAMIC COLOR PALETTE & THEME STRIP -->
     <div class="palette-bar" id="paletteBar">
       <span class="palette-label">Material You</span>
       <div class="swatches">
@@ -704,28 +1414,28 @@
       </div>
     </div>
 
-    <!-- PRIMARY NAVIGATION TABS: RADIO vs PODKĀSTI -->
+    <!-- MODE SWITCHER: RADIO TIEŠRAIDES vs PODKĀSTI (LV) -->
     <div class="mode-switch-wrap">
-      <div class="m3-mode-tabs" role="tablist">
-        <button class="m3-mode-tab active" id="modeRadioBtn" role="tab" aria-selected="true">
+      <div class="m3-mode-segmented" role="tablist">
+        <button class="mode-tab-btn active" id="modeRadioBtn" role="tab" aria-selected="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="2"></circle>
             <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49"></path>
           </svg>
           <span>Radio tiešraides</span>
         </button>
-        <button class="m3-mode-tab" id="modePodcastsBtn" role="tab" aria-selected="false">
+        <button class="mode-tab-btn" id="modePodcastsBtn" role="tab" aria-selected="false">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
             <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
           </svg>
           <span>Podkāsti (LV)</span>
         </button>
       </div>
     </div>
 
-    <!-- SEARCH BAR -->
+    <!-- M3 SEARCH BAR -->
     <div class="search-section">
       <div class="m3-search-bar">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -733,7 +1443,7 @@
           <path d="m21 21-4.3-4.3"></path>
         </svg>
         <input type="search" id="searchInput" class="m3-search-input" placeholder="Meklēt staciju vai žanru..." autocomplete="off" />
-        <button class="search-clear-btn" id="searchClearBtn" aria-label="Notīrīt meklēšanu">
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Notīrīt">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 6 6 18M6 6l12 12"></path>
           </svg>
@@ -741,36 +1451,36 @@
       </div>
     </div>
 
-    <!-- FILTER CHIPS (VISIBLE IN RADIO MODE) -->
+    <!-- M3 FILTER CHIPS (RADIO MODE) -->
     <nav class="chips-scroll" id="categoryChips" aria-label="Kategorijas"></nav>
 
-    <!-- RECENTLY PLAYED SHELF -->
+    <!-- RECENTLY PLAYED SHELF (RADIO MODE) -->
     <section class="recent-section" id="recentSection" aria-label="Nesen klausītās">
       <span class="section-overline">Nesen klausītās</span>
       <div class="recent-scroll" id="recentScroll"></div>
     </section>
 
-    <!-- MAIN LIST (RADIO STATIONS OR LATVIAN PODCASTS) -->
+    <!-- MAIN LIST (STATIONS OR LATVIAN PODCASTS) -->
     <main class="stations-list" id="mainList"></main>
 
-    <!-- EXTENDED FAB -->
+    <!-- M3 EXTENDED FAB -->
     <div class="fab-container">
-      <button class="m3-extended-fab" id="addFab" aria-label="Pievienot">
+      <button class="m3-extended-fab" id="addFab">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M12 5v14M5 12h14"></path>
         </svg>
-        <span class="fab-label" id="fabLabel">Pievienot staciju</span>
+        <span class="fab-label" id="fabLabelText">Pievienot staciju</span>
       </button>
     </div>
 
-    <!-- SNACKBAR -->
+    <!-- M3 SNACKBAR -->
     <div class="m3-snackbar" id="m3Snackbar" role="status" aria-live="polite">
-      <span id="snackbarText">Paziņojums</span>
+      <span id="snackbarText">Ziņojums</span>
       <button class="snackbar-action" id="snackbarRetryBtn">Mēģināt vēlreiz</button>
     </div>
 
-    <!-- FLOATING MINI-PLAYER -->
-    <div class="mini-player-wrap" id="miniPlayerWrap">
+    <!-- FLOATING M3 MINI-PLAYER -->
+    <div class="mini-player-wrap">
       <div class="m3-mini-player" id="miniPlayer">
         <div class="mini-art grad-indigo" id="miniArt">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -781,8 +1491,10 @@
         </div>
         <div class="mini-meta">
           <div class="mini-title-row">
-            <span class="mini-title" id="miniTitle">Izvēlieties staciju vai podkāstu</span>
-            <div class="eq-bars" id="miniEq"><span></span><span></span><span></span><span></span></div>
+            <span class="mini-title" id="miniTitle">Izvēlieties radiostaciju vai podkāstu</span>
+            <div class="eq-bars" id="miniEq">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
           <div class="mini-status">
             <span class="status-dot" id="miniStatusDot"></span>
@@ -798,12 +1510,36 @@
     </div>
   </div>
 
-  <!-- SCRIM -->
+  <!-- MODAL SCRIM -->
   <div class="sheet-scrim" id="sheetScrim"></div>
 
-  <!-- NOW PLAYING BOTTOM SHEET (ADAPTS TO RADIO STREAM OR PODCAST EPISODE) -->
+  <!-- PODCAST EPISODES BOTTOM SHEET -->
+  <section class="m3-bottom-sheet" id="episodesSheet" aria-label="Podkāsta epizodes">
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
+    </div>
+    <div class="sheet-body">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <div style="min-width:0;">
+          <h2 id="epSheetTitle" style="font-size:20px;font-weight:500;">Podkāsts</h2>
+          <p id="epSheetDesc" style="font-size:13px;color:var(--md-sys-color-on-surface-variant);margin-top:2px;"></p>
+        </div>
+        <button class="m3-icon-btn" id="epSheetRefreshBtn" title="Atjaunot epizodes">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="episodesListContainer" style="display:flex;flex-direction:column;gap:10px;max-height:58vh;overflow-y:auto;"></div>
+    </div>
+  </section>
+
+  <!-- NOW PLAYING BOTTOM SHEET (SUPPORTS BOTH LIVE RADIO & PODCAST SEEKING) -->
   <section class="m3-bottom-sheet" id="nowPlayingSheet" aria-label="Tagad skan">
-    <div class="sheet-drag-handle-area" data-close-sheet><div class="sheet-drag-handle"></div></div>
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
+    </div>
     <div class="sheet-body">
       <div class="np-header-bar">
         <button class="m3-icon-btn" id="npFavBtn" title="Favorīts">
@@ -811,7 +1547,8 @@
             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
           </svg>
         </button>
-        <button class="m3-tonal-btn" id="playbackRateBtn" style="display:none;height:34px;padding:0 14px;">1.0x</button>
+        <span id="npModeLabel" style="font-size:12px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--md-sys-color-on-surface-variant);">Tagad skan</span>
+        <button class="m3-tonal-btn" id="npSpeedBtn" style="display:none;height:34px;padding:0 12px;">1.0x</button>
         <button class="m3-icon-btn" id="npTimerShortcut" title="Miega taimeris">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
@@ -820,7 +1557,7 @@
       </div>
 
       <div class="np-artwork grad-indigo" id="npArtwork">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <circle cx="12" cy="12" r="2"></circle>
           <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49"></path>
         </svg>
@@ -828,21 +1565,21 @@
 
       <div class="np-details">
         <div class="np-title" id="npTitle">Izvēlieties staciju</div>
-        <div class="np-desc" id="npDesc">Tiešraide vai podkāsts</div>
+        <div class="np-desc" id="npDesc">Pieskarieties sarakstā</div>
       </div>
 
-      <!-- PODCAST SEEK BAR (SHOWN ONLY FOR PODCAST EPISODES) -->
+      <!-- PODCAST TIMELINE SCRUBBER -->
       <div class="podcast-seek-box" id="podcastSeekBox">
-        <input type="range" id="seekSlider" class="m3-slider" min="0" max="100" step="1" value="0" aria-label="Epizodes pozīcija" />
+        <input type="range" id="seekSlider" class="m3-slider" min="0" max="100" value="0" />
         <div class="seek-times">
-          <span id="currentTimeLabel">00:00</span>
-          <span id="durationLabel">00:00</span>
+          <span id="seekCurrentTime">0:00</span>
+          <span id="seekTotalTime">0:00</span>
         </div>
       </div>
 
       <div class="np-transport">
         <button class="m3-skip-btn" id="npPrevBtn" title="Iepriekšējā / -15s">
-          <span id="prevBtnLabel">⏮</span>
+          <span id="npPrevLabel">⏮</span>
         </button>
 
         <button class="m3-play-large" id="npPlayBtn" aria-label="Atskaņot vai pauzēt">
@@ -852,7 +1589,7 @@
         </button>
 
         <button class="m3-skip-btn" id="npNextBtn" title="Nākamā / +30s">
-          <span id="nextBtnLabel">⏭</span>
+          <span id="npNextLabel">⏭</span>
         </button>
       </div>
 
@@ -861,27 +1598,17 @@
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
         </svg>
-        <input type="range" id="volumeSlider" class="m3-slider" min="0" max="1" step="0.02" value="0.85" aria-label="Skaļums" />
+        <input type="range" id="volumeSlider" class="m3-slider" min="0" max="1" step="0.02" value="0.85" />
         <span id="volumePct" style="font-size:13px;font-weight:500;min-width:36px;text-align:right;">85%</span>
       </div>
     </div>
   </section>
 
-  <!-- PODCAST EPISODES BOTTOM SHEET -->
-  <section class="m3-bottom-sheet" id="episodesSheet" aria-label="Podkāsta epizodes">
-    <div class="sheet-drag-handle-area" data-close-sheet><div class="sheet-drag-handle"></div></div>
-    <div class="sheet-body">
-      <div>
-        <h2 id="epSheetTitle" style="font-size:20px;font-weight:500;">Podkāsts</h2>
-        <p id="epSheetDesc" style="font-size:13px;color:var(--md-sys-color-on-surface-variant);margin-top:4px;"></p>
-      </div>
-      <div id="episodesListContainer" style="display:flex;flex-direction:column;gap:8px;max-height:58vh;overflow-y:auto;"></div>
+  <!-- SLEEP TIMER BOTTOM SHEET -->
+  <section class="m3-bottom-sheet" id="timerSheet">
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
     </div>
-  </section>
-
-  <!-- SLEEP TIMER SHEET -->
-  <section class="m3-bottom-sheet" id="timerSheet" aria-label="Miega taimeris">
-    <div class="sheet-drag-handle-area" data-close-sheet><div class="sheet-drag-handle"></div></div>
     <div class="sheet-body">
       <h2 style="font-size:20px;font-weight:500;">Miega taimeris</h2>
       <p id="timerStatusDesc" style="font-size:14px;color:var(--md-sys-color-on-surface-variant);">
@@ -898,55 +1625,39 @@
     </div>
   </section>
 
-  <!-- ADD STATION / PODCAST RSS SHEET -->
-  <section class="m3-bottom-sheet" id="addSheet" aria-label="Pievienot">
-    <div class="sheet-drag-handle-area" data-close-sheet><div class="sheet-drag-handle"></div></div>
+  <!-- ADD STATION / PODCAST BOTTOM SHEET -->
+  <section class="m3-bottom-sheet" id="addSheet">
+    <div class="sheet-drag-handle-area" data-close-sheet>
+      <div class="sheet-drag-handle"></div>
+    </div>
     <div class="sheet-body">
-      <h2 style="font-size:20px;font-weight:500;">Pievienot staciju vai podkāstu</h2>
+      <h2 id="addSheetTitle" style="font-size:20px;font-weight:500;">Pievienot staciju</h2>
       <div class="m3-segmented-row">
-        <button class="m3-seg-btn active" id="tabOnlineBtn">Radio katalogs</button>
-        <button class="m3-seg-btn" id="tabRssBtn">Podkāsta RSS</button>
-        <button class="m3-seg-btn" id="tabManualBtn">Manuāli</button>
+        <button class="m3-seg-btn active" id="tabOnlineBtn">Meklēt tiešsaistē</button>
+        <button class="m3-seg-btn" id="tabManualBtn">Pievienot manuāli</button>
       </div>
 
-      <!-- ONLINE RADIO SEARCH -->
+      <!-- ONLINE SEARCH TAB -->
       <div id="onlinePane" style="display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="m3-tonal-btn quick-rb-btn" data-q="Latvia" data-country="LV">Latvijas stacijas</button>
-          <button class="m3-tonal-btn quick-rb-btn" data-q="death metal">Death Metal</button>
-          <button class="m3-tonal-btn quick-rb-btn" data-q="speed metal">Speed Metal</button>
-        </div>
-        <form id="rbSearchForm" style="display:flex;gap:8px;">
-          <input type="search" id="rbSearchInput" class="m3-input" style="flex:1;" placeholder="Meklēt staciju..." />
+        <div id="quickPresetsRow" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+        <form id="onlineSearchForm" style="display:flex;gap:8px;">
+          <input type="search" id="onlineSearchInput" class="m3-input" style="flex:1;" placeholder="Ievadiet nosaukumu..." enterkeyhint="search" />
           <button type="submit" class="m3-filled-btn">Meklēt</button>
         </form>
-        <div id="rbResultsList" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;"></div>
+        <div id="onlineResultsList" style="display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;"></div>
       </div>
 
-      <!-- ADD PODCAST RSS FEED -->
-      <form id="rssPane" style="display:none;flex-direction:column;gap:12px;">
-        <div class="m3-field">
-          <label for="rssFeedUrl">Podkāsta RSS plūsmas adrese (XML/RSS) *</label>
-          <input type="url" id="rssFeedUrl" class="m3-input" placeholder="https://lr1.lsm.lv/lv/rss/?id=..." required />
-        </div>
-        <div class="m3-field">
-          <label for="rssFeedTitle">Nosaukums (neobligāti — ielādēs automātiski)</label>
-          <input type="text" id="rssFeedTitle" class="m3-input" placeholder="piem., Mans mīļākais podkāsts" />
-        </div>
-        <button type="submit" class="m3-filled-btn">Pievienot podkāstu</button>
-      </form>
-
-      <!-- MANUAL RADIO STREAM -->
+      <!-- MANUAL ADD TAB -->
       <form id="manualPane" style="display:none;flex-direction:column;gap:12px;">
         <div class="m3-field">
           <label for="manName">Nosaukums *</label>
-          <input type="text" id="manName" class="m3-input" required />
+          <input type="text" id="manName" class="m3-input" placeholder="piem., Latvijas Radio 1 vai Podkāsts" required />
         </div>
         <div class="m3-field">
-          <label for="manUrl">Tiešraides vai MP3 adrese (HTTPS) *</label>
+          <label for="manUrl" id="manUrlLabel">Straumes adrese (HTTPS) *</label>
           <input type="url" id="manUrl" class="m3-input" placeholder="https://..." required />
         </div>
-        <div class="m3-field">
+        <div class="m3-field" id="manGenreField">
           <label for="manGenre">Kategorija</label>
           <select id="manGenre" class="m3-select">
             <option value="Latvijas">Latvijas</option>
@@ -956,6 +1667,10 @@
             <option value="Džezs & Chill">Džezs & Chill</option>
           </select>
         </div>
+        <div class="m3-field">
+          <label for="manDesc">Īss apraksts</label>
+          <input type="text" id="manDesc" class="m3-input" placeholder="Apraksts vai žanrs" />
+        </div>
         <button type="submit" class="m3-filled-btn">Saglabāt</button>
       </form>
     </div>
@@ -964,6 +1679,9 @@
   <audio id="audioPlayer" preload="none"></audio>
 
   <script>
+    /* ==========================================================================
+       SAFE STORAGE & DATA MODELS
+       ========================================================================== */
     const safeStorage = {
       get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
       set(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
@@ -972,46 +1690,287 @@
     const CATEGORIES = ['Visas', 'Favorīti', 'Latvijas', 'Metāls', 'Populārā', 'Klasiskā', 'Džezs & Chill'];
 
     const DEFAULT_STATIONS = [
-      { id: 'lr1', name: 'Latvijas Radio 1', matchKeys: ['latvijas radio 1', 'lr1'], rbQuery: 'Latvijas Radio 1', countryCode: 'LV', genre: 'Latvijas', description: 'Ziņas, analītika, diskusijas un kultūra', url: 'https://5a44d7b21015b.streamlock.net/lr1/mp4:lr1/playlist.m3u8', fallbackUrl: 'https://lr1mp1.latvijasradio.lv:8012/;', grad: 'grad-red' },
-      { id: 'lr2', name: 'Latvijas Radio 2', matchKeys: ['latvijas radio 2', 'lr2'], rbQuery: 'Latvijas Radio 2', countryCode: 'LV', genre: 'Latvijas', description: 'Dziesmas dzimtajā valodā', url: 'https://5a44d7b21015b.streamlock.net/lr2/mp4:lr2/playlist.m3u8', fallbackUrl: 'https://lr2mp1.latvijasradio.lv:8002/;', grad: 'grad-amber' },
-      { id: 'lr3', name: 'Latvijas Radio 3 - Klasika', matchKeys: ['klasika', 'latvijas radio 3', 'lr3'], rbQuery: 'Klasika', countryCode: 'LV', genre: 'Klasiskā', description: 'Klasiskā, džeza un laikmetīgā mūzika', url: 'https://5a44d7b21015b.streamlock.net/lr3/mp4:lr3/playlist.m3u8', fallbackUrl: 'https://lr3mp1.latvijasradio.lv:8004/;', grad: 'grad-emerald' },
-      { id: 'lr5', name: 'Latvijas Radio 5 - Pieci.lv', matchKeys: ['pieci', 'latvijas radio 5', 'lr5'], rbQuery: 'Pieci', countryCode: 'LV', genre: 'Latvijas', description: 'Jauniešu mūzika un aktuālie hiti', url: 'https://5a44d7b21015b.streamlock.net/pieci/mp4:pieci/playlist.m3u8', fallbackUrl: 'https://lr5mp1.latvijasradio.lv:8014/;', grad: 'grad-indigo' },
-      { id: 'swh', name: 'Radio SWH', matchKeys: ['radio swh', 'swh'], rbQuery: 'Radio SWH', countryCode: 'LV', genre: 'Latvijas', description: 'Populārākā mūzika un labas ziņas Latvijā', url: 'https://live.radioswh.lv:8443/swhmp3', fallbackUrl: 'https://live.radioswh.lv:8443/swh', grad: 'grad-teal' },
-      { id: 'ehr', name: 'European Hit Radio', matchKeys: ['european hit radio', 'ehr'], rbQuery: 'European Hit Radio', countryCode: 'LV', genre: 'Populārā', description: 'Eiropas aktuālāko hitu tops', url: 'https://stream.ehrhiti.lv:8000/ehr.aac', fallbackUrl: 'https://stream.ehrhiti.lv:8000/Stream_21.aac', grad: 'grad-purple' },
-      { id: 'starfm', name: 'Star FM Latvija', matchKeys: ['star fm', 'starfm'], rbQuery: 'Star FM', countryCode: 'LV', genre: 'Latvijas', description: 'Labākā mūzika un rīta šovs Zoopasta', url: 'https://starfm.live.advailo.com/audio/mp3/icecast.audio', fallbackUrl: 'https://starfm.live.advailo.com/audio/aac/icecast.audio', grad: 'grad-amber' },
-      { id: 'skonto', name: 'Radio Skonto', matchKeys: ['skonto'], rbQuery: 'Skonto', countryCode: 'LV', genre: 'Latvijas', description: 'Labākās dziesmas no 80. gadiem līdz šodienai', url: 'https://stream.radioskonto.lv:8443/stereo', fallbackUrl: 'https://stream.radioskonto.lv:8443/mp3', grad: 'grad-red' },
-      { id: 'somafm-metal', name: 'SomaFM: Metal Detector', matchKeys: ['metal detector'], rbQuery: 'metal detector', genre: 'Metāls', description: 'Death, Black, Doom, Thrash & Speed Metal', url: 'https://ice6.somafm.com/metal-128-mp3', fallbackUrl: 'https://ice4.somafm.com/metal-128-mp3', grad: 'grad-metal' },
-      { id: 'death-fm', name: 'Death.FM', matchKeys: ['death.fm', 'death fm'], rbQuery: 'Death.FM', genre: 'Metāls', description: 'Death Metal, Brutal Death & Grindcore 24/7', url: 'https://hi5.death.fm/', fallbackUrl: 'https://lo5.death.fm/', grad: 'grad-crimson' },
-      { id: 'chronix-aggression', name: 'ChroniX Aggression', matchKeys: ['chronix'], rbQuery: 'ChroniX', genre: 'Metāls', description: 'Death Metal, Thrash & Extreme Heavy Metal', url: 'https://usa17.fastcast4u.com/proxy/chronixaggression?mp=/1', fallbackUrl: 'https://stream.laut.fm/chronix.m3u', grad: 'grad-metal' },
-      { id: 'speed-thrash', name: 'Speed & Thrash Metal Radio', matchKeys: ['thrash'], rbQuery: 'thrash metal', genre: 'Metāls', description: 'Ātrais Speed Metal un klasiskais Thrash Metal', url: 'https://stream.laut.fm/thrash', fallbackUrl: 'https://stream.rockantenne.de/heavy-metal/stream/mp3', grad: 'grad-crimson' },
-      { id: 'brutal-death', name: 'Brutal Death Metal Radio', matchKeys: ['deathmetal', 'death metal'], rbQuery: 'death metal', genre: 'Metāls', description: 'Ekstrēmais Death Metal un Technical Death 24/7', url: 'https://stream.laut.fm/deathmetal', fallbackUrl: 'https://streams.radiobob.de/bob-deathmetal/mp3-192/mediaplayer', grad: 'grad-metal' },
-      { id: 'heavy-speed-metal', name: 'ROCK ANTENNE Heavy & Speed Metal', matchKeys: ['heavy metal', 'speed metal'], rbQuery: 'heavy metal', genre: 'Metāls', description: 'Klasiskais Speed, Power un Heavy Metal 24/7', url: 'https://stream.rockantenne.de/heavy-metal/stream/mp3', fallbackUrl: 'https://streams.radiobob.de/bob-metal/mp3-192/mediaplayer', grad: 'grad-crimson' },
-      { id: 'radio-paradise', name: 'Radio Paradise (Main Mix)', genre: 'Populārā', description: 'Kvalitatīva eklektiskā mūzika bez reklāmām', url: 'https://stream.radioparadise.com/aac-128', fallbackUrl: 'https://stream.radioparadise.com/mp3-128', grad: 'grad-indigo' },
-      { id: 'swiss-classic', name: 'Radio Swiss Classic', genre: 'Klasiskā', description: 'Šveices klasiskās mūzikas izlase 24/7', url: 'https://stream.srg-ssr.ch/m/rsc_de/mp3_128', fallbackUrl: 'https://stream.srg-ssr.ch/m/rsc_de/aacp_96', grad: 'grad-emerald' },
-      { id: 'swiss-jazz', name: 'Radio Swiss Jazz', genre: 'Džezs & Chill', description: 'Džezs, souls un blūzs no Šveices', url: 'https://stream.srg-ssr.ch/m/rsj/mp3_128', fallbackUrl: 'https://stream.srg-ssr.ch/m/rsj/aacp_96', grad: 'grad-amber' },
-      { id: 'somafm-groove', name: 'SomaFM: Groove Salad', rbQuery: 'groove salad', genre: 'Džezs & Chill', description: 'Ambient, downtempo un elektroniskais chill', url: 'https://ice6.somafm.com/groovesalad-128-mp3', fallbackUrl: 'https://ice4.somafm.com/groovesalad-128-mp3', grad: 'grad-teal' },
-      { id: 'offline-synth', name: 'Lietus & Ambient Sintezators', genre: 'Džezs & Chill', description: 'Iebūvēts bezsaistes fona skaņu ģenerators', url: 'webaudio://ambient', grad: 'grad-purple' }
+      {
+        id: 'lr1',
+        name: 'Latvijas Radio 1',
+        matchKeys: ['latvijas radio 1', 'lr1', 'lr 1'],
+        rbQuery: 'Latvijas Radio 1',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Ziņas, analītika, diskusijas un kultūra',
+        url: 'https://5a44d7b21015b.streamlock.net/lr1/mp4:lr1/playlist.m3u8',
+        fallbackUrl: 'https://lr1mp1.latvijasradio.lv:8012/;',
+        grad: 'grad-red'
+      },
+      {
+        id: 'lr2',
+        name: 'Latvijas Radio 2',
+        matchKeys: ['latvijas radio 2', 'lr2', 'lr 2'],
+        rbQuery: 'Latvijas Radio 2',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Dziesmas dzimtajā valodā',
+        url: 'https://5a44d7b21015b.streamlock.net/lr2/mp4:lr2/playlist.m3u8',
+        fallbackUrl: 'https://lr2mp1.latvijasradio.lv:8002/;',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'lr3',
+        name: 'Latvijas Radio 3 - Klasika',
+        matchKeys: ['klasika', 'latvijas radio 3', 'lr3', 'lr 3'],
+        rbQuery: 'Klasika',
+        countryCode: 'LV',
+        genre: 'Klasiskā',
+        description: 'Klasiskā, džeza un laikmetīgā mūzika',
+        url: 'https://5a44d7b21015b.streamlock.net/lr3/mp4:lr3/playlist.m3u8',
+        fallbackUrl: 'https://lr3mp1.latvijasradio.lv:8004/;',
+        grad: 'grad-emerald'
+      },
+      {
+        id: 'lr5',
+        name: 'Latvijas Radio 5 - Pieci.lv',
+        matchKeys: ['pieci', 'latvijas radio 5', 'lr5', 'lr 5'],
+        rbQuery: 'Pieci',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Jauniešu mūzika un aktuālie hiti',
+        url: 'https://5a44d7b21015b.streamlock.net/pieci/mp4:pieci/playlist.m3u8',
+        fallbackUrl: 'https://lr5mp1.latvijasradio.lv:8014/;',
+        grad: 'grad-indigo'
+      },
+      {
+        id: 'swh',
+        name: 'Radio SWH',
+        matchKeys: ['radio swh', 'swh'],
+        rbQuery: 'Radio SWH',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Populārākā mūzika un labas ziņas Latvijā',
+        url: 'https://live.radioswh.lv:8443/swhmp3',
+        fallbackUrl: 'https://live.radioswh.lv:8443/swh',
+        grad: 'grad-teal'
+      },
+      {
+        id: 'ehr',
+        name: 'European Hit Radio',
+        matchKeys: ['european hit radio', 'ehr'],
+        rbQuery: 'European Hit Radio',
+        countryCode: 'LV',
+        genre: 'Populārā',
+        description: 'Eiropas aktuālāko hitu tops',
+        url: 'https://stream.ehrhiti.lv:8000/ehr.aac',
+        fallbackUrl: 'https://stream.ehrhiti.lv:8000/Stream_21.aac',
+        grad: 'grad-purple'
+      },
+      {
+        id: 'starfm',
+        name: 'Star FM Latvija',
+        matchKeys: ['star fm', 'starfm'],
+        rbQuery: 'Star FM',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Labākā mūzika un rīta šovs Zoopasta',
+        url: 'https://starfm.live.advailo.com/audio/mp3/icecast.audio',
+        fallbackUrl: 'https://starfm.live.advailo.com/audio/aac/icecast.audio',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'skonto',
+        name: 'Radio Skonto',
+        matchKeys: ['skonto'],
+        rbQuery: 'Skonto',
+        countryCode: 'LV',
+        genre: 'Latvijas',
+        description: 'Labākās dziesmas no 80. gadiem līdz šodienai',
+        url: 'https://stream.radioskonto.lv:8443/stereo',
+        fallbackUrl: 'https://stream.radioskonto.lv:8443/mp3',
+        grad: 'grad-red'
+      },
+      {
+        id: 'somafm-metal',
+        name: 'SomaFM: Metal Detector',
+        matchKeys: ['metal detector'],
+        rbQuery: 'metal detector',
+        genre: 'Metāls',
+        description: 'Death, Black, Doom, Thrash & Speed Metal',
+        url: 'https://ice6.somafm.com/metal-128-mp3',
+        fallbackUrl: 'https://ice4.somafm.com/metal-128-mp3',
+        grad: 'grad-metal'
+      },
+      {
+        id: 'death-fm',
+        name: 'Death.FM',
+        matchKeys: ['death.fm', 'death fm'],
+        rbQuery: 'Death.FM',
+        genre: 'Metāls',
+        description: 'Death Metal, Brutal Death & Grindcore 24/7',
+        url: 'https://hi5.death.fm/',
+        fallbackUrl: 'https://lo5.death.fm/',
+        grad: 'grad-crimson'
+      },
+      {
+        id: 'chronix-aggression',
+        name: 'ChroniX Aggression',
+        matchKeys: ['chronix'],
+        rbQuery: 'ChroniX',
+        genre: 'Metāls',
+        description: 'Death Metal, Thrash & Extreme Heavy Metal',
+        url: 'https://usa17.fastcast4u.com/proxy/chronixaggression?mp=/1',
+        fallbackUrl: 'https://stream.laut.fm/chronix.m3u',
+        grad: 'grad-metal'
+      },
+      {
+        id: 'speed-thrash',
+        name: 'Speed & Thrash Metal Radio',
+        matchKeys: ['thrash'],
+        rbQuery: 'thrash metal',
+        genre: 'Metāls',
+        description: 'Ātrais Speed Metal un klasiskais Thrash Metal',
+        url: 'https://stream.laut.fm/thrash',
+        fallbackUrl: 'https://stream.rockantenne.de/heavy-metal/stream/mp3',
+        grad: 'grad-crimson'
+      },
+      {
+        id: 'brutal-death',
+        name: 'Brutal Death Metal Radio',
+        matchKeys: ['deathmetal', 'death metal'],
+        rbQuery: 'death metal',
+        genre: 'Metāls',
+        description: 'Ekstrēmais Death Metal un Technical Death 24/7',
+        url: 'https://stream.laut.fm/deathmetal',
+        fallbackUrl: 'https://streams.radiobob.de/bob-deathmetal/mp3-192/mediaplayer',
+        grad: 'grad-metal'
+      },
+      {
+        id: 'heavy-speed-metal',
+        name: 'ROCK ANTENNE Heavy & Speed Metal',
+        matchKeys: ['heavy metal', 'speed metal'],
+        rbQuery: 'heavy metal',
+        genre: 'Metāls',
+        description: 'Klasiskais Speed, Power un Heavy Metal 24/7',
+        url: 'https://stream.rockantenne.de/heavy-metal/stream/mp3',
+        fallbackUrl: 'https://streams.radiobob.de/bob-metal/mp3-192/mediaplayer',
+        grad: 'grad-crimson'
+      },
+      {
+        id: 'radio-paradise',
+        name: 'Radio Paradise (Main Mix)',
+        genre: 'Populārā',
+        description: 'Kvalitatīva eklektiskā mūzika bez reklāmām',
+        url: 'https://stream.radioparadise.com/aac-128',
+        fallbackUrl: 'https://stream.radioparadise.com/mp3-128',
+        grad: 'grad-indigo'
+      },
+      {
+        id: 'swiss-classic',
+        name: 'Radio Swiss Classic',
+        genre: 'Klasiskā',
+        description: 'Šveices klasiskās mūzikas izlase 24/7',
+        url: 'https://stream.srg-ssr.ch/m/rsc_de/mp3_128',
+        fallbackUrl: 'https://stream.srg-ssr.ch/m/rsc_de/aacp_96',
+        grad: 'grad-emerald'
+      },
+      {
+        id: 'swiss-jazz',
+        name: 'Radio Swiss Jazz',
+        genre: 'Džezs & Chill',
+        description: 'Džezs, souls un blūzs no Šveices',
+        url: 'https://stream.srg-ssr.ch/m/rsj/mp3_128',
+        fallbackUrl: 'https://stream.srg-ssr.ch/m/rsj/aacp_96',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'somafm-groove',
+        name: 'SomaFM: Groove Salad',
+        rbQuery: 'groove salad',
+        genre: 'Džezs & Chill',
+        description: 'Ambient, downtempo un elektroniskais chill',
+        url: 'https://ice6.somafm.com/groovesalad-128-mp3',
+        fallbackUrl: 'https://ice4.somafm.com/groovesalad-128-mp3',
+        grad: 'grad-teal'
+      },
+      {
+        id: 'offline-synth',
+        name: 'Lietus & Ambient Sintezators',
+        genre: 'Džezs & Chill',
+        description: 'Iebūvēts bezsaistes fona skaņu ģenerators',
+        url: 'webaudio://ambient',
+        grad: 'grad-purple'
+      }
     ];
 
+    /* CURATED LATVIAN PODCASTS (DIRECT CLIENT-SIDE RSS + ITUNES LOOKUP, ZERO GITHUB ACTIONS) */
     const DEFAULT_PODCASTS = [
-      { id: 'lr-krustpunkta', title: 'Krustpunktā (Latvijas Radio 1)', author: 'Latvijas Radio 1', description: 'Aktuālo notikumu analīze un diskusijas.', grad: 'grad-red', rss: 'https://lr1.lsm.lv/lv/rss/?id=1261', episodes: [] },
-      { id: 'lr-zinamais', title: 'Zināmais nezināmajā (LR1)', author: 'Latvijas Radio 1', description: 'Zinātne, daba, tehnoloģijas un cilvēks.', grad: 'grad-emerald', rss: 'https://lr1.lsm.lv/lv/rss/?id=1295', episodes: [] },
-      { id: 'lr-kulturas-rondo', title: 'Kultūras Rondo (LR1)', author: 'Latvijas Radio 1', description: 'Kultūras notikumi, recenzijas un sarunas.', grad: 'grad-indigo', rss: 'https://lr1.lsm.lv/lv/rss/?id=1265', episodes: [] },
-      { id: 'lr5-pilna-diena', title: 'Pieci.lv Raidieraksti', author: 'Latvijas Radio 5', description: 'Jauniešu kultūra, intervijas un aktuālās tēmas.', grad: 'grad-purple', rss: 'https://pieci.lsm.lv/lv/rss/', episodes: [] },
-      { id: 'lr-gimenes-studija', title: 'Ģimenes studija (LR1)', author: 'Latvijas Radio 1', description: 'Attiecības, bērnu audzināšana un ģimenes ikdiena.', grad: 'grad-amber', rss: 'https://lr1.lsm.lv/lv/rss/?id=1269', episodes: [] },
-      { id: 'lr-monopols', title: 'Monopols (LR1)', author: 'Latvijas Radio 1', description: 'Personības un dziļas sarunas Latvijas Radio studijā.', grad: 'grad-teal', rss: 'https://lr1.lsm.lv/lv/rss/?id=1273', episodes: [] }
+      {
+        id: 'pod-krustpunkta',
+        name: 'Krustpunktā (Latvijas Radio 1)',
+        description: 'Aktuālo notikumu analīze un diskusijas',
+        rssUrl: 'https://lr1.lsm.lv/lv/lr1/raidijumi/krustpunkta/rss/',
+        itunesQuery: 'Krustpunktā Latvijas Radio',
+        grad: 'grad-red'
+      },
+      {
+        id: 'pod-zinamais',
+        name: 'Zināmais nezināmajā (LR1)',
+        description: 'Zinātne, daba, tehnoloģijas un cilvēks',
+        rssUrl: 'https://lr1.lsm.lv/lv/lr1/raidijumi/zinamais-nezinamaja/rss/',
+        itunesQuery: 'Zināmais nezināmajā',
+        grad: 'grad-emerald'
+      },
+      {
+        id: 'pod-kulturas-rondo',
+        name: 'Kultūras Rondo (LR1)',
+        description: 'Kultūras notikumi, recenzijas un sarunas',
+        rssUrl: 'https://lr1.lsm.lv/lv/lr1/raidijumi/kulturas-rondo/rss/',
+        itunesQuery: 'Kultūras Rondo',
+        grad: 'grad-indigo'
+      },
+      {
+        id: 'pod-pieci',
+        name: 'Pieci.lv Raidieraksti',
+        description: 'Jauniešu kultūra, intervijas un aktuālās tēmas',
+        rssUrl: 'https://pieci.lsm.lv/lv/lr5/raidijumi/rss/',
+        itunesQuery: 'Pieci.lv',
+        grad: 'grad-purple'
+      },
+      {
+        id: 'pod-bize',
+        name: 'Bize Vaļā',
+        description: 'Sarunas par dzīvi, kultūru un aktuālo Latvijā',
+        rssUrl: 'https://anchor.fm/s/1127d60c/podcast/rss',
+        itunesQuery: 'Bize Vaļā',
+        grad: 'grad-amber'
+      },
+      {
+        id: 'pod-musu-laiks',
+        name: 'Mūsu Laiks / LSM Podkāsti',
+        description: 'Sabiedrības, vēstures un aktuālo notikumu raidieraksti',
+        rssUrl: 'https://www.lsm.lv/rss/?lang=lv&catid=14',
+        itunesQuery: 'Latvijas Radio',
+        grad: 'grad-teal'
+      }
     ];
 
-    /* STATE */
+    /* ==========================================================================
+       APP STATE
+       ========================================================================== */
     let appMode = 'radio'; // 'radio' | 'podcasts'
     let stations = [];
     let podcasts = [];
     let favorites = [];
     let recentIds = [];
+    let hiddenIds = [];
     let selectedCategory = 'Visas';
     let searchQuery = '';
-    let currentMedia = null; // { type: 'radio'|'podcast', id, title, subtitle, audioUrl, grad, podcastId }
+
+    // Playback State (Radio OR Podcast Episode)
+    let playbackType = 'radio'; // 'radio' | 'podcast'
+    let currentStationId = null;
+    let currentEpisode = null; // { title, podcastName, audioUrl, pubDate, grad, artworkUrl }
+    let activePodcastObj = null;
     let isPlaying = false;
+    let playbackSpeed = 1.0;
+
     let hlsInstance = null;
     let synthNodes = null;
     let sleepTimerId = null;
@@ -1019,155 +1978,348 @@
     let snackbarTimeout = null;
     let attemptToken = 0;
     let activeSheetId = null;
-    let podcastProgressMap = {}; // episodeId -> seconds
-    let playbackRates = [1.0, 1.25, 1.5, 1.75];
-    let rateIndex = 0;
+    let episodeProgressMap = {}; // { audioUrl: { currentTime, duration } }
 
     function initData() {
-      try { favorites = JSON.parse(safeStorage.get('m3_radio_favs') || '["lr1","somafm-metal"]'); } catch (e) { favorites = ['lr1']; }
-      try { recentIds = JSON.parse(safeStorage.get('m3_radio_recents') || '[]'); } catch (e) { recentIds = []; }
-      try { podcastProgressMap = JSON.parse(safeStorage.get('m3_pod_progress') || '{}'); } catch (e) { podcastProgressMap = {}; }
+      const savedFavs = safeStorage.get('m3_radio_favs');
+      if (savedFavs) { try { favorites = JSON.parse(savedFavs); } catch (e) { favorites = ['lr1', 'somafm-metal']; } }
+      else { favorites = ['lr1', 'somafm-metal']; }
 
+      const savedRecents = safeStorage.get('m3_radio_recents');
+      if (savedRecents) { try { recentIds = JSON.parse(savedRecents); } catch (e) { recentIds = []; } }
+
+      const savedHidden = safeStorage.get('m3_radio_hidden');
+      if (savedHidden) { try { hiddenIds = JSON.parse(savedHidden); } catch (e) { hiddenIds = []; } }
+
+      const savedCustom = safeStorage.get('m3_radio_custom_v1');
       let customStations = [];
-      let hiddenIds = [];
-      try { customStations = JSON.parse(safeStorage.get('m3_radio_custom_v1') || '[]'); } catch (e) {}
-      try { hiddenIds = JSON.parse(safeStorage.get('m3_radio_hidden') || '[]'); } catch (e) {}
+      if (savedCustom) { try { customStations = JSON.parse(savedCustom); } catch (e) { customStations = []; } }
       stations = [...DEFAULT_STATIONS, ...customStations].filter(s => !hiddenIds.includes(s.id));
 
-      let customPodcasts = [];
-      try { customPodcasts = JSON.parse(safeStorage.get('m3_custom_podcasts') || '[]'); } catch (e) {}
-      podcasts = [...DEFAULT_PODCASTS, ...customPodcasts];
+      const savedCustomPods = safeStorage.get('m3_podcasts_custom_v1');
+      let customPods = [];
+      if (savedCustomPods) { try { customPods = JSON.parse(savedCustomPods); } catch (e) { customPods = []; } }
+      podcasts = [...DEFAULT_PODCASTS, ...customPods];
+
+      const savedProgress = safeStorage.get('m3_podcast_progress');
+      if (savedProgress) { try { episodeProgressMap = JSON.parse(savedProgress); } catch (e) { episodeProgressMap = {}; } }
+
+      const lastId = safeStorage.get('m3_radio_last_station');
+      if (lastId && stations.some(s => s.id === lastId)) {
+        currentStationId = lastId;
+        updatePlayerUI('Pauzēts (pēdējā stacija)');
+      }
 
       const savedTheme = safeStorage.get('m3_radio_theme') || 'dark';
       const savedPalette = safeStorage.get('m3_radio_palette') || 'indigo';
       applyThemeAndPalette(savedTheme, savedPalette);
     }
 
-    function applyThemeAndPalette(theme, palette) {
-      document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.setAttribute('data-palette', palette);
-      safeStorage.set('m3_radio_theme', theme);
-      safeStorage.set('m3_radio_palette', palette);
-      const tcMeta = document.getElementById('themeColorMeta');
-      if (tcMeta) tcMeta.setAttribute('content', theme === 'dark' ? '#121318' : '#FBF8FF');
-      document.getElementById('themeModeBtn').textContent = theme === 'dark' ? 'Gaišais' : 'Tumšais';
-      document.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.toggle('selected', btn.dataset.pal === palette));
+    function saveCustomStations() {
+      safeStorage.set('m3_radio_custom_v1', JSON.stringify(stations.filter(s => s.isCustom)));
     }
 
-    function showSnackbar(message, showRetry = false) {
-      const sb = document.getElementById('m3Snackbar');
-      document.getElementById('snackbarText').textContent = message;
-      document.getElementById('snackbarRetryBtn').style.display = showRetry ? 'inline-block' : 'none';
-      sb.classList.add('visible');
-      clearTimeout(snackbarTimeout);
-      snackbarTimeout = setTimeout(() => sb.classList.remove('visible'), 5000);
+    function saveCustomPodcasts() {
+      safeStorage.set('m3_podcasts_custom_v1', JSON.stringify(podcasts.filter(p => p.isCustom)));
     }
 
-    function hideSnackbar() {
-      clearTimeout(snackbarTimeout);
-      document.getElementById('m3Snackbar').classList.remove('visible');
+    function saveFavorites() {
+      safeStorage.set('m3_radio_favs', JSON.stringify(favorites));
+    }
+
+    function recordRecentStation(id) {
+      recentIds = [id, ...recentIds.filter(r => r !== id)].slice(0, 6);
+      safeStorage.set('m3_radio_recents', JSON.stringify(recentIds));
+      safeStorage.set('m3_radio_last_station', id);
+      renderRecentShelf();
     }
 
     /* ==========================================================================
-       HYBRID PODCAST LOADER (1. Local GitHub Actions podcasts.json -> 2. RSS2JSON Fallback)
+       DIRECT CLIENT-SIDE PODCAST RSS & ITUNES RESOLVER (NO GITHUB ACTIONS NEEDED)
        ========================================================================== */
-    async function loadPrebuiltPodcastsJson() {
-      try {
-        const res = await fetch('./podcasts.json?t=' + Math.floor(Date.now() / 600000));
-        if (!res.ok) return;
-        const data = await res.json();
-        if (data && Array.isArray(data.podcasts)) {
-          data.podcasts.forEach(remotePod => {
-            const local = podcasts.find(p => p.id === remotePod.id || p.rss === remotePod.rss);
-            if (local && Array.isArray(remotePod.episodes) && remotePod.episodes.length > 0) {
-              local.episodes = remotePod.episodes;
-            }
-          });
-        }
-      } catch (e) {}
-    }
+    function parseRssXmlText(xmlText, fallbackTitle = '') {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlText, 'text/xml');
+      if (doc.querySelector('parsererror')) return null;
 
-    async function fetchPodcastEpisodes(podcast) {
-      if (podcast.episodes && podcast.episodes.length > 0) {
-        return podcast.episodes;
-      }
-      // Fallback: Live RSS-to-JSON bridge if podcasts.json hasn't populated this custom feed yet
-      try {
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(podcast.rss)}`;
-        const res = await fetch(apiUrl);
-        if (res.ok) {
-          const data = await res.json();
-          if (data.status === 'ok' && Array.isArray(data.items)) {
-            if (data.feed && data.feed.title && !podcast.title) podcast.title = data.feed.title;
-            podcast.episodes = data.items
-              .filter(it => it.enclosure && it.enclosure.link)
-              .slice(0, 20)
-              .map((it, idx) => {
-                let link = it.enclosure.link;
-                if (link.startsWith('http://')) link = 'https://' + link.slice(7);
-                return {
-                  id: `${podcast.id}-live-${idx}`,
-                  title: it.title || `Epizode ${idx + 1}`,
-                  audioUrl: link,
-                  pubDate: (it.pubDate || '').slice(0, 10),
-                  duration: '',
-                  summary: (it.description || '').replace(/<[^>]+>/g, '').slice(0, 160)
-                };
-              });
-            return podcast.episodes;
+      const channelTitle = doc.querySelector('channel > title')?.textContent?.trim() || fallbackTitle;
+      const channelImg = doc.querySelector('channel > image > url')?.textContent?.trim() ||
+                         doc.querySelector('itunes\\:image, image')?.getAttribute('href') || '';
+
+      const items = Array.from(doc.querySelectorAll('item')).slice(0, 25);
+      const episodes = [];
+
+      items.forEach(item => {
+        const enclosure = item.querySelector('enclosure');
+        let audioUrl = enclosure?.getAttribute('url') || '';
+        if (!audioUrl) {
+          const media = item.querySelector('media\\:content, content');
+          audioUrl = media?.getAttribute('url') || '';
+        }
+        if (!audioUrl || !/^https?:\/\//i.test(audioUrl)) return;
+
+        const title = item.querySelector('title')?.textContent?.trim() || 'Epizode';
+        const pubRaw = item.querySelector('pubDate')?.textContent?.trim() || '';
+        let pubDate = '';
+        if (pubRaw) {
+          const d = new Date(pubRaw);
+          if (!isNaN(d.getTime())) {
+            pubDate = d.toLocaleDateString('lv-LV', { day: 'numeric', month: 'short', year: 'numeric' });
           }
         }
-      } catch (e) {}
-      return [];
+        const duration = item.querySelector('itunes\\:duration, duration')?.textContent?.trim() || '';
+
+        episodes.push({
+          title,
+          audioUrl,
+          pubDate,
+          duration,
+          podcastName: channelTitle,
+          artworkUrl: channelImg
+        });
+      });
+
+      return episodes.length > 0 ? { title: channelTitle, artworkUrl: channelImg, episodes } : null;
     }
 
-    async function openPodcastEpisodesSheet(podcast) {
-      document.getElementById('epSheetTitle').textContent = podcast.title;
-      document.getElementById('epSheetDesc').textContent = podcast.description || podcast.author;
+    async function fetchWithTimeout(url, ms = 6000) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), ms);
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(id);
+        return res;
+      } catch (e) {
+        clearTimeout(id);
+        throw e;
+      }
+    }
+
+    async function resolvePodcastFeedUrlViaItunes(query) {
+      try {
+        const url = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&media=podcast&limit=5`;
+        const res = await fetchWithTimeout(url, 5500);
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (data.results && data.results.length > 0) {
+          const hit = data.results.find(r => r.feedUrl) || data.results[0];
+          return hit.feedUrl || null;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    async function loadPodcastEpisodesDirect(podcast, forceRefresh = false) {
+      const cacheKey = 'm3_pod_cache_' + podcast.id;
+      if (!forceRefresh) {
+        const cached = safeStorage.get(cacheKey);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.ts < 3600 * 1000 && parsed.episodes?.length > 0) {
+              return parsed.episodes;
+            }
+          } catch (e) {}
+        }
+      }
+
+      const feedUrlsToTry = [];
+      if (podcast.rssUrl) feedUrlsToTry.push(podcast.rssUrl);
+
+      // If iTunes query exists, also resolve official feedUrl dynamically
+      if (podcast.itunesQuery) {
+        const itunesFeed = await resolvePodcastFeedUrlViaItunes(podcast.itunesQuery);
+        if (itunesFeed && !feedUrlsToTry.includes(itunesFeed)) {
+          feedUrlsToTry.unshift(itunesFeed);
+          podcast.rssUrl = itunesFeed;
+        }
+      }
+
+      for (const feedUrl of feedUrlsToTry) {
+        // Strategy 1: Direct XML fetch (works if server sends Access-Control-Allow-Origin: *)
+        try {
+          const directRes = await fetchWithTimeout(feedUrl, 4500);
+          if (directRes.ok) {
+            const xmlText = await directRes.text();
+            const parsed = parseRssXmlText(xmlText, podcast.name);
+            if (parsed && parsed.episodes.length > 0) {
+              safeStorage.set(cacheKey, JSON.stringify({ ts: Date.now(), episodes: parsed.episodes }));
+              return parsed.episodes;
+            }
+          }
+        } catch (e) {}
+
+        // Strategy 2: AllOrigins CORS proxy -> raw XML
+        try {
+          const aoUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`;
+          const aoRes = await fetchWithTimeout(aoUrl, 6500);
+          if (aoRes.ok) {
+            const xmlText = await aoRes.text();
+            const parsed = parseRssXmlText(xmlText, podcast.name);
+            if (parsed && parsed.episodes.length > 0) {
+              safeStorage.set(cacheKey, JSON.stringify({ ts: Date.now(), episodes: parsed.episodes }));
+              return parsed.episodes;
+            }
+          }
+        } catch (e) {}
+
+        // Strategy 3: rss2json public API
+        try {
+          const r2jUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+          const r2jRes = await fetchWithTimeout(r2jUrl, 6500);
+          if (r2jRes.ok) {
+            const json = await r2jRes.json();
+            if (json.status === 'ok' && Array.isArray(json.items)) {
+              const eps = json.items
+                .filter(it => it.enclosure && it.enclosure.link)
+                .map(it => ({
+                  title: it.title || 'Epizode',
+                  audioUrl: it.enclosure.link,
+                  pubDate: it.pubDate ? new Date(it.pubDate).toLocaleDateString('lv-LV', { day: 'numeric', month: 'short', year: 'numeric' }) : '',
+                  duration: '',
+                  podcastName: json.feed?.title || podcast.name,
+                  artworkUrl: json.feed?.image || ''
+                }));
+              if (eps.length > 0) {
+                safeStorage.set(cacheKey, JSON.stringify({ ts: Date.now(), episodes: eps }));
+                return eps;
+              }
+            }
+          }
+        } catch (e) {}
+      }
+
+      return null;
+    }
+
+    async function openPodcastEpisodesSheet(podcast, forceRefresh = false) {
+      activePodcastObj = podcast;
+      document.getElementById('epSheetTitle').textContent = podcast.name;
+      document.getElementById('epSheetDesc').textContent = podcast.description || 'Latviešu raidieraksts';
       const box = document.getElementById('episodesListContainer');
-      box.innerHTML = '<div class="empty-state">Ielādē jaunākās epizodes...</div>';
+      box.innerHTML = '<div class="empty-state">Ielādē jaunākās epizodes tieši no RSS...</div>';
       openSheet('episodesSheet');
 
-      const episodes = await fetchPodcastEpisodes(podcast);
-      if (episodes.length === 0) {
-        box.innerHTML = '<div class="empty-state">Šobrīd neizdevās ielādēt epizodes. Pārbaudiet interneta savienojumu vai palaidiet GitHub Actions atjaunināšanu.</div>';
+      const episodes = await loadPodcastEpisodesDirect(podcast, forceRefresh);
+      if (!episodes || episodes.length === 0) {
+        box.innerHTML = `
+          <div class="empty-state">
+            Neizdevās ielādēt epizodes no šīs RSS plūsmas.<br/>
+            Pamēģiniet pievienot citu podkāstu caur pogu <b>"+ Pievienot podkāstu"</b>.
+          </div>`;
         return;
       }
 
+      if (episodes[0].artworkUrl && !podcast.artworkUrl) {
+        podcast.artworkUrl = episodes[0].artworkUrl;
+        renderMainList();
+      }
+
+      renderEpisodesInSheet(episodes, podcast);
+    }
+
+    function renderEpisodesInSheet(episodes, podcast) {
+      const box = document.getElementById('episodesListContainer');
       box.innerHTML = '';
       episodes.forEach(ep => {
-        const savedSec = podcastProgressMap[ep.id] || 0;
-        const isCurrentEp = currentMedia && currentMedia.id === ep.id;
+        const isCurrentEp = playbackType === 'podcast' && currentEpisode && currentEpisode.audioUrl === ep.audioUrl;
+        const saved = episodeProgressMap[ep.audioUrl];
+        const pct = saved && saved.duration > 0 ? Math.min(100, Math.round((saved.currentTime / saved.duration) * 100)) : 0;
+
         const card = document.createElement('div');
-        card.className = 'episode-card' + (isCurrentEp ? ' active' : '');
+        card.className = 'episode-card' + (isCurrentEp ? ' playing' : '');
         card.innerHTML = `
           <div class="ep-play-circle">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              ${isCurrentEp && isPlaying
-                ? '<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>'
-                : '<polygon points="6 4 20 12 6 20 6 4"></polygon>'}
-            </svg>
+            ${isCurrentEp && isPlaying
+              ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>'
+              : '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>'
+            }
           </div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:14px;font-weight:500;line-height:19px;">${ep.title}</div>
-            <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);margin-top:3px;">
-              ${ep.pubDate || 'Podkāsts'} ${savedSec > 10 ? `• Atsākt no ${formatTime(savedSec)}` : ''}
-            </div>
+          <div class="ep-meta">
+            <div class="ep-title">${ep.title}</div>
+            <div class="ep-date">${ep.pubDate}${ep.duration ? ' • ' + ep.duration : ''}${pct > 0 ? ` • Noklausīti ${pct}%` : ''}</div>
+            ${pct > 0 ? `<div class="ep-progress-track"><div class="ep-progress-fill" style="width:${pct}%"></div></div>` : ''}
           </div>
         `;
         card.addEventListener('click', () => {
-          playPodcastEpisode(podcast, ep);
-          closeAllSheets();
+          if (isCurrentEp) {
+            togglePlayPause();
+          } else {
+            playPodcastEpisode({
+              ...ep,
+              grad: podcast.grad || 'grad-indigo',
+              artworkUrl: ep.artworkUrl || podcast.artworkUrl || ''
+            });
+          }
+          renderEpisodesInSheet(episodes, podcast);
         });
         box.appendChild(card);
       });
     }
 
     /* ==========================================================================
-       AUDIO PLAYBACK (RADIO STREAMS + PODCAST EPISODES WITH RESUME & SEEK)
+       AUDIO ENGINE (LIVE RADIO + PODCAST EPISODES WITH RESUME & SPEED)
        ========================================================================== */
     const audioEl = document.getElementById('audioPlayer');
     audioEl.volume = 0.85;
+
+    function formatTime(sec) {
+      if (!sec || isNaN(sec) || !isFinite(sec)) return '0:00';
+      const total = Math.floor(sec);
+      const h = Math.floor(total / 3600);
+      const m = Math.floor((total % 3600) / 60);
+      const s = total % 60;
+      if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      return `${m}:${String(s).padStart(2, '0')}`;
+    }
+
+    audioEl.addEventListener('timeupdate', () => {
+      if (playbackType === 'podcast' && currentEpisode && audioEl.duration) {
+        const cur = audioEl.currentTime;
+        const dur = audioEl.duration;
+        const seekSlider = document.getElementById('seekSlider');
+        seekSlider.max = Math.floor(dur);
+        seekSlider.value = Math.floor(cur);
+        document.getElementById('seekCurrentTime').textContent = formatTime(cur);
+        document.getElementById('seekTotalTime').textContent = formatTime(dur);
+
+        if (Math.floor(cur) % 5 === 0) {
+          episodeProgressMap[currentEpisode.audioUrl] = { currentTime: cur, duration: dur };
+          safeStorage.set('m3_podcast_progress', JSON.stringify(episodeProgressMap));
+        }
+      }
+    });
+
+    function playPodcastEpisode(ep) {
+      attemptToken++;
+      playbackType = 'podcast';
+      currentEpisode = ep;
+      currentStationId = null;
+      isPlaying = false;
+      hideSnackbar();
+      stopAmbientSynth();
+      destroyHls();
+      audioEl.pause();
+
+      audioEl.playbackRate = playbackSpeed;
+      audioEl.src = ep.audioUrl;
+
+      const saved = episodeProgressMap[ep.audioUrl];
+      if (saved && saved.currentTime > 5 && (!saved.duration || saved.currentTime < saved.duration - 15)) {
+        audioEl.currentTime = saved.currentTime;
+      }
+
+      updatePlayerUI('Ielādē epizodi...');
+      audioEl.play().then(() => {
+        isPlaying = true;
+        updatePlayerUI('Podkāsts');
+        updateMediaSession({ name: ep.title, genre: ep.podcastName, grad: ep.grad }, true);
+      }).catch(() => {
+        isPlaying = false;
+        updatePlayerUI('Kļūda atskaņojot');
+        showSnackbar('Neizdevās atskaņot šo epizodi', false);
+      });
+    }
 
     function stopAmbientSynth() {
       if (synthNodes) {
@@ -1196,13 +2348,21 @@
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.value = 420;
+      const osc1 = ctx.createOscillator();
+      osc1.type = 'sine';
+      osc1.frequency.value = 110;
+      const osc2 = ctx.createOscillator();
+      osc2.type = 'triangle';
+      osc2.frequency.value = 164.81;
       const masterGain = ctx.createGain();
       masterGain.gain.value = audioEl.volume * 0.25;
       noise.connect(filter);
       filter.connect(masterGain);
+      osc1.connect(masterGain);
+      osc2.connect(masterGain);
       masterGain.connect(ctx.destination);
-      noise.start();
-      synthNodes = { ctx, noise, masterGain };
+      noise.start(); osc1.start(); osc2.start();
+      synthNodes = { ctx, noise, osc1, osc2, masterGain };
     }
 
     function destroyHls() {
@@ -1225,6 +2385,7 @@
       destroyHls();
       audioEl.pause();
       audioEl.removeAttribute('src');
+      audioEl.playbackRate = 1.0;
 
       if (url.includes('.m3u8')) {
         const HlsLib = await loadHlsScript();
@@ -1235,11 +2396,13 @@
             hlsInstance = hls;
             let settled = false;
             const finish = (ok) => { if (!settled) { settled = true; resolve(ok); } };
-            const timeout = setTimeout(() => { destroyHls(); finish(false); }, 10000);
+            const timeout = setTimeout(() => { destroyHls(); finish(false); }, 9500);
             hls.on(HlsLib.Events.MANIFEST_PARSED, () => {
               audioEl.play().then(() => { clearTimeout(timeout); finish(true); }).catch(() => { clearTimeout(timeout); finish(false); });
             });
-            hls.on(HlsLib.Events.ERROR, (ev, data) => { if (data.fatal) { clearTimeout(timeout); destroyHls(); finish(false); } });
+            hls.on(HlsLib.Events.ERROR, (ev, data) => {
+              if (data.fatal) { clearTimeout(timeout); destroyHls(); finish(false); }
+            });
             hls.loadSource(url);
             hls.attachMedia(audioEl);
           });
@@ -1272,50 +2435,103 @@
       });
     }
 
-    async function playRadioStation(stationId) {
+    const RB_SERVERS = ['https://de1.api.radio-browser.info', 'https://fi1.api.radio-browser.info'];
+
+    async function fetchRadioBrowserMirrors(query, countryCode = '') {
+      const params = new URLSearchParams({ limit: '100', hidebroken: 'true', order: 'clickcount', reverse: 'true' });
+      if (query) params.set('name', query);
+      if (countryCode) params.set('countrycode', countryCode);
+      for (const base of RB_SERVERS) {
+        try {
+          const res = await fetchWithTimeout(`${base}/json/stations/search?${params.toString()}`, 4500);
+          if (!res.ok) continue;
+          const data = await res.json();
+          const valid = data
+            .filter(item => item.url_resolved && /^https?:\/\//i.test(item.url_resolved))
+            .map(item => ({
+              name: (item.name || '').toLowerCase(),
+              url: item.url_resolved,
+              isHttps: item.url_resolved.startsWith('https://'),
+              hasPort: /:\d+/.test(item.url_resolved.replace(/^https?:\/\//, ''))
+            }));
+          valid.sort((a, b) => (a.isHttps !== b.isHttps ? (a.isHttps ? -1 : 1) : (a.hasPort !== b.hasPort ? (a.hasPort ? 1 : -1) : 0)));
+          if (valid.length > 0) return valid;
+        } catch (e) {}
+      }
+      return [];
+    }
+
+    async function syncAllLatvianMirrors(silent = true) {
+      if (!silent) showSnackbar('Meklē aktīvās Latvijas tiešraides...', false);
+      const allLv = await fetchRadioBrowserMirrors('', 'LV');
+      let updatedCount = 0;
+      if (allLv.length > 0) {
+        for (const st of stations.filter(s => s.countryCode === 'LV')) {
+          const keys = st.matchKeys || [st.name.toLowerCase()];
+          const matchedUrls = allLv.filter(item => keys.some(k => item.name.includes(k))).map(item => item.url);
+          if (matchedUrls.length > 0) { st.liveMirrors = [...new Set(matchedUrls)]; updatedCount++; }
+        }
+      }
+      if (!silent) showSnackbar(updatedCount > 0 ? `Sinhronizētas ${updatedCount} Latvijas stacijas!` : 'Tiešraides atjaunotas.', false);
+    }
+
+    async function playStation(stationId) {
       const station = stations.find(s => s.id === stationId);
       if (!station) return;
+
       const token = ++attemptToken;
-      currentMedia = {
-        type: 'radio',
-        id: station.id,
-        title: station.name,
-        subtitle: station.description || station.genre,
-        grad: station.grad || 'grad-indigo'
-      };
+      playbackType = 'radio';
+      currentEpisode = null;
+      currentStationId = stationId;
       isPlaying = false;
       hideSnackbar();
       stopAmbientSynth();
       destroyHls();
       audioEl.pause();
-      audioEl.playbackRate = 1.0;
 
-      recentIds = [stationId, ...recentIds.filter(r => r !== stationId)].slice(0, 6);
-      safeStorage.set('m3_radio_recents', JSON.stringify(recentIds));
-      renderRecentShelf();
+      recordRecentStation(stationId);
       updatePlayerUI('Savienojas...');
       renderMainList();
 
       if (station.url === 'webaudio://ambient') {
         startAmbientSynth();
         isPlaying = true;
-        updatePlayerUI('Bezsaistes sintezators');
+        updatePlayerUI('Atskaņo (Bezsaistes sintezators)');
+        updateMediaSession(station, true);
         renderMainList();
         return;
       }
 
       const candidates = [...new Set([...(station.liveMirrors || []), station.url, station.fallbackUrl].filter(Boolean))];
-      for (const url of candidates) {
+      for (const candidateUrl of candidates) {
         if (token !== attemptToken) return;
-        const ok = await tryPlayStreamUrl(url, token);
-        if (token !== attemptToken) return;
-        if (ok) {
+        if (await tryPlayStreamUrl(candidateUrl, token)) {
+          if (token !== attemptToken) return;
           isPlaying = true;
           hideSnackbar();
           updatePlayerUI('Tiešraide');
-          updateMediaSession();
+          updateMediaSession(station, true);
           renderMainList();
+          renderRecentShelf();
           return;
+        }
+      }
+
+      if (station.rbQuery && token === attemptToken) {
+        updatePlayerUI('Meklē rezerves straumi...');
+        const fetchedUrls = (await fetchRadioBrowserMirrors(station.rbQuery, station.countryCode || '')).map(o => o.url).filter(u => !candidates.includes(u));
+        if (token !== attemptToken) return;
+        for (const mirrorUrl of fetchedUrls) {
+          if (token !== attemptToken) return;
+          if (await tryPlayStreamUrl(mirrorUrl, token)) {
+            if (token !== attemptToken) return;
+            isPlaying = true;
+            hideSnackbar();
+            updatePlayerUI('Tiešraide');
+            updateMediaSession(station, true);
+            renderMainList();
+            return;
+          }
         }
       }
 
@@ -1327,123 +2543,104 @@
       }
     }
 
-    async function playPodcastEpisode(podcast, episode) {
-      const token = ++attemptToken;
-      currentMedia = {
-        type: 'podcast',
-        id: episode.id,
-        podcastId: podcast.id,
-        title: episode.title,
-        subtitle: podcast.title,
-        audioUrl: episode.audioUrl,
-        grad: podcast.grad || 'grad-indigo'
-      };
-      isPlaying = false;
-      hideSnackbar();
-      stopAmbientSynth();
-      destroyHls();
-      audioEl.pause();
-
-      updatePlayerUI('Ielādē epizodi...');
-      const resumeSec = podcastProgressMap[episode.id] || 0;
-
-      const ok = await tryPlayStreamUrl(episode.audioUrl, token);
-      if (token !== attemptToken) return;
-      if (ok) {
-        if (resumeSec > 5 && audioEl.duration && resumeSec < audioEl.duration - 10) {
-          audioEl.currentTime = resumeSec;
-        }
-        audioEl.playbackRate = playbackRates[rateIndex];
-        isPlaying = true;
-        updatePlayerUI('Podkāsts');
-        updateMediaSession();
-      } else {
-        isPlaying = false;
-        updatePlayerUI('Neizdevās atskaņot epizodi');
-        showSnackbar('Neizdevās ielādēt podkāsta epizodi', true);
-      }
-    }
-
     function togglePlayPause() {
-      if (!currentMedia) {
-        if (appMode === 'radio' && stations.length > 0) playRadioStation(stations[0].id);
+      if (playbackType === 'podcast' && currentEpisode) {
+        if (isPlaying) {
+          isPlaying = false;
+          audioEl.pause();
+          updatePlayerUI('Podkāsts pauzēts');
+        } else {
+          audioEl.play().then(() => {
+            isPlaying = true;
+            updatePlayerUI('Podkāsts');
+          }).catch(() => {});
+        }
+        return;
+      }
+
+      if (!currentStationId) {
+        if (stations.length > 0) playStation(stations[0].id);
         return;
       }
       if (isPlaying) {
         attemptToken++;
         isPlaying = false;
         stopAmbientSynth();
+        destroyHls();
         audioEl.pause();
         updatePlayerUI('Pauzēts');
-        updateMediaSession();
         renderMainList();
       } else {
-        if (currentMedia.type === 'radio') {
-          playRadioStation(currentMedia.id);
-        } else {
-          audioEl.play().then(() => {
-            isPlaying = true;
-            updatePlayerUI('Podkāsts');
-            updateMediaSession();
-          }).catch(() => {});
-        }
+        playStation(currentStationId);
       }
     }
 
-    /* PODCAST TIMEUPDATE & PROGRESS SAVING */
-    audioEl.addEventListener('timeupdate', () => {
-      if (!currentMedia || currentMedia.type !== 'podcast') return;
-      const cur = audioEl.currentTime || 0;
-      const dur = audioEl.duration || 0;
-      document.getElementById('currentTimeLabel').textContent = formatTime(cur);
-      document.getElementById('durationLabel').textContent = dur ? formatTime(dur) : '--:--';
-      if (dur > 0) {
-        document.getElementById('seekSlider').value = Math.floor((cur / dur) * 100);
-      }
-      if (Math.floor(cur) % 5 === 0 && cur > 2) {
-        podcastProgressMap[currentMedia.id] = Math.floor(cur);
-        safeStorage.set('m3_pod_progress', JSON.stringify(podcastProgressMap));
-      }
+    audioEl.addEventListener('playing', () => {
+      isPlaying = true;
+      hideSnackbar();
+      updatePlayerUI(playbackType === 'podcast' ? 'Podkāsts' : 'Tiešraide');
+      renderMainList();
     });
 
-    function formatTime(sec) {
-      if (!sec || isNaN(sec)) return '00:00';
-      const s = Math.floor(sec);
-      const h = Math.floor(s / 3600);
-      const m = Math.floor((s % 3600) / 60);
-      const rem = s % 60;
-      const pad = n => String(n).padStart(2, '0');
-      return h > 0 ? `${h}:${pad(m)}:${pad(rem)}` : `${pad(m)}:${pad(rem)}`;
-    }
-
-    function updateMediaSession() {
-      if (!('mediaSession' in navigator) || !currentMedia) return;
+    /* ==========================================================================
+       MEDIA SESSION API & NAVIGATION
+       ========================================================================== */
+    function updateMediaSession(item, playing) {
+      if (!('mediaSession' in navigator) || !item) return;
       try {
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: currentMedia.title,
-          artist: currentMedia.subtitle,
-          album: currentMedia.type === 'podcast' ? 'Podkāsts' : 'Tiešraide'
+          title: item.name,
+          artist: item.genre || 'Internetradio',
+          album: playbackType === 'podcast' ? 'Podkāsts' : 'Tiešraide'
         });
-        navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+        navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
       } catch (e) {}
     }
 
+    function getFilteredStations() {
+      const q = searchQuery.trim().toLowerCase();
+      return stations.filter(st => {
+        if (selectedCategory === 'Favorīti' && !favorites.includes(st.id)) return false;
+        if (selectedCategory !== 'Visas' && selectedCategory !== 'Favorīti' && st.genre !== selectedCategory) return false;
+        if (q && !`${st.name} ${st.description || ''} ${st.genre || ''}`.toLowerCase().includes(q)) return false;
+        return true;
+      });
+    }
+
+    function skipStation(delta) {
+      if (playbackType === 'podcast') {
+        audioEl.currentTime = Math.max(0, audioEl.currentTime + (delta > 0 ? 30 : -15));
+        return;
+      }
+      const list = getFilteredStations().length > 0 ? getFilteredStations() : stations;
+      if (list.length === 0) return;
+      const idx = list.findIndex(s => s.id === currentStationId);
+      const nextIdx = idx !== -1 ? (idx + delta + list.length) % list.length : 0;
+      playStation(list[nextIdx].id);
+    }
+
     /* ==========================================================================
-       UI RENDERING (RADIO MODE & PODCAST MODE)
+       UI RENDERING
        ========================================================================== */
+    function switchMode(newMode) {
+      appMode = newMode;
+      const isRadio = newMode === 'radio';
+      document.getElementById('modeRadioBtn').classList.toggle('active', isRadio);
+      document.getElementById('modePodcastsBtn').classList.toggle('active', !isRadio);
+      document.getElementById('categoryChips').style.display = isRadio ? 'flex' : 'none';
+      document.getElementById('searchInput').placeholder = isRadio ? 'Meklēt staciju vai žanru...' : 'Meklēt latviešu podkāstu...';
+      document.getElementById('fabLabelText').textContent = isRadio ? 'Pievienot staciju' : 'Pievienot podkāstu';
+      renderRecentShelf();
+      renderMainList();
+    }
+
     function renderCategories() {
       const container = document.getElementById('categoryChips');
-      container.style.display = appMode === 'radio' ? 'flex' : 'none';
       container.innerHTML = '';
       CATEGORIES.forEach(cat => {
         const btn = document.createElement('button');
         btn.className = 'm3-filter-chip' + (selectedCategory === cat ? ' selected' : '');
-        btn.innerHTML = `
-          <svg class="chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span>${cat}</span>
-        `;
+        btn.innerHTML = `<svg class="chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>${cat}</span>`;
         btn.addEventListener('click', () => { selectedCategory = cat; renderCategories(); renderMainList(); });
         container.appendChild(btn);
       });
@@ -1453,16 +2650,16 @@
       const section = document.getElementById('recentSection');
       const scroll = document.getElementById('recentScroll');
       if (appMode !== 'radio') { section.classList.remove('visible'); return; }
-      const valid = recentIds.map(id => stations.find(s => s.id === id)).filter(Boolean);
-      if (valid.length === 0) { section.classList.remove('visible'); return; }
+      const validRecents = recentIds.map(id => stations.find(s => s.id === id)).filter(Boolean);
+      if (validRecents.length === 0) { section.classList.remove('visible'); return; }
       section.classList.add('visible');
       scroll.innerHTML = '';
-      valid.forEach(st => {
+      validRecents.forEach(st => {
         const initials = st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
         const btn = document.createElement('button');
-        btn.className = 'recent-pill' + (currentMedia && currentMedia.id === st.id ? ' active' : '');
+        btn.className = 'recent-pill' + (st.id === currentStationId ? ' active' : '');
         btn.innerHTML = `<span class="recent-dot ${st.grad || 'grad-indigo'}">${initials}</span><span>${st.name}</span>`;
-        btn.addEventListener('click', () => playRadioStation(st.id));
+        btn.addEventListener('click', () => st.id === currentStationId ? togglePlayPause() : playStation(st.id));
         scroll.appendChild(btn);
       });
     }
@@ -1470,58 +2667,61 @@
     function renderMainList() {
       const list = document.getElementById('mainList');
       const q = searchQuery.trim().toLowerCase();
-      list.innerHTML = '';
 
       if (appMode === 'podcasts') {
-        const filteredPods = podcasts.filter(p => !q || `${p.title} ${p.author} ${p.description}`.toLowerCase().includes(q));
+        const filteredPods = podcasts.filter(p => !q || `${p.name} ${p.description || ''}`.toLowerCase().includes(q));
         if (filteredPods.length === 0) {
-          list.innerHTML = '<div class="empty-state">Nav atrastu podkāstu. Pievienojiet RSS plūsmu ar "+" pogu.</div>';
+          list.innerHTML = `<div class="empty-state">Nav atrastu podkāstu.</div>`;
           return;
         }
+        list.innerHTML = '';
         filteredPods.forEach(pod => {
-          const initials = pod.title.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
-          const epCount = pod.episodes && pod.episodes.length > 0 ? `${pod.episodes.length} epizodes` : 'Atvērt epizodes';
+          const initials = pod.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+          const avatarHtml = pod.artworkUrl
+            ? `<img src="${pod.artworkUrl}" alt="" />`
+            : initials;
           const card = document.createElement('article');
-          card.className = 'm3-station-card' + (currentMedia && currentMedia.podcastId === pod.id ? ' active' : '');
+          card.className = 'm3-station-card';
           card.innerHTML = `
-            <div class="station-avatar ${pod.grad || 'grad-indigo'}">${initials}</div>
+            <div class="station-avatar ${pod.grad || 'grad-indigo'}">${avatarHtml}</div>
             <div class="station-info">
               <div class="station-title-row">
-                <span class="station-name">${pod.title}</span>
+                <span class="station-name">${pod.name}</span>
               </div>
-              <div class="station-subtitle">${pod.description || pod.author} • ${epCount}</div>
+              <div class="station-subtitle">${pod.description || 'Latviešu raidieraksts'}</div>
             </div>
             <div class="card-actions">
-              <span style="font-size:18px;padding:0 12px;color:var(--md-sys-color-on-surface-variant);">›</span>
+              <span style="padding:0 10px;color:var(--md-sys-color-on-surface-variant);">›</span>
             </div>
           `;
-          card.addEventListener('click', () => openPodcastEpisodesSheet(pod));
+          card.addEventListener('click', () => openPodcastEpisodesSheet(pod, false));
           list.appendChild(card);
         });
         return;
       }
 
-      // RADIO MODE
-      const filtered = stations.filter(st => {
-        if (selectedCategory === 'Favorīti' && !favorites.includes(st.id)) return false;
-        if (selectedCategory !== 'Visas' && selectedCategory !== 'Favorīti' && st.genre !== selectedCategory) return false;
-        if (q && !`${st.name} ${st.description || ''} ${st.genre || ''}`.toLowerCase().includes(q)) return false;
-        return true;
-      });
-
+      // Radio Stations List
+      const filtered = getFilteredStations();
       if (filtered.length === 0) {
-        list.innerHTML = '<div class="empty-state">Nav atrastu radiostaciju.</div>';
+        list.innerHTML = `<div class="empty-state">Nav atrastu radiostaciju izvēlētajā kategorijā.</div>`;
         return;
       }
-
+      list.innerHTML = '';
       filtered.forEach(st => {
-        const isCurrent = currentMedia && currentMedia.type === 'radio' && currentMedia.id === st.id;
+        const isCurrent = playbackType === 'radio' && st.id === currentStationId;
         const isFav = favorites.includes(st.id);
         const initials = st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+        const avatarOverlay = isCurrent
+          ? `<div class="avatar-overlay">${isPlaying
+              ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>'
+              : '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>'
+            }</div>`
+          : '';
+
         const card = document.createElement('article');
         card.className = 'm3-station-card' + (isCurrent ? ' active' : '');
         card.innerHTML = `
-          <div class="station-avatar ${st.grad || 'grad-indigo'}">${initials}</div>
+          <div class="station-avatar ${st.grad || 'grad-indigo'}">${initials}${avatarOverlay}</div>
           <div class="station-info">
             <div class="station-title-row">
               <span class="station-name">${st.name}</span>
@@ -1530,7 +2730,13 @@
             <div class="station-subtitle">${st.description || st.genre}</div>
           </div>
           <div class="card-actions">
-            <button class="fav-btn ${isFav ? 'is-fav' : ''}" aria-label="Favorīts">
+            ${st.id !== 'offline-synth' ? `
+              <button class="m3-icon-btn del-btn" title="Dzēst staciju">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>` : ''}
+            <button class="fav-btn ${isFav ? 'is-fav' : ''}" title="Favorīts">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
                 <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
               </svg>
@@ -1538,103 +2744,321 @@
           </div>
         `;
         card.addEventListener('click', (e) => {
-          if (e.target.closest('.fav-btn')) {
-            e.stopPropagation();
-            favorites = isFav ? favorites.filter(f => f !== st.id) : [...favorites, st.id];
-            safeStorage.set('m3_radio_favs', JSON.stringify(favorites));
-            renderMainList();
-            return;
-          }
-          if (isCurrent) togglePlayPause(); else playRadioStation(st.id);
+          if (e.target.closest('.fav-btn')) { e.stopPropagation(); toggleFavorite(st.id); return; }
+          if (e.target.closest('.del-btn')) { e.stopPropagation(); deleteStation(st.id); return; }
+          isCurrent ? togglePlayPause() : playStation(st.id);
         });
         list.appendChild(card);
       });
     }
 
+    function toggleFavorite(id) {
+      favorites = favorites.includes(id) ? favorites.filter(f => f !== id) : [...favorites, id];
+      saveFavorites();
+      renderMainList();
+      updatePlayerUI();
+    }
+
+    function deleteStation(id) {
+      if (!id.startsWith('custom-')) { hiddenIds.push(id); safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds)); }
+      stations = stations.filter(s => s.id !== id);
+      recentIds = recentIds.filter(r => r !== id);
+      saveCustomStations();
+      if (currentStationId === id) { if (isPlaying) togglePlayPause(); currentStationId = null; }
+      renderMainList();
+      renderRecentShelf();
+      showSnackbar('Stacija dzēsta', false);
+    }
+
     function updatePlayerUI(statusOverride) {
-      const isPod = currentMedia && currentMedia.type === 'podcast';
-      document.getElementById('podcastSeekBox').classList.toggle('visible', Boolean(isPod));
-      document.getElementById('playbackRateBtn').style.display = isPod ? 'inline-block' : 'none';
-      document.getElementById('prevBtnLabel').textContent = isPod ? '-15s' : '⏮';
-      document.getElementById('nextBtnLabel').textContent = isPod ? '+30s' : '⏭';
+      const miniTitle = document.getElementById('miniTitle');
+      const miniArt = document.getElementById('miniArt');
+      const miniStatusText = document.getElementById('miniStatusText');
+      const miniStatusDot = document.getElementById('miniStatusDot');
+      const miniEq = document.getElementById('miniEq');
+      const miniPlayBtn = document.getElementById('miniPlayBtn');
+      const miniPlayIcon = document.getElementById('miniPlayIcon');
 
-      if (currentMedia) {
-        document.getElementById('miniTitle').textContent = currentMedia.title;
-        document.getElementById('miniArt').className = `mini-art ${currentMedia.grad}`;
-        document.getElementById('npTitle').textContent = currentMedia.title;
-        document.getElementById('npDesc').textContent = currentMedia.subtitle;
-        document.getElementById('npArtwork').className = `np-artwork ${currentMedia.grad}`;
+      const npTitle = document.getElementById('npTitle');
+      const npDesc = document.getElementById('npDesc');
+      const npArtwork = document.getElementById('npArtwork');
+      const npPlayBtn = document.getElementById('npPlayBtn');
+      const npPlayIcon = document.getElementById('npPlayIcon');
+      const podcastSeekBox = document.getElementById('podcastSeekBox');
+      const npSpeedBtn = document.getElementById('npSpeedBtn');
+      const npPrevLabel = document.getElementById('npPrevLabel');
+      const npNextLabel = document.getElementById('npNextLabel');
+      const npModeLabel = document.getElementById('npModeLabel');
+
+      if (playbackType === 'podcast' && currentEpisode) {
+        miniTitle.textContent = currentEpisode.title;
+        miniArt.className = `mini-art ${currentEpisode.grad || 'grad-indigo'}`;
+        npTitle.textContent = currentEpisode.title;
+        npDesc.textContent = currentEpisode.podcastName;
+        npArtwork.className = `np-artwork ${currentEpisode.grad || 'grad-indigo'}`;
+        podcastSeekBox.classList.add('visible');
+        npSpeedBtn.style.display = 'inline-block';
+        npSpeedBtn.textContent = playbackSpeed.toFixed(1) + 'x';
+        npPrevLabel.textContent = '-15s';
+        npNextLabel.textContent = '+30s';
+        npModeLabel.textContent = 'Podkāsts';
+      } else {
+        const station = stations.find(s => s.id === currentStationId);
+        podcastSeekBox.classList.remove('visible');
+        npSpeedBtn.style.display = 'none';
+        npPrevLabel.textContent = '⏮';
+        npNextLabel.textContent = '⏭';
+        npModeLabel.textContent = 'Tiešraide';
+        if (station) {
+          miniTitle.textContent = station.name;
+          miniArt.className = `mini-art ${station.grad || 'grad-indigo'}`;
+          npTitle.textContent = station.name;
+          npDesc.textContent = station.description || station.genre;
+          npArtwork.className = `np-artwork ${station.grad || 'grad-indigo'}`;
+        }
       }
-      if (statusOverride) document.getElementById('miniStatusText').textContent = statusOverride;
 
-      document.getElementById('miniStatusDot').classList.toggle('playing', isPlaying);
-      document.getElementById('miniEq').classList.toggle('animating', isPlaying);
-      document.getElementById('miniPlayBtn').classList.toggle('is-playing', isPlaying);
-      document.getElementById('npPlayBtn').classList.toggle('is-playing', isPlaying);
+      if (statusOverride) miniStatusText.textContent = statusOverride;
+
+      miniStatusDot.classList.toggle('playing', isPlaying);
+      miniEq.classList.toggle('animating', isPlaying);
+      miniPlayBtn.classList.toggle('is-playing', isPlaying);
+      npPlayBtn.classList.toggle('is-playing', isPlaying);
 
       const iconSvg = isPlaying
         ? '<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>'
         : '<polygon points="6 4 20 12 6 20 6 4"></polygon>';
-      document.getElementById('miniPlayIcon').innerHTML = iconSvg;
-      document.getElementById('npPlayIcon').innerHTML = iconSvg;
+      miniPlayIcon.innerHTML = iconSvg;
+      npPlayIcon.innerHTML = iconSvg;
     }
 
-    /* SHEETS & BACK BUTTON */
-    function openSheet(id) {
+    /* ==========================================================================
+       SHEETS, SNACKBAR, TIMER & ADD DIALOGS
+       ========================================================================== */
+    function showSnackbar(message, showRetry = false) {
+      const sb = document.getElementById('m3Snackbar');
+      document.getElementById('snackbarText').textContent = message;
+      document.getElementById('snackbarRetryBtn').style.display = showRetry ? 'inline-block' : 'none';
+      sb.classList.add('visible');
+      clearTimeout(snackbarTimeout);
+      snackbarTimeout = setTimeout(() => sb.classList.remove('visible'), 5500);
+    }
+
+    function hideSnackbar() {
+      clearTimeout(snackbarTimeout);
+      document.getElementById('m3Snackbar').classList.remove('visible');
+    }
+
+    function openSheet(sheetId, fromHistory = false) {
       closeAllSheets(true);
-      activeSheetId = id;
+      activeSheetId = sheetId;
       document.getElementById('sheetScrim').classList.add('open');
-      document.getElementById(id).classList.add('open');
-      try { history.pushState({ sheet: id }, '', '#sheet'); } catch (e) {}
+      document.getElementById(sheetId).classList.add('open');
+      if (!fromHistory) { try { history.pushState({ sheet: sheetId }, '', '#sheet'); } catch (e) {} }
     }
 
-    function closeAllSheets(skipBack = false) {
+    function closeAllSheets(skipHistoryBack = false) {
       const wasOpen = activeSheetId !== null;
       activeSheetId = null;
       document.getElementById('sheetScrim').classList.remove('open');
       document.querySelectorAll('.m3-bottom-sheet').forEach(s => s.classList.remove('open'));
-      if (wasOpen && !skipBack && location.hash === '#sheet') { try { history.back(); } catch (e) {} }
+      if (wasOpen && !skipHistoryBack && location.hash === '#sheet') { try { history.back(); } catch (e) {} }
     }
+
     window.addEventListener('popstate', () => { if (activeSheetId) closeAllSheets(true); });
 
-    /* EVENT WIRING */
+    function applyThemeAndPalette(theme, palette) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-palette', palette);
+      safeStorage.set('m3_radio_theme', theme);
+      safeStorage.set('m3_radio_palette', palette);
+      const tcMeta = document.getElementById('themeColorMeta');
+      if (tcMeta) tcMeta.setAttribute('content', theme === 'dark' ? '#121318' : '#FBF8FF');
+      document.getElementById('themeModeBtn').textContent = theme === 'dark' ? 'Gaišais' : 'Tumšais';
+      document.querySelectorAll('.swatch-btn').forEach(btn => btn.classList.toggle('selected', btn.dataset.pal === palette));
+    }
+
+    function openAddDialogForCurrentMode() {
+      const isPod = appMode === 'podcasts';
+      document.getElementById('addSheetTitle').textContent = isPod ? 'Pievienot podkāstu' : 'Pievienot radiostaciju';
+      document.getElementById('manUrlLabel').textContent = isPod ? 'Podkāsta RSS saite (XML) *' : 'Straumes adrese (HTTPS) *';
+      document.getElementById('manGenreField').style.display = isPod ? 'none' : 'flex';
+      document.getElementById('onlineSearchInput').placeholder = isPod ? 'Meklēt podkāstu (piem., Latvijas Radio, LSM)...' : 'Ievadiet staciju vai žanru...';
+      document.getElementById('onlineResultsList').innerHTML = '';
+
+      const presetsRow = document.getElementById('quickPresetsRow');
+      if (isPod) {
+        presetsRow.innerHTML = `
+          <button type="button" class="m3-tonal-btn pod-preset-btn" data-q="Latvijas Radio">Latvijas Radio</button>
+          <button type="button" class="m3-tonal-btn pod-preset-btn" data-q="Latvija">Latvijas podkāsti</button>
+        `;
+        presetsRow.querySelectorAll('.pod-preset-btn').forEach(b => b.addEventListener('click', () => searchItunesPodcasts(b.dataset.q)));
+      } else {
+        presetsRow.innerHTML = `
+          <button type="button" class="m3-tonal-btn rb-preset-btn" data-q="Latvia" data-country="LV">Latvijas stacijas</button>
+          <button type="button" class="m3-tonal-btn rb-preset-btn" data-q="death metal">Death Metal</button>
+          <button type="button" class="m3-tonal-btn rb-preset-btn" data-q="speed metal">Speed Metal</button>
+        `;
+        presetsRow.querySelectorAll('.rb-preset-btn').forEach(b => b.addEventListener('click', () => searchRadioBrowserCatalog(b.dataset.q, b.dataset.country || '')));
+      }
+      openSheet('addSheet');
+    }
+
+    async function searchItunesPodcasts(query) {
+      const box = document.getElementById('onlineResultsList');
+      box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Meklē podkāstus...</div>';
+      try {
+        const res = await fetchWithTimeout(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&media=podcast&limit=12`, 6000);
+        const data = await res.json();
+        const items = (data.results || []).filter(r => r.feedUrl);
+        if (items.length === 0) {
+          box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Netika atrasti podkāsti.</div>';
+          return;
+        }
+        box.innerHTML = '';
+        items.forEach(item => {
+          const exists = podcasts.some(p => p.rssUrl === item.feedUrl);
+          const row = document.createElement('div');
+          row.className = 'online-result-item';
+          row.innerHTML = `
+            <div style="min-width:0;flex:1;">
+              <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.collectionName}</div>
+              <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.artistName || 'Podkāsts'}</div>
+            </div>
+            <button class="m3-tonal-btn" ${exists ? 'disabled' : ''}>${exists ? 'Pievienots ✓' : 'Pievienot'}</button>
+          `;
+          if (!exists) {
+            row.querySelector('button').addEventListener('click', () => {
+              const newPod = {
+                id: 'pod-custom-' + Date.now(),
+                name: item.collectionName,
+                description: item.artistName || 'Raidieraksts',
+                rssUrl: item.feedUrl,
+                artworkUrl: item.artworkUrl600 || item.artworkUrl100 || '',
+                grad: 'grad-indigo',
+                isCustom: true
+              };
+              podcasts.unshift(newPod);
+              saveCustomPodcasts();
+              renderMainList();
+              closeAllSheets();
+              openPodcastEpisodesSheet(newPod, true);
+            });
+          }
+          box.appendChild(row);
+        });
+      } catch (e) {
+        box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Meklēšanas kļūda.</div>';
+      }
+    }
+
+    async function searchRadioBrowserCatalog(query, country = '') {
+      const box = document.getElementById('onlineResultsList');
+      box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Meklē stacijas...</div>';
+      const params = new URLSearchParams({ name: query, limit: '15', hidebroken: 'true', order: 'clickcount', reverse: 'true' });
+      if (country) params.set('countrycode', country);
+      for (const base of RB_SERVERS) {
+        try {
+          const res = await fetchWithTimeout(`${base}/json/stations/search?${params.toString()}`, 5000);
+          if (res.ok) {
+            const data = (await res.json()).filter(s => s.url_resolved && s.url_resolved.startsWith('https://'));
+            if (data.length > 0) {
+              box.innerHTML = '';
+              data.slice(0, 12).forEach(item => {
+                const cleanName = item.name.trim();
+                const exists = stations.some(s => s.url === item.url_resolved);
+                const row = document.createElement('div');
+                row.className = 'online-result-item';
+                row.innerHTML = `
+                  <div style="min-width:0;flex:1;">
+                    <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cleanName}</div>
+                    <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);">${item.country || 'Tiešraide'}</div>
+                  </div>
+                  <button class="m3-tonal-btn" ${exists ? 'disabled' : ''}>${exists ? 'Pievienota ✓' : 'Pievienot'}</button>
+                `;
+                if (!exists) {
+                  row.querySelector('button').addEventListener('click', () => {
+                    const isMetal = /metal|death|thrash|speed/i.test(`${cleanName} ${item.tags}`);
+                    const newSt = {
+                      id: 'custom-' + Date.now(),
+                      name: cleanName,
+                      genre: item.countrycode === 'LV' ? 'Latvijas' : (isMetal ? 'Metāls' : 'Populārā'),
+                      description: item.tags || 'Tiešsaistes radiostacija',
+                      url: item.url_resolved,
+                      grad: isMetal ? 'grad-metal' : 'grad-indigo',
+                      isCustom: true
+                    };
+                    stations.unshift(newSt);
+                    saveCustomStations();
+                    renderMainList();
+                    closeAllSheets();
+                    playStation(newSt.id);
+                  });
+                }
+                box.appendChild(row);
+              });
+              return;
+            }
+          }
+        } catch (e) {}
+      }
+      box.innerHTML = '<div style="font-size:13px;color:var(--md-sys-color-on-surface-variant);padding:8px;">Netika atrastas aktīvas stacijas.</div>';
+    }
+
+    function setSleepTimer(minutes) {
+      clearInterval(sleepTimerId);
+      const badge = document.getElementById('timerBadge');
+      const desc = document.getElementById('timerStatusDesc');
+      const btn = document.getElementById('timerOpenBtn');
+      if (!minutes || minutes <= 0) {
+        sleepSecondsLeft = 0; badge.classList.remove('visible'); btn.classList.remove('active-tonal');
+        desc.textContent = 'Miega taimeris ir izslēgts.'; showSnackbar('Miega taimeris izslēgts', false); return;
+      }
+      sleepSecondsLeft = minutes * 60;
+      btn.classList.add('active-tonal'); badge.classList.add('visible');
+      document.getElementById('timerBadge').textContent = `${minutes}m`;
+      showSnackbar(`Miega taimeris iestatīts uz ${minutes} min`, false);
+      sleepTimerId = setInterval(() => {
+        sleepSecondsLeft--;
+        if (sleepSecondsLeft <= 0) {
+          clearInterval(sleepTimerId); badge.classList.remove('visible'); btn.classList.remove('active-tonal');
+          if (isPlaying) togglePlayPause();
+          showSnackbar('Miega taimeris apturēja atskaņošanu', false);
+        } else {
+          document.getElementById('timerBadge').textContent = `${Math.ceil(sleepSecondsLeft / 60)}m`;
+        }
+      }, 1000);
+    }
+
+    /* ==========================================================================
+       EVENT LISTENERS
+       ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       initData();
       renderCategories();
       renderRecentShelf();
       renderMainList();
-      loadPrebuiltPodcastsJson();
 
-      document.getElementById('modeRadioBtn').addEventListener('click', () => {
-        appMode = 'radio';
-        document.getElementById('modeRadioBtn').classList.add('active');
-        document.getElementById('modePodcastsBtn').classList.remove('active');
-        document.getElementById('fabLabel').textContent = 'Pievienot staciju';
-        document.getElementById('searchInput').placeholder = 'Meklēt staciju vai žanru...';
-        renderCategories(); renderRecentShelf(); renderMainList();
+      setTimeout(() => syncAllLatvianMirrors(true), 600);
+
+      document.getElementById('modeRadioBtn').addEventListener('click', () => switchMode('radio'));
+      document.getElementById('modePodcastsBtn').addEventListener('click', () => switchMode('podcasts'));
+
+      document.getElementById('refreshBtn').addEventListener('click', () => {
+        if (appMode === 'radio') syncAllLatvianMirrors(false);
+        else showSnackbar('Nospiediet uz jebkura podkāsta, lai ielādētu jaunākās epizodes', false);
       });
 
-      document.getElementById('modePodcastsBtn').addEventListener('click', () => {
-        appMode = 'podcasts';
-        document.getElementById('modePodcastsBtn').classList.add('active');
-        document.getElementById('modeRadioBtn').classList.remove('active');
-        document.getElementById('fabLabel').textContent = 'Pievienot podkāstu';
-        document.getElementById('searchInput').placeholder = 'Meklēt latviešu podkāstu...';
-        renderCategories(); renderRecentShelf(); renderMainList();
-      });
-
-      document.getElementById('refreshBtn').addEventListener('click', async () => {
-        showSnackbar('Atjauno podkāstu sarakstu...', false);
-        await loadPrebuiltPodcastsJson();
-        renderMainList();
+      document.getElementById('epSheetRefreshBtn').addEventListener('click', () => {
+        if (activePodcastObj) openPodcastEpisodesSheet(activePodcastObj, true);
       });
 
       document.getElementById('timerOpenBtn').addEventListener('click', () => openSheet('timerSheet'));
       document.getElementById('paletteToggleBtn').addEventListener('click', () => document.getElementById('paletteBar').classList.toggle('open'));
 
-      document.querySelectorAll('.swatch-btn').forEach(b => b.addEventListener('click', () => {
-        applyThemeAndPalette(document.documentElement.getAttribute('data-theme'), b.dataset.pal);
-      }));
+      document.querySelectorAll('.swatch-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyThemeAndPalette(document.documentElement.getAttribute('data-theme'), btn.dataset.pal));
+      });
       document.getElementById('themeModeBtn').addEventListener('click', () => {
         const t = document.documentElement.getAttribute('data-theme');
         applyThemeAndPalette(t === 'dark' ? 'light' : 'dark', document.documentElement.getAttribute('data-palette'));
@@ -1647,178 +3071,129 @@
         clearBtn.classList.toggle('visible', searchQuery.length > 0);
         renderMainList();
       });
-      clearBtn.addEventListener('click', () => {
-        searchInput.value = ''; searchQuery = ''; clearBtn.classList.remove('visible'); renderMainList();
-      });
+      clearBtn.addEventListener('click', () => { searchInput.value = ''; searchQuery = ''; clearBtn.classList.remove('visible'); renderMainList(); });
 
-      document.getElementById('miniPlayer').addEventListener('click', (e) => {
-        if (!e.target.closest('#miniPlayBtn')) openSheet('nowPlayingSheet');
-      });
+      document.getElementById('miniPlayer').addEventListener('click', (e) => { if (!e.target.closest('#miniPlayBtn')) openSheet('nowPlayingSheet'); });
       document.getElementById('miniPlayBtn').addEventListener('click', (e) => { e.stopPropagation(); togglePlayPause(); });
       document.getElementById('npPlayBtn').addEventListener('click', togglePlayPause);
+      document.getElementById('npPrevBtn').addEventListener('click', () => skipStation(-1));
+      document.getElementById('npNextBtn').addEventListener('click', () => skipStation(1));
+      document.getElementById('npFavBtn').addEventListener('click', () => { if (currentStationId) toggleFavorite(currentStationId); });
+      document.getElementById('npTimerShortcut').addEventListener('click', () => openSheet('timerSheet'));
 
-      // Prev / Next OR -15s / +30s depending on mode
-      document.getElementById('npPrevBtn').addEventListener('click', () => {
-        if (currentMedia && currentMedia.type === 'podcast') {
-          audioEl.currentTime = Math.max(0, (audioEl.currentTime || 0) - 15);
-        } else {
-          const idx = stations.findIndex(s => currentMedia && s.id === currentMedia.id);
-          playRadioStation(stations[(idx - 1 + stations.length) % stations.length].id);
-        }
-      });
-      document.getElementById('npNextBtn').addEventListener('click', () => {
-        if (currentMedia && currentMedia.type === 'podcast') {
-          audioEl.currentTime = Math.min(audioEl.duration || 99999, (audioEl.currentTime || 0) + 30);
-        } else {
-          const idx = stations.findIndex(s => currentMedia && s.id === currentMedia.id);
-          playRadioStation(stations[(idx + 1) % stations.length].id);
-        }
+      document.getElementById('npSpeedBtn').addEventListener('click', () => {
+        const speeds = [1.0, 1.25, 1.5, 2.0];
+        playbackSpeed = speeds[(speeds.indexOf(playbackSpeed) + 1) % speeds.length];
+        audioEl.playbackRate = playbackSpeed;
+        document.getElementById('npSpeedBtn').textContent = playbackSpeed.toFixed(1) + 'x';
       });
 
-      // Seek bar scrub
       document.getElementById('seekSlider').addEventListener('input', (e) => {
-        if (currentMedia && currentMedia.type === 'podcast' && audioEl.duration) {
-          audioEl.currentTime = (parseFloat(e.target.value) / 100) * audioEl.duration;
-        }
+        audioEl.currentTime = parseFloat(e.target.value);
       });
 
-      // Playback rate toggle (1.0x -> 1.25x -> 1.5x -> 1.75x)
-      document.getElementById('playbackRateBtn').addEventListener('click', () => {
-        rateIndex = (rateIndex + 1) % playbackRates.length;
-        const rate = playbackRates[rateIndex];
-        audioEl.playbackRate = rate;
-        document.getElementById('playbackRateBtn').textContent = rate.toFixed(2).replace('.00', '.0') + 'x';
+      const volSlider = document.getElementById('volumeSlider');
+      volSlider.addEventListener('input', () => {
+        const val = parseFloat(volSlider.value);
+        audioEl.volume = val;
+        if (synthNodes) synthNodes.masterGain.gain.value = val * 0.25;
+        document.getElementById('volumePct').textContent = Math.round(val * 100) + '%';
       });
 
-      // Volume
-      document.getElementById('volumeSlider').addEventListener('input', (e) => {
-        const v = parseFloat(e.target.value);
-        audioEl.volume = v;
-        if (synthNodes) synthNodes.masterGain.gain.value = v * 0.25;
-        document.getElementById('volumePct').textContent = Math.round(v * 100) + '%';
-      });
+      document.getElementById('addFab').addEventListener('click', openAddDialogForCurrentMode);
+      document.getElementById('sheetScrim').addEventListener('click', () => closeAllSheets());
+      document.querySelectorAll('[data-close-sheet]').forEach(el => el.addEventListener('click', () => closeAllSheets()));
 
-      // Add FAB & Tabs
-      document.getElementById('addFab').addEventListener('click', () => {
-        openSheet('addSheet');
-        if (appMode === 'podcasts') document.getElementById('tabRssBtn').click();
+      document.querySelectorAll('#timerSheet [data-mins]').forEach(btn => {
+        btn.addEventListener('click', () => { setSleepTimer(parseInt(btn.dataset.mins, 10)); closeAllSheets(); });
       });
 
       document.getElementById('tabOnlineBtn').addEventListener('click', () => {
         document.getElementById('tabOnlineBtn').classList.add('active');
-        document.getElementById('tabRssBtn').classList.remove('active');
         document.getElementById('tabManualBtn').classList.remove('active');
         document.getElementById('onlinePane').style.display = 'flex';
-        document.getElementById('rssPane').style.display = 'none';
-        document.getElementById('manualPane').style.display = 'none';
-      });
-      document.getElementById('tabRssBtn').addEventListener('click', () => {
-        document.getElementById('tabRssBtn').classList.add('active');
-        document.getElementById('tabOnlineBtn').classList.remove('active');
-        document.getElementById('tabManualBtn').classList.remove('active');
-        document.getElementById('rssPane').style.display = 'flex';
-        document.getElementById('onlinePane').style.display = 'none';
         document.getElementById('manualPane').style.display = 'none';
       });
       document.getElementById('tabManualBtn').addEventListener('click', () => {
         document.getElementById('tabManualBtn').classList.add('active');
         document.getElementById('tabOnlineBtn').classList.remove('active');
-        document.getElementById('tabRssBtn').classList.remove('active');
         document.getElementById('manualPane').style.display = 'flex';
         document.getElementById('onlinePane').style.display = 'none';
-        document.getElementById('rssPane').style.display = 'none';
       });
 
-      // Add Custom Podcast RSS Form
-      document.getElementById('rssPane').addEventListener('submit', (e) => {
+      document.getElementById('onlineSearchForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        const rss = document.getElementById('rssFeedUrl').value.trim();
-        const title = document.getElementById('rssFeedTitle').value.trim() || 'Pievienotais podkāsts';
-        if (!rss) return;
-        const newPod = {
-          id: 'custom-pod-' + Date.now(),
-          title,
-          author: 'RSS plūsma',
-          description: rss,
-          grad: 'grad-indigo',
-          rss,
-          episodes: []
-        };
-        podcasts.unshift(newPod);
-        const customPods = podcasts.filter(p => p.id.startsWith('custom-pod-'));
-        safeStorage.set('m3_custom_podcasts', JSON.stringify(customPods));
-        e.target.reset();
-        closeAllSheets();
-        document.getElementById('modePodcastsBtn').click();
-        openPodcastEpisodesSheet(newPod);
+        const val = document.getElementById('onlineSearchInput').value.trim();
+        if (!val) return;
+        if (appMode === 'podcasts') searchItunesPodcasts(val);
+        else searchRadioBrowserCatalog(val);
       });
 
-      // Manual Radio Form
       document.getElementById('manualPane').addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('manName').value.trim();
         const url = document.getElementById('manUrl').value.trim();
-        const genre = document.getElementById('manGenre').value;
+        const description = document.getElementById('manDesc').value.trim();
         if (!name || !url) return;
-        const newSt = { id: 'custom-' + Date.now(), name, url, genre, description: genre, grad: 'grad-indigo', isCustom: true };
-        stations.unshift(newSt);
-        safeStorage.set('m3_radio_custom_v1', JSON.stringify(stations.filter(s => s.isCustom)));
-        e.target.reset();
-        closeAllSheets();
-        renderMainList();
-        playRadioStation(newSt.id);
-      });
 
-      document.getElementById('sheetScrim').addEventListener('click', () => closeAllSheets());
-      document.querySelectorAll('[data-close-sheet]').forEach(el => el.addEventListener('click', () => closeAllSheets()));
-
-      document.querySelectorAll('#timerSheet [data-mins]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const mins = parseInt(btn.dataset.mins, 10);
-          clearInterval(sleepTimerId);
-          const badge = document.getElementById('timerBadge');
-          if (!mins) {
-            badge.classList.remove('visible');
-            showSnackbar('Miega taimeris izslēgts', false);
-          } else {
-            sleepSecondsLeft = mins * 60;
-            badge.classList.add('visible');
-            badge.textContent = `${mins}m`;
-            showSnackbar(`Miega taimeris: ${mins} min`, false);
-            sleepTimerId = setInterval(() => {
-              sleepSecondsLeft--;
-              badge.textContent = `${Math.ceil(sleepSecondsLeft / 60)}m`;
-              if (sleepSecondsLeft <= 0) {
-                clearInterval(sleepTimerId);
-                badge.classList.remove('visible');
-                if (isPlaying) togglePlayPause();
-              }
-            }, 1000);
-          }
+        if (appMode === 'podcasts') {
+          const newPod = {
+            id: 'pod-custom-' + Date.now(),
+            name,
+            rssUrl: url,
+            description: description || 'RSS raidieraksts',
+            grad: 'grad-indigo',
+            isCustom: true
+          };
+          podcasts.unshift(newPod);
+          saveCustomPodcasts();
+          renderMainList();
+          e.target.reset();
           closeAllSheets();
-        });
+          openPodcastEpisodesSheet(newPod, true);
+        } else {
+          const genre = document.getElementById('manGenre').value;
+          const newSt = {
+            id: 'custom-' + Date.now(),
+            name,
+            url,
+            genre,
+            description: description || genre,
+            grad: genre === 'Metāls' ? 'grad-metal' : 'grad-indigo',
+            isCustom: true
+          };
+          stations.unshift(newSt);
+          saveCustomStations();
+          renderMainList();
+          e.target.reset();
+          closeAllSheets();
+          playStation(newSt.id);
+        }
       });
 
-      document.getElementById('snackbarRetryBtn').addEventListener('click', () => {
-        if (currentMedia && currentMedia.type === 'radio') playRadioStation(currentMedia.id);
-      });
+      document.getElementById('snackbarRetryBtn').addEventListener('click', () => { if (currentStationId) playStation(currentStationId); });
     });
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
     }
+
     let deferredInstallPrompt = null;
     const installBtn = document.getElementById('installAppBtn');
     window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault(); deferredInstallPrompt = e; installBtn.style.display = 'inline-flex';
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-flex';
     });
-    installBtn.addEventListener('click', async () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      await deferredInstallPrompt.userChoice;
-      installBtn.style.display = 'none';
-      deferredInstallPrompt = null;
-    });
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        if (outcome === 'accepted') installBtn.style.display = 'none';
+        deferredInstallPrompt = null;
+      });
+    }
   </script>
 </body>
 </html>
