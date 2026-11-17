@@ -1,3 +1,3 @@
-# Internetradio & Podkāsti (Material 3 PWA — v9)
+# Internetradio & Podkāsti (Material 3 PWA — v10)
 
-Saglabā aktīvo sadaļu (Radio vai Podkāsti) pēc lapas pārlādēšanas.
+Pievienots Swipe-to-Dismiss (vilkšanas uz leju) žests visiem apakšējiem logiem (podkāstu epizodēm, Tagad skan, pievienošanas logam un taimerim).

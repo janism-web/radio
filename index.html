@@ -1134,11 +1134,18 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    .m3-bottom-sheet {
+      will-change: transform;
+    }
+    .m3-bottom-sheet.dragging {
+      transition: none !important;
+    }
     .sheet-drag-handle-area {
-      padding: 12px 0 8px;
+      padding: 14px 0 10px;
       display: flex;
       justify-content: center;
-      cursor: pointer;
+      cursor: grab;
+      touch-action: none;
     }
 
     .sheet-drag-handle {
@@ -2989,8 +2996,11 @@
     function openSheet(sheetId, fromHistory = false) {
       closeAllSheets(true);
       activeSheetId = sheetId;
+      const sheetEl = document.getElementById(sheetId);
+      sheetEl.style.transform = '';
+      sheetEl.classList.remove('dragging');
       document.getElementById('sheetScrim').classList.add('open');
-      document.getElementById(sheetId).classList.add('open');
+      sheetEl.classList.add('open');
       if (!fromHistory) { try { history.pushState({ sheet: sheetId }, '', '#sheet'); } catch (e) {} }
     }
 
@@ -2999,8 +3009,76 @@
       const wasOpen = activeSheetId !== null;
       activeSheetId = null;
       document.getElementById('sheetScrim').classList.remove('open');
-      document.querySelectorAll('.m3-bottom-sheet').forEach(s => s.classList.remove('open'));
+      document.querySelectorAll('.m3-bottom-sheet').forEach(s => {
+        s.classList.remove('dragging');
+        s.classList.remove('open');
+        s.style.transform = '';
+      });
       if (wasOpen && !skipHistoryBack && location.hash === '#sheet') { try { history.back(); } catch (e) {} }
+    }
+
+    function initBottomSheetSwipeDown() {
+      document.querySelectorAll('.m3-bottom-sheet').forEach(sheet => {
+        let startY = 0;
+        let currentDeltaY = 0;
+        let isDragging = false;
+
+        sheet.addEventListener('touchstart', (e) => {
+          if (e.touches.length !== 1) return;
+          // Ignore range sliders (seek / volume) so scrubbing doesn't drag the sheet
+          if (e.target.closest('input[type="range"]')) return;
+
+          // Check if touch started inside a scrollable container that is not scrolled to top
+          let scrollable = e.target.closest('#episodesListContainer, #onlineResultsList, .sheet-body');
+          if (scrollable && scrollable.scrollTop > 2) return;
+
+          startY = e.touches[0].clientY;
+          currentDeltaY = 0;
+          isDragging = true;
+        }, { passive: true });
+
+        sheet.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          const dy = e.touches[0].clientY - startY;
+
+          // If dragging upward, let inner list scroll naturally
+          if (dy <= 0) {
+            if (currentDeltaY > 0) {
+              currentDeltaY = 0;
+              sheet.style.transform = 'translateX(-50%) translateY(0px)';
+            }
+            return;
+          }
+
+          // Re-check scrollTop in case inner list scrolled first
+          let scrollable = e.target.closest('#episodesListContainer, #onlineResultsList, .sheet-body');
+          if (scrollable && scrollable.scrollTop > 2) {
+            isDragging = false;
+            sheet.classList.remove('dragging');
+            sheet.style.transform = '';
+            return;
+          }
+
+          currentDeltaY = dy;
+          sheet.classList.add('dragging');
+          sheet.style.transform = `translateX(-50%) translateY(${dy}px)`;
+        }, { passive: true });
+
+        sheet.addEventListener('touchend', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          sheet.classList.remove('dragging');
+
+          const dismissThreshold = Math.min(130, sheet.offsetHeight * 0.25);
+          if (currentDeltaY > dismissThreshold) {
+            sheet.style.transform = 'translateX(-50%) translateY(100%)';
+            setTimeout(() => closeAllSheets(), 180);
+          } else {
+            sheet.style.transform = '';
+          }
+          currentDeltaY = 0;
+        });
+      });
     }
 
     window.addEventListener('popstate', () => { if (activeSheetId) closeAllSheets(true); });
@@ -3226,6 +3304,7 @@
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       initData();
+      initBottomSheetSwipeDown();
       renderCategories();
       switchMode(appMode);
 
