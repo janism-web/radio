@@ -1,0 +1,59 @@
+{
+  "updated_at": "2026-11-17T15:00:00Z",
+  "podcasts": [
+    {
+      "id": "lr-krustpunkta",
+      "title": "Krustpunktā (Latvijas Radio 1)",
+      "author": "Latvijas Radio 1",
+      "description": "Aktuālo notikumu analīze un diskusijas tiešraidē.",
+      "grad": "grad-red",
+      "rss": "https://lr1.lsm.lv/lv/rss/?id=1261",
+      "episodes": []
+    },
+    {
+      "id": "lr-zinamais",
+      "title": "Zināmais nezināmajā (LR1)",
+      "author": "Latvijas Radio 1",
+      "description": "Zinātne, daba, tehnoloģijas un cilvēks.",
+      "grad": "grad-emerald",
+      "rss": "https://lr1.lsm.lv/lv/rss/?id=1295",
+      "episodes": []
+    },
+    {
+      "id": "lr-kulturas-rondo",
+      "title": "Kultūras Rondo (LR1)",
+      "author": "Latvijas Radio 1",
+      "description": "Kultūras notikumi, recenzijas un sarunas.",
+      "grad": "grad-indigo",
+      "rss": "https://lr1.lsm.lv/lv/rss/?id=1265",
+      "episodes": []
+    },
+    {
+      "id": "lr5-pilna-diena",
+      "title": "Pieci.lv Raidieraksti",
+      "author": "Latvijas Radio 5",
+      "description": "Jauniešu kultūra, intervijas un aktuālās tēmas.",
+      "grad": "grad-purple",
+      "rss": "https://pieci.lsm.lv/lv/rss/",
+      "episodes": []
+    },
+    {
+      "id": "lr-gimenes-studija",
+      "title": "Ģimenes studija (LR1)",
+      "author": "Latvijas Radio 1",
+      "description": "Attiecības, bērnu audzināšana un ģimenes ikdiena.",
+      "grad": "grad-amber",
+      "rss": "https://lr1.lsm.lv/lv/rss/?id=1269",
+      "episodes": []
+    },
+    {
+      "id": "lr-monopols",
+      "title": "Monopols (LR1)",
+      "author": "Latvijas Radio 1",
+      "description": "Personības un dziļas sarunas Latvijas Radio studijā.",
+      "grad": "grad-teal",
+      "rss": "https://lr1.lsm.lv/lv/rss/?id=1273",
+      "episodes": []
+    }
+  ]
+}

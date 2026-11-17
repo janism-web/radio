@@ -1,7 +1,7 @@
 {
-  "name": "Internetradio — Tiešsaistes Radio",
+  "name": "Internetradio & Podkāsti",
   "short_name": "Internetradio",
-  "description": "Moderns Google Material 3 internetradio atskaņotājs ar Latvijas un pasaules radiostacijām.",
+  "description": "Moderns Google Material 3 internetradio un latviešu podkāstu atskaņotājs.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -9,25 +9,9 @@
   "background_color": "#121318",
   "theme_color": "#121318",
   "lang": "lv",
-  "categories": ["music", "entertainment"],
   "icons": [
-    {
-      "src": "./icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "./icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "./icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
