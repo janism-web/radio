@@ -2106,6 +2106,9 @@
         updatePlayerUI('Pauzēts (pēdējā stacija)');
       }
 
+      const savedMode = safeStorage.get('m3_radio_app_mode');
+      if (savedMode === 'podcasts' || savedMode === 'radio') appMode = savedMode;
+
       const savedTheme = safeStorage.get('m3_radio_theme') || 'dark';
       const savedPalette = safeStorage.get('m3_radio_palette') || 'indigo';
       applyThemeAndPalette(savedTheme, savedPalette);
@@ -2666,6 +2669,7 @@
        ========================================================================== */
     function switchMode(newMode) {
       appMode = newMode;
+      safeStorage.set('m3_radio_app_mode', newMode);
       const isRadio = newMode === 'radio';
       document.getElementById('modeRadioBtn').classList.toggle('active', isRadio);
       document.getElementById('modePodcastsBtn').classList.toggle('active', !isRadio);
@@ -3223,8 +3227,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       initData();
       renderCategories();
-      renderRecentShelf();
-      renderMainList();
+      switchMode(appMode);
 
       setTimeout(() => syncAllLatvianMirrors(true), 600);
 
@@ -3232,8 +3235,13 @@
       document.getElementById('modePodcastsBtn').addEventListener('click', () => switchMode('podcasts'));
 
       document.getElementById('refreshBtn').addEventListener('click', () => {
-        if (appMode === 'radio') syncAllLatvianMirrors(false);
-        else showSnackbar('Nospiediet uz jebkura podkāsta, lai ielādētu jaunākās epizodes', false);
+        if (appMode === 'radio') {
+          syncAllLatvianMirrors(false);
+        } else {
+          podcasts.forEach(p => { try { localStorage.removeItem('m3_pod_cache_' + p.id); } catch (e) {} });
+          renderMainList();
+          showSnackbar('Podkāstu kešatmiņa atjaunota!', false);
+        }
       });
 
       document.getElementById('epSheetRefreshBtn').addEventListener('click', () => {
