@@ -2209,6 +2209,7 @@
         return;
       }
 
+      // Build immediate candidate list WITHOUT awaiting network first (preserves Android Chrome user gesture!)
       const candidates = [];
       if (station.liveMirrors && station.liveMirrors.length > 0) {
         candidates.push(...station.liveMirrors);
@@ -2216,18 +2217,8 @@
       if (station.url) candidates.push(station.url);
       if (station.fallbackUrl) candidates.push(station.fallbackUrl);
 
-      if (station.rbQuery && (!station.liveMirrors || station.liveMirrors.length === 0)) {
-        const fetchedObjs = await fetchRadioBrowserMirrors(station.rbQuery, station.countryCode || '');
-        if (token !== attemptToken) return;
-        const fetchedUrls = fetchedObjs.map(o => o.url);
-        if (fetchedUrls.length > 0) {
-          station.liveMirrors = fetchedUrls;
-          candidates.unshift(...fetchedUrls);
-        }
-      }
-
-      const uniqueCandidates = [...new Set(candidates)];
-      for (const candidateUrl of uniqueCandidates) {
+      const uniqueInitial = [...new Set(candidates)];
+      for (const candidateUrl of uniqueInitial) {
         if (token !== attemptToken) return;
         const ok = await tryPlayStreamUrl(candidateUrl, token);
         if (token !== attemptToken) return;
@@ -2239,6 +2230,31 @@
           renderStations();
           renderRecentShelf();
           return;
+        }
+      }
+
+      // Only if direct URLs failed, fetch fresh mirrors from Radio Browser and try them
+      if (station.rbQuery && token === attemptToken) {
+        updatePlayerUI('Meklē rezerves straumi...');
+        const fetchedObjs = await fetchRadioBrowserMirrors(station.rbQuery, station.countryCode || '');
+        if (token !== attemptToken) return;
+        const fetchedUrls = fetchedObjs.map(o => o.url).filter(u => !uniqueInitial.includes(u));
+        if (fetchedUrls.length > 0) {
+          station.liveMirrors = [...new Set([...(station.liveMirrors || []), ...fetchedUrls])];
+          for (const mirrorUrl of fetchedUrls) {
+            if (token !== attemptToken) return;
+            const ok = await tryPlayStreamUrl(mirrorUrl, token);
+            if (token !== attemptToken) return;
+            if (ok) {
+              isPlaying = true;
+              hideSnackbar();
+              updatePlayerUI('Tiešraide');
+              updateMediaSession(station, true);
+              renderStations();
+              renderRecentShelf();
+              return;
+            }
+          }
         }
       }
 
