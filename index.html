@@ -517,75 +517,6 @@
     }
 
     /* ==========================================================================
-       RECENTLY PLAYED HORIZONTAL SHELF
-       ========================================================================== */
-    .recent-section {
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      padding: 0 0 10px;
-    }
-
-    .recent-section.visible {
-      display: flex;
-    }
-
-    .section-overline {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--md-sys-color-on-surface-variant);
-      padding: 0 16px;
-    }
-
-    .recent-scroll {
-      display: flex;
-      gap: 10px;
-      padding: 0 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .recent-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .recent-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 14px 6px 6px;
-      border-radius: 14px;
-      background-color: var(--md-sys-color-surface-container);
-      color: var(--md-sys-color-on-surface);
-      border: none;
-      font-family: var(--font-family);
-      font-size: 13px;
-      font-weight: 500;
-      white-space: nowrap;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .recent-pill.active {
-      background-color: var(--md-sys-color-secondary-container);
-      color: var(--md-sys-color-on-secondary-container);
-    }
-
-    .recent-dot {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    /* ==========================================================================
        #2. UNIFIED STATION & PODCAST CARDS WITH SWIPE-TO-DELETE & FAVORITES
        ========================================================================== */
     .stations-list {
@@ -1554,12 +1485,6 @@
     <!-- M3 FILTER CHIPS (RADIO MODE) -->
     <nav class="chips-scroll" id="categoryChips" aria-label="Kategorijas"></nav>
 
-    <!-- RECENTLY PLAYED SHELF (RADIO MODE) -->
-    <section class="recent-section" id="recentSection" aria-label="Nesen klausītās">
-      <span class="section-overline">Nesen klausītās</span>
-      <div class="recent-scroll" id="recentScroll"></div>
-    </section>
-
     <!-- MAIN LIST (STATIONS OR LATVIAN PODCASTS) -->
     <main class="stations-list" id="mainList"></main>
 
@@ -2119,7 +2044,6 @@
     let podcasts = [];
     let favorites = [];
     let podcastFavorites = [];
-    let recentIds = [];
     let hiddenIds = [];
     let hiddenPodIds = [];
     let selectedCategory = 'Visas';
@@ -2143,7 +2067,6 @@
     function initData() {
       try { favorites = JSON.parse(safeStorage.get('m3_radio_favs') || '["lr1","somafm-metal"]'); } catch (e) { favorites = ['lr1', 'somafm-metal']; }
       try { podcastFavorites = JSON.parse(safeStorage.get('m3_pod_favs') || '[]'); } catch (e) { podcastFavorites = []; }
-      try { recentIds = JSON.parse(safeStorage.get('m3_radio_recents') || '[]'); } catch (e) { recentIds = []; }
       try { hiddenIds = JSON.parse(safeStorage.get('m3_radio_hidden') || '[]'); } catch (e) { hiddenIds = []; }
       try { hiddenPodIds = JSON.parse(safeStorage.get('m3_pod_hidden') || '[]'); } catch (e) { hiddenPodIds = []; }
 
@@ -2184,11 +2107,8 @@
       safeStorage.set('m3_pod_favs', JSON.stringify(podcastFavorites));
     }
 
-    function recordRecentStation(id) {
-      recentIds = [id, ...recentIds.filter(r => r !== id)].slice(0, 6);
-      safeStorage.set('m3_radio_recents', JSON.stringify(recentIds));
+    function recordLastStation(id) {
       safeStorage.set('m3_radio_last_station', id);
-      renderRecentShelf();
     }
 
     /* ==========================================================================
@@ -2359,9 +2279,38 @@
       document.getElementById('epSheetTitle').textContent = podcast.name;
       document.getElementById('epSheetDesc').textContent = podcast.description || 'Latviešu raidieraksts';
       const box = document.getElementById('episodesListContainer');
-      box.innerHTML = '<div class="empty-state">Ielādē jaunākās epizodes tieši no RSS...</div>';
       openSheet('episodesSheet');
 
+      const cacheKey = 'm3_pod_cache_' + podcast.id;
+      let cachedEntry = null;
+      try {
+        const raw = safeStorage.get(cacheKey);
+        if (raw) cachedEntry = JSON.parse(raw);
+      } catch (e) {}
+
+      // Stale-While-Revalidate: show cached episodes immediately (0ms wait)
+      if (!forceRefresh && cachedEntry && Array.isArray(cachedEntry.episodes) && cachedEntry.episodes.length > 0) {
+        renderEpisodesInSheet(cachedEntry.episodes, podcast);
+        // If cache is older than 30 mins, silently check RSS in background for new episodes
+        if (Date.now() - (cachedEntry.ts || 0) > 30 * 60 * 1000) {
+          loadPodcastEpisodesDirect(podcast, true).then(fresh => {
+            if (fresh && fresh.length > 0 && activePodcastObj && activePodcastObj.id === podcast.id) {
+              const oldTop = cachedEntry.episodes[0]?.audioUrl;
+              if (fresh[0].audioUrl !== oldTop) {
+                renderEpisodesInSheet(fresh, podcast);
+                showSnackbar('Pievienota jauna podkāsta epizode!', false);
+              }
+              if (fresh[0].artworkUrl && !podcast.artworkUrl) {
+                podcast.artworkUrl = fresh[0].artworkUrl;
+                renderMainList();
+              }
+            }
+          }).catch(() => {});
+        }
+        return;
+      }
+
+      box.innerHTML = '<div class="empty-state">Ielādē jaunākās epizodes tieši no RSS...</div>';
       const episodes = await loadPodcastEpisodesDirect(podcast, forceRefresh);
       if (!episodes || episodes.length === 0) {
         box.innerHTML = `
@@ -2612,7 +2561,7 @@
       destroyHls();
       audioEl.pause();
 
-      recordRecentStation(stationId);
+      recordLastStation(stationId);
       updatePlayerUI('Savienojas...');
       renderMainList();
 
@@ -2626,7 +2575,6 @@
           updatePlayerUI('Tiešraide');
           updateMediaSession(station, true);
           renderMainList();
-          renderRecentShelf();
           return;
         }
       }
@@ -2771,7 +2719,6 @@
       document.getElementById('categoryChips').style.display = isRadio ? 'flex' : 'none';
       document.getElementById('searchInput').placeholder = isRadio ? 'Meklēt staciju vai žanru...' : 'Meklēt latviešu podkāstu...';
       document.getElementById('fabLabelText').textContent = isRadio ? 'Pievienot staciju' : 'Pievienot podkāstu';
-      renderRecentShelf();
       renderMainList();
     }
 
@@ -2784,24 +2731,6 @@
         btn.innerHTML = `<svg class="chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>${cat}</span>`;
         btn.addEventListener('click', () => { selectedCategory = cat; renderCategories(); renderMainList(); });
         container.appendChild(btn);
-      });
-    }
-
-    function renderRecentShelf() {
-      const section = document.getElementById('recentSection');
-      const scroll = document.getElementById('recentScroll');
-      if (appMode !== 'radio') { section.classList.remove('visible'); return; }
-      const validRecents = recentIds.map(id => stations.find(s => s.id === id)).filter(Boolean);
-      if (validRecents.length === 0) { section.classList.remove('visible'); return; }
-      section.classList.add('visible');
-      scroll.innerHTML = '';
-      validRecents.forEach(st => {
-        const initials = st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
-        const btn = document.createElement('button');
-        btn.className = 'recent-pill' + (st.id === currentStationId ? ' active' : '');
-        btn.innerHTML = `<span class="recent-dot ${st.grad || 'grad-indigo'}">${initials}</span><span>${st.name}</span>`;
-        btn.addEventListener('click', () => st.id === currentStationId ? togglePlayPause() : playStation(st.id));
-        scroll.appendChild(btn);
       });
     }
 
@@ -3009,11 +2938,9 @@
         safeStorage.set('m3_radio_hidden', JSON.stringify(hiddenIds));
       }
       stations.splice(idx, 1);
-      recentIds = recentIds.filter(r => r !== id);
       saveCustomStations();
       if (currentStationId === id) { if (isPlaying) togglePlayPause(); currentStationId = null; }
       renderMainList();
-      renderRecentShelf();
       showSnackbar(`"${removed.name}" dzēsta`, false, 'Atcelt', undoLastDelete);
     }
 
@@ -3305,7 +3232,6 @@
           if (data.theme && data.palette) applyThemeAndPalette(data.theme, data.palette);
           initData();
           renderMainList();
-          renderRecentShelf();
           showSnackbar('Iestatījumi veiksmīgi atjaunoti!', false);
         } catch (err) {
           showSnackbar('Nederīgs kopijas fails', false);

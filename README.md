@@ -1,3 +1,3 @@
-# Internetradio & Podkāsti (Material 3 PWA — v12)
+# Internetradio & Podkāsti (Material 3 PWA — v13)
 
-Atjauninātas ikonas Material You gaiši zilganpelēkajā (#E2E7F2) un ogļpelēkajā (#2A2F3A) stilā ar monochrome atbalstu.
+Novākts liekais "Nesen klausītās" bloks un ieviesta vieda fona atjaunošana (Stale-While-Revalidate) podkāstu epizodēm.
