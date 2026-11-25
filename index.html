@@ -2,7 +2,7 @@
 <html lang="lv" data-theme="dark" data-palette="indigo">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Internetradio & Podkāsti — Material 3</title>
   <meta name="referrer" content="no-referrer" />
   <meta name="theme-color" content="#121318" id="themeColorMeta" />
@@ -1758,6 +1758,26 @@
 
   <script>
     /* ==========================================================================
+       XSS & URL SANITIZATION HELPERS
+       ========================================================================== */
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str).replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[m]));
+    }
+
+    function sanitizeUrl(url) {
+      if (!url || typeof url !== 'string') return '';
+      const trimmed = url.trim();
+      return /^https?:\/\//i.test(trimmed) ? trimmed : '';
+    }
+
+    /* ==========================================================================
        SVG ICON HELPERS (PURE MATERIAL 3 VECTORS — NO EMOJI SYMBOLS)
        ========================================================================== */
     const ICONS = {
@@ -2347,8 +2367,8 @@
             }
           </div>
           <div class="ep-meta">
-            <div class="ep-title">${ep.title}</div>
-            <div class="ep-date">${ep.pubDate}${ep.duration ? ' • ' + ep.duration : ''}${pct > 0 ? ` • Noklausīti ${pct}%` : ''}</div>
+            <div class="ep-title">${escapeHTML(ep.title)}</div>
+            <div class="ep-date">${escapeHTML(ep.pubDate)}${ep.duration ? ' • ' + escapeHTML(ep.duration) : ''}${pct > 0 ? ` • Noklausīti ${pct}%` : ''}</div>
             ${pct > 0 ? `<div class="ep-progress-track"><div class="ep-progress-fill" style="width:${pct}%"></div></div>` : ''}
           </div>
         `;
@@ -2385,7 +2405,62 @@
       return `${m}:${String(s).padStart(2, '0')}`;
     }
 
+    let lastProgressSaveSec = -10;
+    let liveReconnectTimer = null;
+    let liveStallWatchdog = null;
+
+    function clearLiveWatchdogs() {
+      clearTimeout(liveReconnectTimer);
+      clearTimeout(liveStallWatchdog);
+      liveReconnectTimer = null;
+      liveStallWatchdog = null;
+    }
+
+    function scheduleLiveReconnect(reasonText = 'Pārtrūka savienojums — atjauno...') {
+      if (playbackType !== 'radio' || !isPlaying || !currentStationId) return;
+      clearLiveWatchdogs();
+      updatePlayerUI(reasonText);
+      liveReconnectTimer = setTimeout(() => {
+        if (playbackType === 'radio' && isPlaying && currentStationId) {
+          playStation(currentStationId);
+        }
+      }, 2500);
+    }
+
+    audioEl.addEventListener('ended', () => {
+      if (playbackType === 'radio' && isPlaying && currentStationId) {
+        scheduleLiveReconnect('Straume pārtrūka — atjauno...');
+      } else if (playbackType === 'podcast') {
+        isPlaying = false;
+        updatePlayerUI('Epizode pabeigta');
+      }
+    });
+
+    audioEl.addEventListener('stalled', () => {
+      if (playbackType === 'radio' && isPlaying && currentStationId && !liveStallWatchdog) {
+        liveStallWatchdog = setTimeout(() => {
+          if (playbackType === 'radio' && isPlaying && currentStationId && (audioEl.readyState < 3 || audioEl.paused)) {
+            scheduleLiveReconnect('Buferēšana ieilga — pārslēdzas...');
+          }
+        }, 7000);
+      }
+    });
+
+    audioEl.addEventListener('waiting', () => {
+      if (playbackType === 'radio' && isPlaying && currentStationId && !liveStallWatchdog) {
+        updatePlayerUI('Buferē audio...');
+        liveStallWatchdog = setTimeout(() => {
+          if (playbackType === 'radio' && isPlaying && currentStationId && (audioEl.readyState < 3 || audioEl.paused)) {
+            scheduleLiveReconnect('Savienojums zuda — atjauno...');
+          }
+        }, 7500);
+      }
+    });
+
     audioEl.addEventListener('timeupdate', () => {
+      if (playbackType === 'radio' && isPlaying) {
+        clearLiveWatchdogs();
+      }
       if (playbackType === 'podcast' && currentEpisode && audioEl.duration) {
         const cur = audioEl.currentTime;
         const dur = audioEl.duration;
@@ -2401,7 +2476,8 @@
         const miniBar = document.getElementById('miniLinearProgress');
         miniBar.style.width = `${pct}%`;
 
-        if (Math.floor(cur) % 5 === 0) {
+        if (Math.abs(cur - lastProgressSaveSec) >= 5) {
+          lastProgressSaveSec = cur;
           episodeProgressMap[currentEpisode.audioUrl] = { currentTime: cur, duration: dur };
           safeStorage.set('m3_podcast_progress', JSON.stringify(episodeProgressMap));
         }
@@ -2410,6 +2486,8 @@
 
     function playPodcastEpisode(ep) {
       attemptToken++;
+      clearLiveWatchdogs();
+      lastProgressSaveSec = -10;
       playbackType = 'podcast';
       currentEpisode = ep;
       currentStationId = null;
@@ -2553,6 +2631,7 @@
       if (!station) return;
 
       const token = ++attemptToken;
+      clearLiveWatchdogs();
       playbackType = 'radio';
       currentEpisode = null;
       currentStationId = stationId;
@@ -2628,6 +2707,7 @@
       }
       if (isPlaying) {
         attemptToken++;
+        clearLiveWatchdogs();
         isPlaying = false;
         destroyHls();
         audioEl.pause();
@@ -2639,6 +2719,7 @@
     }
 
     audioEl.addEventListener('playing', () => {
+      clearLiveWatchdogs();
       isPlaying = true;
       hideSnackbar();
       updatePlayerUI(playbackType === 'podcast' ? 'Podkāsts' : 'Tiešraide');
@@ -2804,8 +2885,9 @@
         list.innerHTML = '';
         filteredPods.forEach(pod => {
           const isFav = podcastFavorites.includes(pod.id);
-          const initials = pod.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
-          const avatarHtml = pod.artworkUrl ? `<img src="${pod.artworkUrl}" alt="" />` : initials;
+          const initials = escapeHTML(pod.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase());
+          const safeArt = sanitizeUrl(pod.artworkUrl);
+          const avatarHtml = safeArt ? `<img src="${escapeHTML(safeArt)}" alt="" />` : initials;
 
           const wrap = document.createElement('div');
           wrap.className = 'station-swipe-wrap';
@@ -2821,12 +2903,12 @@
           const card = document.createElement('article');
           card.className = 'm3-station-card';
           card.innerHTML = `
-            <div class="station-avatar ${pod.grad || 'grad-indigo'}">${avatarHtml}</div>
+            <div class="station-avatar ${escapeHTML(pod.grad || 'grad-indigo')}">${avatarHtml}</div>
             <div class="station-info">
               <div class="station-title-row">
-                <span class="station-name">${pod.name}</span>
+                <span class="station-name">${escapeHTML(pod.name)}</span>
               </div>
-              <div class="station-subtitle">${pod.description || 'Latviešu raidieraksts'}</div>
+              <div class="station-subtitle">${escapeHTML(pod.description || 'Latviešu raidieraksts')}</div>
             </div>
             <div class="card-actions">
               <button class="fav-btn ${isFav ? 'is-fav' : ''}" title="Favorīts">
@@ -2860,7 +2942,7 @@
       filtered.forEach(st => {
         const isCurrent = playbackType === 'radio' && st.id === currentStationId;
         const isFav = favorites.includes(st.id);
-        const initials = st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+        const initials = escapeHTML(st.name.split(' ').slice(0, 2).map(w => w[0] || '').join('').toUpperCase());
         const avatarOverlay = isCurrent
           ? `<div class="avatar-overlay">${isPlaying
               ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>'
@@ -2882,13 +2964,13 @@
         const card = document.createElement('article');
         card.className = 'm3-station-card' + (isCurrent ? ' active' : '');
         card.innerHTML = `
-          <div class="station-avatar ${st.grad || 'grad-indigo'}">${initials}${avatarOverlay}</div>
+          <div class="station-avatar ${escapeHTML(st.grad || 'grad-indigo')}">${initials}${avatarOverlay}</div>
           <div class="station-info">
             <div class="station-title-row">
-              <span class="station-name">${st.name}</span>
+              <span class="station-name">${escapeHTML(st.name)}</span>
               ${isCurrent && isPlaying ? '<span class="live-pill">TIEŠRAIDE</span>' : ''}
             </div>
-            <div class="station-subtitle">${st.description || st.genre}</div>
+            <div class="station-subtitle">${escapeHTML(st.description || st.genre)}</div>
           </div>
           <div class="card-actions">
             <button class="fav-btn ${isFav ? 'is-fav' : ''}" title="Favorīts">
@@ -3005,12 +3087,13 @@
       if (playbackType === 'podcast' && currentEpisode) {
         miniTitle.textContent = currentEpisode.title;
         miniArt.className = `mini-art ${currentEpisode.grad || 'grad-indigo'}`;
-        miniArt.innerHTML = currentEpisode.artworkUrl ? `<img src="${currentEpisode.artworkUrl}" alt="" />` : ICONS.radioArt;
+        const safeEpArt = sanitizeUrl(currentEpisode.artworkUrl);
+        miniArt.innerHTML = safeEpArt ? `<img src="${escapeHTML(safeEpArt)}" alt="" />` : ICONS.radioArt;
 
         npTitle.textContent = currentEpisode.title;
         npDesc.textContent = currentEpisode.podcastName;
         npArtwork.className = `np-artwork ${currentEpisode.grad || 'grad-indigo'}`;
-        npArtwork.innerHTML = currentEpisode.artworkUrl ? `<img src="${currentEpisode.artworkUrl}" alt="" />` : ICONS.radioArtLg;
+        npArtwork.innerHTML = safeEpArt ? `<img src="${escapeHTML(safeEpArt)}" alt="" />` : ICONS.radioArtLg;
 
         if (currentEpisode.description) {
           npShowNotes.textContent = currentEpisode.description;
@@ -3227,8 +3310,14 @@
           if (Array.isArray(data.podcastFavorites)) safeStorage.set('m3_pod_favs', JSON.stringify(data.podcastFavorites));
           if (Array.isArray(data.hiddenIds)) safeStorage.set('m3_radio_hidden', JSON.stringify(data.hiddenIds));
           if (Array.isArray(data.hiddenPodIds)) safeStorage.set('m3_pod_hidden', JSON.stringify(data.hiddenPodIds));
-          if (Array.isArray(data.customStations)) safeStorage.set('m3_radio_custom_v1', JSON.stringify(data.customStations));
-          if (Array.isArray(data.customPodcasts)) safeStorage.set('m3_podcasts_custom_v1', JSON.stringify(data.customPodcasts));
+          if (Array.isArray(data.customStations)) {
+            const validSt = data.customStations.filter(s => s && typeof s.name === 'string' && sanitizeUrl(s.url));
+            safeStorage.set('m3_radio_custom_v1', JSON.stringify(validSt));
+          }
+          if (Array.isArray(data.customPodcasts)) {
+            const validPod = data.customPodcasts.filter(p => p && typeof p.name === 'string' && sanitizeUrl(p.rssUrl));
+            safeStorage.set('m3_podcasts_custom_v1', JSON.stringify(validPod));
+          }
           if (data.theme && data.palette) applyThemeAndPalette(data.theme, data.palette);
           initData();
           renderMainList();
@@ -3332,8 +3421,8 @@
           row.className = 'online-result-item';
           row.innerHTML = `
             <div style="min-width:0;flex:1;">
-              <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.collectionName}</div>
-              <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.artistName || 'Podkāsts'}</div>
+              <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHTML(item.collectionName)}</div>
+              <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHTML(item.artistName || 'Podkāsts')}</div>
             </div>
             <button class="m3-tonal-btn" ${exists ? 'disabled' : ''}>${exists ? 'Pievienots' : 'Pievienot'}</button>
           `;
@@ -3383,9 +3472,9 @@
                 row.innerHTML = `
                   <button type="button" class="preview-play-btn" title="Paklausīties pirms pievienošanas" aria-label="Priekšskatījums">${ICONS.playSm}</button>
                   <div style="min-width:0;flex:1;">
-                    <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cleanName}</div>
+                    <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHTML(cleanName)}</div>
                     <div style="font-size:12px;color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                      <span class="codec-badge">${codecInfo}</span>${item.country || 'Tiešraide'}
+                      <span class="codec-badge">${escapeHTML(codecInfo)}</span>${escapeHTML(item.country || 'Tiešraide')}
                     </div>
                   </div>
                   <button type="button" class="m3-tonal-btn add-res-btn" ${exists ? 'disabled' : ''}>${exists ? 'Ir sarakstā' : 'Pievienot'}</button>

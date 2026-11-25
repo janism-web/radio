@@ -1,4 +1,4 @@
-const CACHE_NAME = 'internetradio-m3-flat-v13';
+const CACHE_NAME = 'internetradio-m3-flat-v14';
 const APP_SHELL = [
   './',
   './index.html',
@@ -24,10 +24,30 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+
+  // HTML navigācijai: Network-First stratēģija (vienmēr svaigākā versija, bezsaistē -> kešs)
+  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => {
+          if (res && res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(event.request).then((cached) => cached || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // Statiskajiem resursiem (ikonām, manifest.json): Cache-First
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request).then((res) => {
-      const clone = res.clone();
-      caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+      if (res && res.status === 200) {
+        const clone = res.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+      }
       return res;
     }))
   );
